@@ -35,14 +35,10 @@ header{background:linear-gradient(110deg,#19002d,#35004f);padding:12px;display:f
 .play{width:100%;margin-top:9px;padding:10px;background:linear-gradient(#ffe85b,#ffb900);color:#290039;border:0;border-radius:20px;font-weight:bold}
 .notice{margin:12px 14px;padding:13px;background:#21002f;border:1px solid #6b008e;border-radius:12px;color:#d9c5e5;font-size:12px;line-height:1.6}
 footer{padding:25px 12px;text-align:center;color:#bda9c9;font-size:12px}
-
-/* BOTTOM NAVIGATION */
 .bottom{position:fixed;bottom:0;left:0;right:0;background:#1b0029;border-top:1px solid #7900a9;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));padding:7px 2px max(7px,env(safe-area-inset-bottom));z-index:20;box-shadow:0 -5px 18px #0008}
 .bottom button{min-width:0;border:0;background:none;color:#d6c1e4;font-size:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:3px 1px;white-space:nowrap}
 .bottom button.active{color:#ffe34b}
 .bottom span{font-size:21px;line-height:1.2}
-
-/* MODALS */
 .modal{display:none;position:fixed;inset:0;z-index:30;background:#000d;align-items:flex-start;justify-content:center;padding:12px;overflow:auto}
 .modal.show{display:flex}
 .panel{width:100%;max-width:480px;background:linear-gradient(145deg,#390052,#160020);border:1px solid #d000ff;border-radius:20px;padding:18px;margin:auto;box-shadow:0 0 25px #8500b5}
@@ -55,8 +51,6 @@ footer{padding:25px 12px;text-align:center;color:#bda9c9;font-size:12px}
 .message{text-align:center;color:#ffe34b;min-height:22px;font-size:13px}
 .close{float:right;border:0;background:none;color:white;font-size:25px}
 .hidden{display:none!important}
-
-/* DASHBOARD */
 .profile-card{background:linear-gradient(120deg,#62008b,#25003a);border:1px solid #bd00ff;border-radius:16px;padding:18px;margin:12px 0;text-align:center}
 .avatar{width:65px;height:65px;border-radius:50%;background:#ffe34b;color:#310044;font-size:34px;display:flex;align-items:center;justify-content:center;margin:auto auto 8px}
 .profile-card h3{margin:5px;color:#ffe34b;font-size:20px}
@@ -79,7 +73,6 @@ footer{padding:25px 12px;text-align:center;color:#bda9c9;font-size:12px}
 .gamebox{text-align:center;background:#230034;padding:20px;border-radius:14px;margin-top:12px}
 .gamebox .big{font-size:48px;margin:15px}
 .promo-card{background:linear-gradient(120deg,#520078,#250039);border:1px solid #a000dc;border-radius:14px;padding:16px;margin:12px 0}
-
 @media(min-width:700px){
 .games{grid-template-columns:repeat(4,minmax(0,1fr))}
 .hero{padding:35px}
@@ -130,7 +123,6 @@ Virtual Demo Gaming Platform<br><br>
 © 2026 FBD44. All rights reserved.
 </footer>
 
-<!-- FIVE BOTTOM MENUS -->
 <nav class="bottom" aria-label="Bottom navigation">
 <button id="navHome" class="active" onclick="goHome()"><span>🏠</span>Home</button>
 <button id="navPromotion" onclick="showPromotion()"><span>🎁</span>Promotion</button>
@@ -139,7 +131,6 @@ Virtual Demo Gaming Platform<br><br>
 <button id="navMember" onclick="openMember()"><span>👤</span>Member</button>
 </nav>
 
-<!-- ACCOUNT MODAL -->
 <div class="modal" id="accountModal">
 <div class="panel">
 <button class="close" onclick="closeModal('accountModal')">×</button>
@@ -150,7 +141,6 @@ Virtual Demo Gaming Platform<br><br>
 <button id="loginTab" class="active" onclick="setMode('login')">LOGIN</button>
 <button id="registerTab" onclick="setMode('register')">REGISTER</button>
 </div>
-
 <form id="accountForm">
 <input class="field hidden" id="regName" placeholder="Username">
 <input class="field" id="identity" placeholder="Mobile number or username" required>
@@ -162,7 +152,6 @@ Virtual Demo Gaming Platform<br><br>
 <p style="text-align:center;font-size:12px;color:#d8c6e3">Account registration only. Demo platform.</p>
 </div>
 
-<!-- DASHBOARD -->
 <div id="dashboard" class="hidden">
 <div id="dashboardHome">
 <div class="profile-card">
@@ -172,23 +161,19 @@ Virtual Demo Gaming Platform<br><br>
 <p>Joining Date: <b id="joinDate">তথ্য পাওয়া যায়নি</b></p>
 <p id="userId">User ID: --</p>
 </div>
-
 <div class="balance-card">
 <small>💰 BALANCE</small>
 <strong><span id="dashPoints">10,000</span> PTS</strong>
 <small>Virtual Demo Points Only</small>
 </div>
-
 <div class="action-grid">
 <button class="action-btn" onclick="openFeature('Deposit')"><span>➕</span>Deposit</button>
 <button class="action-btn" onclick="openFeature('Withdraw')"><span>➖</span>Withdraw</button>
 <button class="action-btn" onclick="openFeature('My Card')"><span>💳</span>My Card</button>
 </div>
-
 <div class="member-title">👑 সদস্য কেন্দ্র</div>
 <div class="menu-list" id="memberMenu"></div>
 </div>
-
 <div id="featurePage" class="hidden">
 <button class="detail-back" onclick="backDashboard()">← ফিরে যান</button>
 <div class="detail-box">
@@ -200,7 +185,6 @@ Virtual Demo Gaming Platform<br><br>
 </div>
 </div>
 
-<!-- GAME MODAL -->
 <div class="modal" id="gameModal">
 <div class="panel">
 <button class="close" onclick="closeModal('gameModal')">×</button>
@@ -215,7 +199,6 @@ Virtual Demo Gaming Platform<br><br>
 </div>
 </div>
 
-<!-- PROMOTION MODAL -->
 <div class="modal" id="promotionModal">
 <div class="panel">
 <button class="close" onclick="closeModal('promotionModal')">×</button>
@@ -280,6 +263,35 @@ let accountMode="login";
 let currentUser=null;
 let gameHistory=[];
 
+/* Username বের করার জন্য */
+function getUsername(user,fallback=""){
+if(!user)return fallback;
+return String(
+user.username ??
+user.name ??
+user.nickname ??
+user.user_name ??
+user.handle ??
+fallback ??
+"User"
+);
+}
+
+/* Header-এ UUID নয়, Username দেখাবে */
+function updateHeaderAccount(){
+const button=document.getElementById("headerAccount");
+
+if(!currentUser){
+button.textContent="ACCOUNT";
+button.title="ACCOUNT";
+return;
+}
+
+const username=getUsername(currentUser);
+button.textContent="👤 "+username;
+button.title="Username: "+username;
+}
+
 function renderGames(){
 const query=document.getElementById("search").value.toLowerCase();
 const filtered=gameList.filter(g=>(selectedCategory==="All"||g.cat===selectedCategory)&&g.name.toLowerCase().includes(query));
@@ -333,9 +345,7 @@ updateAccountView();
 setActiveNav("navMember");
 }
 
-function openMember(){
-openAccount();
-}
+function openMember(){openAccount()}
 
 function closeModal(id){
 document.getElementById(id).classList.remove("show");
@@ -409,47 +419,24 @@ document.getElementById("accountMessage").textContent="";
 document.getElementById("accountForm").reset();
 }
 
-function updateHeaderAccount(){
-const button=document.getElementById("headerAccount");
-
-if(!currentUser){
-button.textContent="ACCOUNT";
-button.title="ACCOUNT";
-return;
-}
-
-/* API থেকে পাওয়া User ID-কে অগ্রাধিকার */
-const userID=currentUser.user_id ??
-currentUser.id ??
-currentUser.username ??
-currentUser.name ??
-"User";
-
-button.textContent="👤 "+String(userID);
-button.title="User ID: "+String(userID);
-}
-
 function updateAccountView(){
 const logged=!!currentUser;
-
 document.getElementById("authArea").classList.toggle("hidden",logged);
 document.getElementById("dashboard").classList.toggle("hidden",!logged);
-
 updateHeaderAccount();
-
 if(logged)updateDashboard();
 }
 
 function updateDashboard(){
 if(!currentUser)return;
 
-const name=currentUser.name||currentUser.username||"User";
-const userID=currentUser.user_id ?? currentUser.id ?? currentUser.username ?? "--";
+const username=getUsername(currentUser);
+const userID=currentUser.user_id ?? currentUser.id ?? "--";
 
-document.getElementById("userName").textContent=name;
-document.getElementById("nickName").textContent=currentUser.nickname||name;
-document.getElementById("userId").textContent="User ID: "+userID;
+document.getElementById("userName").textContent=username;
+document.getElementById("nickName").textContent=currentUser.nickname||username;
 document.getElementById("joinDate").textContent=currentUser.created_at||"তথ্য পাওয়া যায়নি";
+document.getElementById("userId").textContent="User ID: "+userID;
 document.getElementById("dashPoints").textContent=demoPoints.toLocaleString();
 document.getElementById("points").textContent=demoPoints.toLocaleString();
 document.getElementById("gamePoints").textContent=demoPoints.toLocaleString();
@@ -460,10 +447,7 @@ document.getElementById("memberMenu").innerHTML=menuItems.map(([label,icon])=>
 }
 
 function openFeature(label){
-if(label==="Logout"){
-logout();
-return;
-}
+if(label==="Logout"){logout();return;}
 
 document.getElementById("dashboardHome").classList.add("hidden");
 document.getElementById("featurePage").classList.remove("hidden");
@@ -479,9 +463,9 @@ content.innerHTML="<p>এটি Demo Deposit পৃষ্ঠা। এখান�
 }else if(label==="Withdraw"){
 content.innerHTML="<p>এটি Demo Withdraw পৃষ্ঠা। কোনো বাস্তব অর্থ উত্তোলন হয় না।</p><p>বর্তমান Demo Balance: <b>"+demoPoints.toLocaleString()+" PTS</b></p>";
 }else if(label==="My Card"){
-content.innerHTML="<div style='background:linear-gradient(120deg,#8c5900,#3a075a);padding:22px;border-radius:15px'><h2>👑 FBD44 DEMO CARD</h2><h3>"+escapeHTML(currentUser.name||"User")+"</h3><p>DEMO MEMBER</p><p>Balance: "+demoPoints.toLocaleString()+" PTS</p><p>Virtual Card • No Cash Value</p></div>";
+content.innerHTML="<div style='background:linear-gradient(120deg,#8c5900,#3a075a);padding:22px;border-radius:15px'><h2>👑 FBD44 DEMO CARD</h2><h3>"+escapeHTML(getUsername(currentUser))+"</h3><p>DEMO MEMBER</p><p>Balance: "+demoPoints.toLocaleString()+" PTS</p><p>Virtual Card • No Cash Value</p></div>";
 }else if(label==="আমার অ্যাকাউন্ট"){
-content.innerHTML="<p>Username: "+escapeHTML(currentUser.name||"--")+"</p><p>User ID: "+escapeHTML(String(currentUser.user_id ?? currentUser.id ?? "--"))+"</p><p>Email: "+escapeHTML(currentUser.email||"তথ্য নেই")+"</p><p>Phone: "+escapeHTML(currentUser.phone||"তথ্য নেই")+"</p>";
+content.innerHTML="<p>Username: "+escapeHTML(getUsername(currentUser))+"</p><p>User ID: "+escapeHTML(String(currentUser.user_id ?? currentUser.id ?? "--"))+"</p><p>Email: "+escapeHTML(currentUser.email||"তথ্য নেই")+"</p><p>Phone: "+escapeHTML(currentUser.phone||"তথ্য নেই")+"</p>";
 }else if(label==="পাশাপাশি বাজির ইতিহাস"){
 content.innerHTML="<p>গেমের Demo Activity:</p>"+history;
 }else if(label==="লাভ-লস"){
@@ -524,7 +508,8 @@ return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'
 
 function saveUserData(){
 if(!currentUser)return;
-localStorage.setItem("fbd44_demo_"+currentUser.id,JSON.stringify({demoPoints,gameHistory}));
+const key=currentUser.id ?? currentUser.user_id ?? getUsername(currentUser);
+localStorage.setItem("fbd44_demo_"+key,JSON.stringify({demoPoints,gameHistory}));
 }
 
 function loadUserData(){
@@ -533,7 +518,8 @@ gameHistory=[];
 if(!currentUser)return;
 
 try{
-const saved=JSON.parse(localStorage.getItem("fbd44_demo_"+currentUser.id)||"null");
+const key=currentUser.id ?? currentUser.user_id ?? getUsername(currentUser);
+const saved=JSON.parse(localStorage.getItem("fbd44_demo_"+key)||"null");
 if(saved){
 demoPoints=Number(saved.demoPoints)||10000;
 gameHistory=Array.isArray(saved.gameHistory)?saved.gameHistory:[];
@@ -591,11 +577,15 @@ if(!res.ok||!data.success){
 throw new Error(data.message||data.detail||"Request failed");
 }
 
-currentUser=data.user;
-
-if(!currentUser){
+if(!data.user){
 throw new Error("User information was not returned by the server.");
 }
+
+/* UUID আলাদা থাকবে, Username আলাদা থাকবে */
+currentUser={
+...data.user,
+username:getUsername(data.user,identity)
+};
 
 localStorage.setItem("fbd44_current_user",JSON.stringify(currentUser));
 loadUserData();
@@ -629,8 +619,12 @@ setActiveNav("navHome");
 
 try{
 const savedUser=JSON.parse(localStorage.getItem("fbd44_current_user")||"null");
-if(savedUser&&savedUser.id){
-currentUser=savedUser;
+
+if(savedUser&&(savedUser.id||savedUser.user_id||savedUser.username||savedUser.name)){
+currentUser={
+...savedUser,
+username:getUsername(savedUser)
+};
 loadUserData();
 }
 }catch(e){}
