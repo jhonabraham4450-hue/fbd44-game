@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -8,8 +7,9 @@
 <title>FBD44 - Gaming World</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#100019;color:white;font-family:Arial,sans-serif}
-button,input{font:inherit}button{cursor:pointer}
+body{margin:0;background:#100019;color:white;font-family:Arial,sans-serif;padding-bottom:76px}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
 header{background:linear-gradient(110deg,#19002d,#35004f);padding:12px;display:flex;align-items:center;justify-content:space-between;gap:7px;border-bottom:1px solid #a000e8;position:sticky;top:0;z-index:10}
 .logo{font-size:22px;font-weight:900;color:#ffe34b}
 .logo small{display:block;font-size:11px;color:white}
@@ -34,10 +34,15 @@ header{background:linear-gradient(110deg,#19002d,#35004f);padding:12px;display:f
 .game-info small{color:#cdb5d8}
 .play{width:100%;margin-top:9px;padding:10px;background:linear-gradient(#ffe85b,#ffb900);color:#290039;border:0;border-radius:20px;font-weight:bold}
 .notice{margin:12px 14px;padding:13px;background:#21002f;border:1px solid #6b008e;border-radius:12px;color:#d9c5e5;font-size:12px;line-height:1.6}
-footer{padding:25px 12px 90px;text-align:center;color:#bda9c9;font-size:12px}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#1b0029;border-top:1px solid #7900a9;display:flex;justify-content:space-around;padding:10px 3px;z-index:9}
-.bottom button{border:0;background:none;color:#d6c1e4;font-size:11px;display:flex;flex-direction:column;align-items:center;gap:4px}
-.bottom span{font-size:21px}
+footer{padding:25px 12px;text-align:center;color:#bda9c9;font-size:12px}
+
+/* BOTTOM NAVIGATION */
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#1b0029;border-top:1px solid #7900a9;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));padding:7px 2px max(7px,env(safe-area-inset-bottom));z-index:20;box-shadow:0 -5px 18px #0008}
+.bottom button{min-width:0;border:0;background:none;color:#d6c1e4;font-size:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:3px 1px;white-space:nowrap}
+.bottom button.active{color:#ffe34b}
+.bottom span{font-size:21px;line-height:1.2}
+
+/* MODALS */
 .modal{display:none;position:fixed;inset:0;z-index:30;background:#000d;align-items:flex-start;justify-content:center;padding:12px;overflow:auto}
 .modal.show{display:flex}
 .panel{width:100%;max-width:480px;background:linear-gradient(145deg,#390052,#160020);border:1px solid #d000ff;border-radius:20px;padding:18px;margin:auto;box-shadow:0 0 25px #8500b5}
@@ -51,7 +56,7 @@ footer{padding:25px 12px 90px;text-align:center;color:#bda9c9;font-size:12px}
 .close{float:right;border:0;background:none;color:white;font-size:25px}
 .hidden{display:none!important}
 
-/* USER DASHBOARD */
+/* DASHBOARD */
 .profile-card{background:linear-gradient(120deg,#62008b,#25003a);border:1px solid #bd00ff;border-radius:16px;padding:18px;margin:12px 0;text-align:center}
 .avatar{width:65px;height:65px;border-radius:50%;background:#ffe34b;color:#310044;font-size:34px;display:flex;align-items:center;justify-content:center;margin:auto auto 8px}
 .profile-card h3{margin:5px;color:#ffe34b;font-size:20px}
@@ -73,26 +78,33 @@ footer{padding:25px 12px 90px;text-align:center;color:#bda9c9;font-size:12px}
 .history-row{padding:10px 0;border-bottom:1px solid #ffffff20;font-size:13px}
 .gamebox{text-align:center;background:#230034;padding:20px;border-radius:14px;margin-top:12px}
 .gamebox .big{font-size:48px;margin:15px}
-@media(min-width:700px){.games{grid-template-columns:repeat(4,minmax(0,1fr))}.hero{padding:35px}.panel{max-width:520px}}
+.promo-card{background:linear-gradient(120deg,#520078,#250039);border:1px solid #a000dc;border-radius:14px;padding:16px;margin:12px 0}
+
+@media(min-width:700px){
+.games{grid-template-columns:repeat(4,minmax(0,1fr))}
+.hero{padding:35px}
+.panel{max-width:520px}
+.bottom{max-width:700px;left:50%;transform:translateX(-50%);border-radius:14px 14px 0 0}
+}
 </style>
 </head>
 <body>
 
 <header>
-<button class="menu" onclick="scrollToTop()">☰</button>
+<button class="menu" onclick="scrollToTop()" aria-label="Home">☰</button>
 <div class="logo">👑 FBD44<small>Gaming World</small></div>
 <div class="balance">🎮 DEMO <span id="points">10,000</span> PTS</div>
 <button class="account" onclick="openAccount()">ACCOUNT</button>
 </header>
 
-<section class="hero">
+<section class="hero" id="homeSection">
 <h1>👑 Welcome to FBD44</h1>
 <p>Explore your favourite games in one gaming world.</p>
 <p>Play, enjoy and experience virtual demo games.</p>
 <span class="demo">DEMO MODE ONLY</span>
 </section>
 
-<section class="section">
+<section class="section" id="gameSection">
 <h2>🎮 Game Categories</h2>
 <div class="categories">
 <button class="cat active" data-cat="All">All Games</button>
@@ -118,15 +130,16 @@ Virtual Demo Gaming Platform<br><br>
 © 2026 FBD44. All rights reserved.
 </footer>
 
-<nav class="bottom">
-<button onclick="scrollToTop()"><span>🏠</span>Home</button>
-<button onclick="showCategory('Slots')"><span>🎁</span>Slots</button>
-<button onclick="showCategory('Fishing')"><span>🐟</span>Fishing</button>
-<button onclick="showCategory('Crash')"><span>🚀</span>Crash</button>
-<button onclick="openAccount()"><span>👤</span>Account</button>
+<!-- FIVE BOTTOM MENUS -->
+<nav class="bottom" aria-label="Bottom navigation">
+<button id="navHome" class="active" onclick="goHome()"><span>🏠</span>Home</button>
+<button id="navPromotion" onclick="showPromotion()"><span>🎁</span>Promotion</button>
+<button id="navShare" onclick="shareSite()"><span>🔗</span>Share</button>
+<button id="navRewards" onclick="openRewards()"><span>🏆</span><small>পুরস্কার কেন্দ্র</small></button>
+<button id="navMember" onclick="openMember()"><span>👤</span>Member</button>
 </nav>
 
-<!-- ACCOUNT -->
+<!-- ACCOUNT MODAL -->
 <div class="modal" id="accountModal">
 <div class="panel">
 <button class="close" onclick="closeModal('accountModal')">×</button>
@@ -137,6 +150,7 @@ Virtual Demo Gaming Platform<br><br>
 <button id="loginTab" class="active" onclick="setMode('login')">LOGIN</button>
 <button id="registerTab" onclick="setMode('register')">REGISTER</button>
 </div>
+
 <form id="accountForm">
 <input class="field hidden" id="regName" placeholder="Username">
 <input class="field" id="identity" placeholder="Mobile number or username" required>
@@ -182,7 +196,6 @@ Virtual Demo Gaming Platform<br><br>
 <div id="featureContent"></div>
 </div>
 </div>
-
 </div>
 </div>
 </div>
@@ -199,6 +212,23 @@ Virtual Demo Gaming Platform<br><br>
 <button class="submit" onclick="playDemo()">PLAY DEMO</button>
 <p id="gameResult" class="message"></p>
 </div>
+</div>
+</div>
+
+<!-- PROMOTION MODAL -->
+<div class="modal" id="promotionModal">
+<div class="panel">
+<button class="close" onclick="closeModal('promotionModal')">×</button>
+<h2>🎁 FBD44 Promotion</h2>
+<div class="promo-card">
+<h3>Welcome Promotion</h3>
+<p>Demo platform-এ স্বাগতম! এখানে শুধু ভার্চুয়াল ডেমো সুবিধা রয়েছে।</p>
+</div>
+<div class="promo-card">
+<h3>Daily Demo Rewards</h3>
+<p>পুরস্কার ও পয়েন্টের কোনো বাস্তব নগদ মূল্য নেই।</p>
+</div>
+<p class="message">Demo Promotion Only</p>
 </div>
 </div>
 
@@ -254,9 +284,14 @@ function renderGames(){
 const query=document.getElementById("search").value.toLowerCase();
 const filtered=gameList.filter(g=>(selectedCategory==="All"||g.cat===selectedCategory)&&g.name.toLowerCase().includes(query));
 document.getElementById("games").innerHTML=filtered.map(g=>`
-<article class="game"><div class="game-art">${g.emoji}</div>
-<div class="game-info"><b>${g.name}</b><small>${g.cat} • DEMO</small>
-<button class="play" onclick="openGame(${gameList.indexOf(g)})">PLAY</button></div></article>`).join("")||"<p>No games found.</p>";
+<article class="game">
+<div class="game-art">${g.emoji}</div>
+<div class="game-info">
+<b>${g.name}</b>
+<small>${g.cat} • DEMO</small>
+<button class="play" onclick="openGame(${gameList.indexOf(g)})">PLAY</button>
+</div>
+</article>`).join("")||"<p>No games found.</p>";
 }
 
 document.querySelectorAll(".cat").forEach(btn=>btn.addEventListener("click",()=>showCategory(btn.dataset.cat)));
@@ -265,11 +300,12 @@ function showCategory(cat){
 selectedCategory=cat;
 document.querySelectorAll(".cat").forEach(btn=>btn.classList.toggle("active",btn.dataset.cat===cat));
 renderGames();
-document.querySelector(".section").scrollIntoView({behavior:"smooth"});
+document.getElementById("gameSection").scrollIntoView({behavior:"smooth"});
 }
 
 function openGame(index){
 currentGame=gameList[index];
+if(!currentGame)return;
 document.getElementById("gameTitle").textContent=currentGame.name;
 document.getElementById("gameEmoji").textContent=currentGame.emoji;
 document.getElementById("gameDescription").textContent=currentGame.desc;
@@ -280,7 +316,8 @@ document.getElementById("gameModal").classList.add("show");
 
 function playDemo(){
 if(!currentUser){
-closeModal("gameModal");openAccount();
+closeModal("gameModal");
+openAccount();
 document.getElementById("accountMessage").textContent="গেম খেলতে আগে Login করুন।";
 return;
 }
@@ -293,8 +330,71 @@ document.getElementById("gameResult").textContent="Demo preview started!";
 function openAccount(){
 document.getElementById("accountModal").classList.add("show");
 updateAccountView();
+setActiveNav("navMember");
 }
-function closeModal(id){document.getElementById(id).classList.remove("show");}
+
+function openMember(){
+openAccount();
+}
+
+function closeModal(id){
+document.getElementById(id).classList.remove("show");
+}
+
+function setActiveNav(id){
+document.querySelectorAll(".bottom button").forEach(b=>b.classList.remove("active"));
+const target=document.getElementById(id);
+if(target)target.classList.add("active");
+}
+
+function goHome(){
+closeModal("accountModal");
+closeModal("promotionModal");
+closeModal("gameModal");
+setActiveNav("navHome");
+scrollToTop();
+}
+
+function showPromotion(){
+closeModal("accountModal");
+closeModal("gameModal");
+document.getElementById("promotionModal").classList.add("show");
+setActiveNav("navPromotion");
+}
+
+async function shareSite(){
+const shareData={
+title:"FBD44 Gaming World",
+text:"Visit FBD44 Virtual Demo Gaming Platform",
+url:window.location.href
+};
+try{
+if(navigator.share){
+await navigator.share(shareData);
+}else if(navigator.clipboard&&window.isSecureContext){
+await navigator.clipboard.writeText(shareData.url);
+alert("Website link copied!");
+}else{
+window.prompt("এই লিংকটি কপি করুন:",shareData.url);
+}
+}catch(error){
+if(error.name!=="AbortError"){
+alert("Share করা যায়নি। লিংকটি কপি করে শেয়ার করুন।");
+}
+}
+setActiveNav("navShare");
+}
+
+function openRewards(){
+setActiveNav("navRewards");
+if(!currentUser){
+openAccount();
+document.getElementById("accountMessage").textContent="পুরস্কার কেন্দ্র দেখতে আগে Login করুন।";
+return;
+}
+openAccount();
+openFeature("আমার পুরস্কার");
+}
 
 function setMode(mode){
 accountMode=mode;
@@ -332,12 +432,19 @@ document.getElementById("memberMenu").innerHTML=menuItems.map(([label,icon])=>
 }
 
 function openFeature(label){
-if(label==="Logout"){logout();return;}
+if(label==="Logout"){
+logout();
+return;
+}
+
 document.getElementById("dashboardHome").classList.add("hidden");
 document.getElementById("featurePage").classList.remove("hidden");
 document.getElementById("featureTitle").textContent=label;
+
 const content=document.getElementById("featureContent");
-const history=gameHistory.length?gameHistory.map(x=>`<div class="history-row">🎮 ${escapeHTML(x.name)}<br><small>${escapeHTML(x.time)}</small></div>`).join(""):"এখনো কোনো রেকর্ড নেই।";
+const history=gameHistory.length
+?gameHistory.map(x=>`<div class="history-row">🎮 ${escapeHTML(x.name)}<br><small>${escapeHTML(x.time)}</small></div>`).join("")
+:"এখনো কোনো রেকর্ড নেই।";
 
 if(label==="Deposit"){
 content.innerHTML="<p>এটি Demo Deposit পৃষ্ঠা। এখানে কোনো বাস্তব টাকা জমা হবে না।</p><p>বর্তমান Demo Balance: <b>"+demoPoints.toLocaleString()+" PTS</b></p><p>Demo Points যোগ করার সুবিধা পরবর্তী ধাপে Admin-এর নিয়ন্ত্রণসহ তৈরি করা হবে।</p>";
@@ -351,7 +458,7 @@ content.innerHTML="<p>Username: "+escapeHTML(currentUser.name||"--")+"</p><p>Use
 content.innerHTML="<p>গেমের Demo Activity:</p>"+history;
 }else if(label==="লাভ-লস"){
 content.innerHTML="<p>Demo লাভ-লসের হিসাব এখনো চালু হয়নি। কোনো বাস্তব অর্থের হিসাব নেই।</p>";
-}else if(label==="জমা রেকর্ড"||label==="উত্তোলন রেকর্ড"||label==="লেনদেনের ইতিহাস"){
+}else if(["জমা রেকর্ড","উত্তোলন রেকর্ড","লেনদেনের ইতিহাস"].includes(label)){
 content.innerHTML="<p>এখনো কোনো Demo "+escapeHTML(label)+" নেই।</p><p>এখানে ভবিষ্যতে ভার্চুয়াল পয়েন্টের রেকর্ড দেখানো হবে।</p>";
 }else if(label==="আমার পুরস্কার"||label==="রিবেট"){
 content.innerHTML="<p>Demo Rewards</p><p>বর্তমানে কোনো পুরস্কার বা রিবেট যোগ করা হয়নি।</p>";
@@ -371,13 +478,18 @@ content.innerHTML="<p>এই সুবিধাটি পরবর্তী ধ�
 }
 
 function sendSuggestion(){
-const value=document.getElementById("suggestion").value.trim();
-document.getElementById("suggestionMessage").textContent=value?"পরামর্শটি এই Demo পেজে লেখা হয়েছে। পাঠানোর সার্ভার এখনো যুক্ত হয়নি।":"আগে পরামর্শ লিখুন।";
+const field=document.getElementById("suggestion");
+const value=field?field.value.trim():"";
+document.getElementById("suggestionMessage").textContent=value
+?"পরামর্শটি এই Demo পেজে লেখা হয়েছে। পাঠানোর সার্ভার এখনো যুক্ত হয়নি।"
+:"আগে পরামর্শ লিখুন।";
 }
+
 function backDashboard(){
 document.getElementById("featurePage").classList.add("hidden");
 document.getElementById("dashboardHome").classList.remove("hidden");
 }
+
 function escapeHTML(value){
 return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 }
@@ -386,8 +498,10 @@ function saveUserData(){
 if(!currentUser)return;
 localStorage.setItem("fbd44_demo_"+currentUser.id,JSON.stringify({demoPoints,gameHistory}));
 }
+
 function loadUserData(){
-demoPoints=10000;gameHistory=[];
+demoPoints=10000;
+gameHistory=[];
 if(!currentUser)return;
 try{
 const saved=JSON.parse(localStorage.getItem("fbd44_demo_"+currentUser.id)||"null");
@@ -400,19 +514,31 @@ gameHistory=Array.isArray(saved.gameHistory)?saved.gameHistory:[];
 
 document.getElementById("accountForm").addEventListener("submit",async function(e){
 e.preventDefault();
+
 const message=document.getElementById("accountMessage");
 const button=document.getElementById("submitBtn");
 const identity=document.getElementById("identity").value.trim();
 const password=document.getElementById("password").value;
+
 let payload={password};
 let endpoint="";
 
 if(accountMode==="register"){
 const name=document.getElementById("regName").value.trim();
 const email=document.getElementById("regEmail").value.trim();
-if(!name){message.textContent="Please enter a username.";return;}
-if(password.length<6){message.textContent="Password must be at least 6 characters.";return;}
-payload.name=name;payload.phone=identity;payload.email=email;
+
+if(!name){
+message.textContent="Please enter a username.";
+return;
+}
+if(password.length<6){
+message.textContent="Password must be at least 6 characters.";
+return;
+}
+
+payload.name=name;
+payload.phone=identity;
+payload.email=email;
 endpoint="/api/register";
 }else{
 payload.username=identity;
@@ -422,20 +548,29 @@ endpoint="/api/login";
 button.disabled=true;
 button.textContent="PLEASE WAIT...";
 message.textContent="Connecting to FBD44...";
+
 try{
 const res=await fetch(API_URL+endpoint,{
-method:"POST",headers:{"Content-Type":"application/json"},
+method:"POST",
+headers:{"Content-Type":"application/json"},
 body:JSON.stringify(payload)
 });
+
 const data=await res.json();
-if(!res.ok||!data.success)throw new Error(data.message||data.detail||"Request failed");
+if(!res.ok||!data.success){
+throw new Error(data.message||data.detail||"Request failed");
+}
+
 currentUser=data.user;
 localStorage.setItem("fbd44_current_user",JSON.stringify(currentUser));
 loadUserData();
 updateAccountView();
 message.textContent="Login successful!";
+
 }catch(error){
-message.textContent=error.message==="Failed to fetch"?"Connection failed. Please try again.":error.message;
+message.textContent=error.message==="Failed to fetch"
+?"Connection failed. Please try again."
+:error.message;
 }finally{
 button.disabled=false;
 button.textContent=accountMode==="register"?"CREATE ACCOUNT":"LOGIN";
@@ -445,17 +580,24 @@ button.textContent=accountMode==="register"?"CREATE ACCOUNT":"LOGIN";
 function logout(){
 currentUser=null;
 localStorage.removeItem("fbd44_current_user");
-demoPoints=10000;gameHistory=[];
+demoPoints=10000;
+gameHistory=[];
 setMode("login");
 updateAccountView();
 document.getElementById("accountMessage").textContent="Logged out.";
 }
 
-function scrollToTop(){window.scrollTo({top:0,behavior:"smooth"});}
+function scrollToTop(){
+window.scrollTo({top:0,behavior:"smooth"});
+setActiveNav("navHome");
+}
 
 try{
 const savedUser=JSON.parse(localStorage.getItem("fbd44_current_user")||"null");
-if(savedUser&&savedUser.id){currentUser=savedUser;loadUserData();}
+if(savedUser&&savedUser.id){
+currentUser=savedUser;
+loadUserData();
+}
 }catch(e){}
 
 renderGames();
