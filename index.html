@@ -14,7 +14,7 @@ header{background:linear-gradient(110deg,#19002d,#35004f);padding:12px;display:f
 .logo{font-size:22px;font-weight:900;color:#ffe34b}
 .logo small{display:block;font-size:11px;color:white}
 .balance{background:#26003b;border:1px solid #bd00ff;padding:9px;border-radius:25px;font-weight:bold;font-size:11px}
-.account{background:#ffd52e;color:#260039;border:0;padding:10px 12px;border-radius:22px;font-weight:bold}
+.account{background:#ffd52e;color:#260039;border:0;padding:10px 12px;border-radius:22px;font-weight:bold;max-width:125px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .menu{background:#29003e;color:white;border:1px solid #b500ff;border-radius:12px;padding:10px}
 .hero{margin:14px;border-radius:17px;padding:24px 18px;background:linear-gradient(130deg,#6900a3,#21003c 65%,#f08a00);border:1px solid #d000ff;box-shadow:0 0 20px #7900a8}
 .hero h1{font-size:29px;margin:0 0 8px;color:#ffe34b}
@@ -94,7 +94,7 @@ footer{padding:25px 12px;text-align:center;color:#bda9c9;font-size:12px}
 <button class="menu" onclick="scrollToTop()" aria-label="Home">☰</button>
 <div class="logo">👑 FBD44<small>Gaming World</small></div>
 <div class="balance">🎮 DEMO <span id="points">10,000</span> PTS</div>
-<button class="account" onclick="openAccount()">ACCOUNT</button>
+<button class="account" id="headerAccount" onclick="openAccount()">ACCOUNT</button>
 </header>
 
 <section class="hero" id="homeSection">
@@ -394,6 +394,7 @@ return;
 }
 openAccount();
 openFeature("আমার পুরস্কার");
+setActiveNav("navRewards");
 }
 
 function setMode(mode){
@@ -408,19 +409,46 @@ document.getElementById("accountMessage").textContent="";
 document.getElementById("accountForm").reset();
 }
 
+function updateHeaderAccount(){
+const button=document.getElementById("headerAccount");
+
+if(!currentUser){
+button.textContent="ACCOUNT";
+button.title="ACCOUNT";
+return;
+}
+
+/* API থেকে পাওয়া User ID-কে অগ্রাধিকার */
+const userID=currentUser.user_id ??
+currentUser.id ??
+currentUser.username ??
+currentUser.name ??
+"User";
+
+button.textContent="👤 "+String(userID);
+button.title="User ID: "+String(userID);
+}
+
 function updateAccountView(){
 const logged=!!currentUser;
+
 document.getElementById("authArea").classList.toggle("hidden",logged);
 document.getElementById("dashboard").classList.toggle("hidden",!logged);
+
+updateHeaderAccount();
+
 if(logged)updateDashboard();
 }
 
 function updateDashboard(){
 if(!currentUser)return;
-const name=currentUser.name||"User";
+
+const name=currentUser.name||currentUser.username||"User";
+const userID=currentUser.user_id ?? currentUser.id ?? currentUser.username ?? "--";
+
 document.getElementById("userName").textContent=name;
 document.getElementById("nickName").textContent=currentUser.nickname||name;
-document.getElementById("userId").textContent="User ID: "+(currentUser.id||"--");
+document.getElementById("userId").textContent="User ID: "+userID;
 document.getElementById("joinDate").textContent=currentUser.created_at||"তথ্য পাওয়া যায়নি";
 document.getElementById("dashPoints").textContent=demoPoints.toLocaleString();
 document.getElementById("points").textContent=demoPoints.toLocaleString();
@@ -453,7 +481,7 @@ content.innerHTML="<p>এটি Demo Withdraw পৃষ্ঠা। কোনো
 }else if(label==="My Card"){
 content.innerHTML="<div style='background:linear-gradient(120deg,#8c5900,#3a075a);padding:22px;border-radius:15px'><h2>👑 FBD44 DEMO CARD</h2><h3>"+escapeHTML(currentUser.name||"User")+"</h3><p>DEMO MEMBER</p><p>Balance: "+demoPoints.toLocaleString()+" PTS</p><p>Virtual Card • No Cash Value</p></div>";
 }else if(label==="আমার অ্যাকাউন্ট"){
-content.innerHTML="<p>Username: "+escapeHTML(currentUser.name||"--")+"</p><p>User ID: "+escapeHTML(currentUser.id||"--")+"</p><p>Email: "+escapeHTML(currentUser.email||"তথ্য নেই")+"</p><p>Phone: "+escapeHTML(currentUser.phone||"তথ্য নেই")+"</p>";
+content.innerHTML="<p>Username: "+escapeHTML(currentUser.name||"--")+"</p><p>User ID: "+escapeHTML(String(currentUser.user_id ?? currentUser.id ?? "--"))+"</p><p>Email: "+escapeHTML(currentUser.email||"তথ্য নেই")+"</p><p>Phone: "+escapeHTML(currentUser.phone||"তথ্য নেই")+"</p>";
 }else if(label==="পাশাপাশি বাজির ইতিহাস"){
 content.innerHTML="<p>গেমের Demo Activity:</p>"+history;
 }else if(label==="লাভ-লস"){
@@ -503,6 +531,7 @@ function loadUserData(){
 demoPoints=10000;
 gameHistory=[];
 if(!currentUser)return;
+
 try{
 const saved=JSON.parse(localStorage.getItem("fbd44_demo_"+currentUser.id)||"null");
 if(saved){
@@ -557,11 +586,17 @@ body:JSON.stringify(payload)
 });
 
 const data=await res.json();
+
 if(!res.ok||!data.success){
 throw new Error(data.message||data.detail||"Request failed");
 }
 
 currentUser=data.user;
+
+if(!currentUser){
+throw new Error("User information was not returned by the server.");
+}
+
 localStorage.setItem("fbd44_current_user",JSON.stringify(currentUser));
 loadUserData();
 updateAccountView();
