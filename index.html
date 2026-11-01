@@ -1,0 +1,444 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#160020">
+<title>FBD44 - Gaming World</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#100019;color:white;
+ font-family:Arial,sans-serif;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+header{
+ background:linear-gradient(110deg,#19002d,#35004f);
+ padding:13px 15px;display:flex;align-items:center;
+ justify-content:space-between;gap:10px;
+ border-bottom:1px solid #a000e8;
+ position:sticky;top:0;z-index:10;
+}
+.logo{font-size:27px;font-weight:900;color:#ffe34b}
+.logo small{display:block;font-size:11px;color:#fff}
+.menu{
+ background:#29003e;color:white;border:1px solid #b500ff;
+ border-radius:12px;padding:12px;font-size:20px;
+}
+.balance{
+ background:#26003b;border:1px solid #bd00ff;
+ padding:10px;border-radius:25px;font-weight:bold;
+ font-size:12px;
+}
+.account{
+ background:#ffd52e;color:#260039;border:0;
+ padding:11px 14px;border-radius:22px;font-weight:bold;
+}
+.hero{
+ margin:14px;border-radius:17px;padding:24px 18px;
+ background:linear-gradient(130deg,#6900a3,#21003c 65%,#f08a00);
+ border:1px solid #d000ff;
+ box-shadow:0 0 20px #7900a8;
+}
+.hero h1{font-size:29px;margin:0 0 8px;color:#ffe34b}
+.hero p{line-height:1.5;margin:5px 0}
+.demo{
+ display:inline-block;background:#ffe34b;color:#290039;
+ border-radius:20px;padding:7px 13px;font-weight:bold;
+ font-size:12px;margin-top:8px;
+}
+.section{padding:5px 14px 16px}
+.section h2{font-size:19px;color:#ffdf42}
+.categories{
+ display:flex;gap:9px;overflow-x:auto;padding:5px 0 12px;
+}
+.cat{
+ flex:0 0 auto;background:#29003d;color:white;
+ border:1px solid #9200c9;border-radius:20px;
+ padding:10px 15px;
+}
+.cat.active{background:#ffd52e;color:#28003a}
+.search{
+ width:100%;padding:13px;border-radius:12px;
+ background:#21002f;border:1px solid #a000dc;
+ color:white;outline:none;margin:5px 0 12px;
+}
+.games{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:12px;
+}
+.game{
+ background:linear-gradient(145deg,#32004d,#170023);
+ border:1px solid #7900a9;border-radius:14px;
+ overflow:hidden;
+}
+.game-art{
+ height:112px;display:flex;align-items:center;
+ justify-content:center;font-size:52px;
+ background:radial-gradient(circle,#69008d,#21002f);
+}
+.game-info{padding:11px}
+.game-info b{display:block;font-size:14px}
+.game-info small{color:#cdb5d8}
+.play{
+ width:100%;margin-top:9px;padding:10px;
+ background:linear-gradient(#ffe85b,#ffb900);
+ color:#290039;border:0;border-radius:20px;
+ font-weight:bold;
+}
+.notice{
+ margin:12px 14px;padding:13px;
+ background:#21002f;border:1px solid #6b008e;
+ border-radius:12px;color:#d9c5e5;
+ font-size:12px;line-height:1.6;
+}
+footer{
+ padding:25px 12px 90px;text-align:center;
+ color:#bda9c9;font-size:12px;
+}
+.bottom{
+ position:fixed;bottom:0;left:0;right:0;
+ background:#1b0029;border-top:1px solid #7900a9;
+ display:flex;justify-content:space-around;
+ padding:10px 3px;z-index:9;
+}
+.bottom button{
+ border:0;background:none;color:#d6c1e4;
+ font-size:11px;display:flex;flex-direction:column;
+ align-items:center;gap:4px;
+}
+.bottom span{font-size:21px}
+.modal{
+ display:none;position:fixed;inset:0;z-index:30;
+ background:#000c;align-items:center;justify-content:center;
+ padding:15px;overflow:auto;
+}
+.modal.show{display:flex}
+.panel{
+ width:100%;max-width:430px;
+ background:linear-gradient(145deg,#390052,#160020);
+ border:1px solid #d000ff;border-radius:20px;
+ padding:22px;box-shadow:0 0 25px #8500b5;
+}
+.panel h2{text-align:center;color:#ffe34b}
+.tabs{display:flex;gap:10px;margin-bottom:18px}
+.tabs button{
+ flex:1;padding:12px;border-radius:25px;
+ border:1px solid #c000ff;background:transparent;color:white;
+ font-weight:bold;
+}
+.tabs button.active{background:#ffd52e;color:#290039}
+.field{
+ width:100%;padding:14px;margin:7px 0;
+ border:1px solid #bd00ff;border-radius:12px;
+ background:#160020;color:white;outline:none;
+}
+.submit{
+ width:100%;padding:14px;border:0;border-radius:25px;
+ background:linear-gradient(#ffe85b,#ffb900);
+ color:#280039;font-weight:bold;margin-top:12px;
+}
+.message{text-align:center;color:#ffe34b;min-height:22px;font-size:13px}
+.close{
+ float:right;border:0;background:none;color:white;font-size:25px;
+}
+.gamebox{
+ text-align:center;background:#230034;padding:20px;
+ border-radius:14px;margin-top:12px;
+}
+.gamebox .big{font-size:48px;margin:15px}
+.hidden{display:none!important}
+@media(min-width:700px){
+ .games{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .hero{padding:35px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <button class="menu" onclick="scrollToTop()">☰</button>
+ <div class="logo">👑 FBD44<small>Gaming World</small></div>
+ <div class="balance">🎮 DEMO <span id="points">10,000</span> PTS</div>
+ <button class="account" onclick="openAccount()">ACCOUNT</button>
+</header>
+
+<section class="hero">
+ <h1>👑 Welcome to FBD44</h1>
+ <p>Explore your favourite games in one gaming world.</p>
+ <p>Play, enjoy and experience virtual demo games.</p>
+ <span class="demo">DEMO MODE ONLY</span>
+</section>
+
+<section class="section">
+ <h2>🎮 Game Categories</h2>
+ <div class="categories" id="categories">
+  <button class="cat active" data-cat="All">All Games</button>
+  <button class="cat" data-cat="Slots">🎰 Slots</button>
+  <button class="cat" data-cat="Live">🎥 Live Casino</button>
+  <button class="cat" data-cat="Crash">🚀 Crash</button>
+  <button class="cat" data-cat="Fishing">🐟 Fishing</button>
+  <button class="cat" data-cat="Arcade">🕹️ Arcade</button>
+ </div>
+ <input class="search" id="search" placeholder="🔎 Search games..." oninput="renderGames()">
+ <div class="games" id="games"></div>
+</section>
+
+<div class="notice">
+ <b>ℹ️ DEMO INFORMATION</b><br>
+ FBD44 is a virtual demo gaming website. Points are virtual only.
+ No real-money deposits, withdrawals or cash prizes are available.
+</div>
+
+<footer>
+ <h2 style="color:#ffe34b">👑 FBD44 Gaming World</h2>
+ Virtual Demo Gaming Platform<br><br>
+ © 2026 FBD44. All rights reserved.
+</footer>
+
+<nav class="bottom">
+ <button onclick="scrollToTop()"><span>🏠</span>Home</button>
+ <button onclick="showCategory('Slots')"><span>🎁</span>Slots</button>
+ <button onclick="showCategory('Fishing')"><span>🐟</span>Fishing</button>
+ <button onclick="showCategory('Crash')"><span>🚀</span>Crash</button>
+ <button onclick="openAccount()"><span>👤</span>Account</button>
+</nav>
+
+<!-- ACCOUNT MODAL -->
+<div class="modal" id="accountModal">
+ <div class="panel">
+  <button class="close" onclick="closeModal('accountModal')">×</button>
+  <h2>FBD44 ACCOUNT</h2>
+
+  <div class="tabs">
+   <button id="loginTab" class="active" onclick="setMode('login')">LOGIN</button>
+   <button id="registerTab" onclick="setMode('register')">REGISTER</button>
+  </div>
+
+  <form id="accountForm">
+   <input class="field hidden" id="regName" placeholder="Username" autocomplete="username">
+   <input class="field" id="identity" placeholder="Mobile number or username" autocomplete="username" required>
+   <input class="field hidden" id="regEmail" type="email" placeholder="Email (optional)">
+   <input class="field" id="password" type="password" placeholder="Password (minimum 6 characters)" minlength="6" required>
+   <button class="submit" id="submitBtn" type="submit">LOGIN</button>
+  </form>
+
+  <p class="message" id="accountMessage"></p>
+  <p style="text-align:center;font-size:12px;color:#d8c6e3">
+   Account registration only. No real-money transactions.
+  </p>
+  <button class="submit hidden" id="logoutBtn" onclick="logout()">LOG OUT</button>
+ </div>
+</div>
+
+<!-- GAME MODAL -->
+<div class="modal" id="gameModal">
+ <div class="panel">
+  <button class="close" onclick="closeModal('gameModal')">×</button>
+  <h2 id="gameTitle">DEMO GAME</h2>
+  <div class="gamebox">
+   <div class="big" id="gameEmoji">🎮</div>
+   <p id="gameDescription">Virtual demo game</p>
+   <p>Demo points: <b id="gamePoints">10,000</b></p>
+   <button class="submit" onclick="playDemo()">PLAY DEMO</button>
+   <p id="gameResult" class="message"></p>
+  </div>
+ </div>
+</div>
+
+<script>
+const API_URL = "https://fbd44-api.jhonabraham4450.workers.dev";
+
+const gameList = [
+ {name:"Ocean King",cat:"Fishing",emoji:"🐠",desc:"Underwater fishing demo"},
+ {name:"Dragon Fishing",cat:"Fishing",emoji:"🐉",desc:"Dragon fishing demo"},
+ {name:"Happy Fish",cat:"Fishing",emoji:"🐟",desc:"Fish arena demo"},
+ {name:"Golden Fish",cat:"Fishing",emoji:"🦈",desc:"Golden fish demo"},
+ {name:"Fortune Slots",cat:"Slots",emoji:"🎰",desc:"Virtual slot demo"},
+ {name:"Lucky Spin",cat:"Slots",emoji:"🎡",desc:"Virtual spin demo"},
+ {name:"Royal Slots",cat:"Slots",emoji:"👑",desc:"Royal slot demo"},
+ {name:"Golden Treasure",cat:"Slots",emoji:"💰",desc:"Treasure demo"},
+ {name:"Live Table",cat:"Live",emoji:"🎥",desc:"Virtual live table preview"},
+ {name:"Roulette Demo",cat:"Live",emoji:"🎯",desc:"Virtual roulette preview"},
+ {name:"Card Room",cat:"Live",emoji:"🃏",desc:"Virtual card room preview"},
+ {name:"Crash Rocket",cat:"Crash",emoji:"🚀",desc:"Rocket multiplier demo"},
+ {name:"Sky Flight",cat:"Crash",emoji:"✈️",desc:"Flight demo"},
+ {name:"Space Crash",cat:"Crash",emoji:"🌌",desc:"Space demo"},
+ {name:"Arcade Run",cat:"Arcade",emoji:"🕹️",desc:"Arcade demo"},
+ {name:"Puzzle World",cat:"Arcade",emoji:"🧩",desc:"Puzzle demo"},
+ {name:"Speed Race",cat:"Arcade",emoji:"🏎️",desc:"Racing demo"}
+];
+
+let selectedCategory = "All";
+let demoPoints = 10000;
+let currentGame = null;
+let accountMode = "login";
+let currentUser = null;
+
+function renderGames(){
+ const query = document.getElementById("search").value.toLowerCase();
+ const filtered = gameList.filter(g =>
+  (selectedCategory === "All" || g.cat === selectedCategory) &&
+  g.name.toLowerCase().includes(query)
+ );
+
+ document.getElementById("games").innerHTML = filtered.map((g,i)=>`
+  <article class="game">
+   <div class="game-art">${g.emoji}</div>
+   <div class="game-info">
+    <b>${g.name}</b>
+    <small>${g.cat} • DEMO</small>
+    <button class="play" onclick="openGame(${gameList.indexOf(g)})">PLAY</button>
+   </div>
+  </article>
+ `).join("") || "<p>No games found.</p>";
+}
+
+document.querySelectorAll(".cat").forEach(btn=>{
+ btn.addEventListener("click",()=>{
+  showCategory(btn.dataset.cat);
+ });
+});
+
+function showCategory(cat){
+ selectedCategory = cat;
+ document.querySelectorAll(".cat").forEach(btn=>{
+  btn.classList.toggle("active",btn.dataset.cat===cat);
+ });
+ renderGames();
+ document.querySelector(".section").scrollIntoView({behavior:"smooth"});
+}
+
+function openGame(index){
+ currentGame = gameList[index];
+ document.getElementById("gameTitle").textContent=currentGame.name;
+ document.getElementById("gameEmoji").textContent=currentGame.emoji;
+ document.getElementById("gameDescription").textContent=currentGame.desc;
+ document.getElementById("gameResult").textContent="";
+ document.getElementById("gameModal").classList.add("show");
+}
+
+function playDemo(){
+ document.getElementById("gameResult").textContent =
+ "Demo preview is ready. Full game module will be added separately.";
+}
+
+function openAccount(){
+ document.getElementById("accountModal").classList.add("show");
+ updateAccountView();
+}
+
+function closeModal(id){
+ document.getElementById(id).classList.remove("show");
+}
+
+function setMode(mode){
+ accountMode=mode;
+ document.getElementById("loginTab").classList.toggle("active",mode==="login");
+ document.getElementById("registerTab").classList.toggle("active",mode==="register");
+ document.getElementById("regName").classList.toggle("hidden",mode!=="register");
+ document.getElementById("regEmail").classList.toggle("hidden",mode!=="register");
+ document.getElementById("identity").placeholder =
+  mode==="register" ? "Mobile number" : "Mobile number or username";
+ document.getElementById("submitBtn").textContent =
+  mode==="register" ? "CREATE ACCOUNT" : "LOGIN";
+ document.getElementById("accountMessage").textContent="";
+ document.getElementById("accountForm").reset();
+}
+
+function updateAccountView(){
+ const form=document.getElementById("accountForm");
+ const logged=document.getElementById("logoutBtn");
+ if(currentUser){
+  form.classList.add("hidden");
+  logged.classList.remove("hidden");
+  document.getElementById("accountMessage").textContent =
+   "Welcome, "+currentUser.name;
+ }else{
+  form.classList.remove("hidden");
+  logged.classList.add("hidden");
+ }
+}
+
+document.getElementById("accountForm").addEventListener("submit",async function(e){
+ e.preventDefault();
+
+ const message=document.getElementById("accountMessage");
+ const button=document.getElementById("submitBtn");
+ const identity=document.getElementById("identity").value.trim();
+ const password=document.getElementById("password").value;
+
+ let payload={password:password};
+ let endpoint="";
+
+ if(accountMode==="register"){
+  const name=document.getElementById("regName").value.trim();
+  const email=document.getElementById("regEmail").value.trim();
+
+  if(!name){
+   message.textContent="Please enter a username.";
+   return;
+  }
+  if(password.length<6){
+   message.textContent="Password must be at least 6 characters.";
+   return;
+  }
+  payload.name=name;
+  payload.phone=identity;
+  payload.email=email;
+  endpoint="/api/register";
+ }else{
+  payload.username=identity;
+  endpoint="/api/login";
+ }
+
+ button.disabled=true;
+ button.textContent="PLEASE WAIT...";
+ message.textContent="Connecting to FBD44...";
+
+ try{
+  const res=await fetch(API_URL+endpoint,{
+   method:"POST",
+   headers:{"Content-Type":"application/json"},
+   body:JSON.stringify(payload)
+  });
+
+  const data=await res.json();
+
+  if(!res.ok || !data.success){
+   throw new Error(data.message || data.detail || "Request failed");
+  }
+
+  currentUser=data.user;
+  message.textContent=data.message || "Success!";
+  updateAccountView();
+
+ }catch(error){
+  message.textContent=error.message==="Failed to fetch"
+   ? "Connection failed. Please try again."
+   : error.message;
+ }finally{
+  button.disabled=false;
+  button.textContent=accountMode==="register"?"CREATE ACCOUNT":"LOGIN";
+ }
+});
+
+function logout(){
+ currentUser=null;
+ setMode("login");
+ updateAccountView();
+ document.getElementById("accountMessage").textContent="Logged out.";
+}
+
+function scrollToTop(){
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+renderGames();
+</script>
+</body>
+</html>
