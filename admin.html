@@ -5,120 +5,177 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FBD44 Admin Panel</title>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#10051b;color:#fff;font-family:Arial,sans-serif}
-header{padding:22px 16px;background:#260044;border-bottom:2px solid #a000ff}
+body{
+  margin:0;
+  background:#10051b;
+  color:#fff;
+  font-family:Arial,sans-serif
+}
+header{
+  padding:22px 16px;
+  background:#260044;
+  border-bottom:2px solid #a000ff
+}
 h1{margin:0;color:#ffd52a;font-size:25px}
 header p{margin:7px 0 0;color:#d7c4e8}
-main{max-width:850px;margin:auto;padding:18px}
-.card{background:#210d32;border:1px solid #8c22c9;border-radius:14px;padding:17px;margin-bottom:16px}
+main{max-width:1000px;margin:auto;padding:18px}
+.card{
+  background:#210d32;
+  border:1px solid #8c22c9;
+  border-radius:14px;
+  padding:17px;
+  margin-bottom:16px
+}
 h2{font-size:19px;margin:0 0 14px;color:#ffd52a}
-input,button{width:100%;padding:13px;border-radius:9px;font-size:15px;margin:6px 0}
-input{background:#12091c;color:white;border:1px solid #8731b5}
-button{background:#ffd52a;color:#25003c;border:0;font-weight:bold}
+input,button{
+  width:100%;
+  padding:13px;
+  border-radius:9px;
+  font-size:15px;
+  margin:6px 0
+}
+input{
+  background:#12091c;
+  color:white;
+  border:1px solid #8731b5
+}
+button{
+  background:#ffd52a;
+  color:#25003c;
+  border:0;
+  font-weight:bold;
+  cursor:pointer
+}
 button.secondary{background:#7020a0;color:white}
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.stat{background:#35104e;padding:17px;border-radius:10px;text-align:center}
-.stat strong{display:block;font-size:25px;color:#ffd52a;margin-top:8px}
-table{width:100%;border-collapse:collapse;min-width:550px}
-th,td{padding:12px;border-bottom:1px solid #59316d;text-align:left}
-th{color:#ffd52a}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px
+}
+.stat{
+  background:#35104e;
+  padding:17px;
+  border-radius:10px;
+  text-align:center
+}
+.stat strong{
+  display:block;
+  font-size:25px;
+  color:#ffd52a;
+  margin-top:8px
+}
 .tablewrap{overflow-x:auto}
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:600px
+}
+th,td{
+  padding:12px;
+  border-bottom:1px solid #59316d;
+  text-align:left;
+  font-size:13px
+}
+th{color:#ffd52a}
 #message{color:#ffd52a;font-size:14px;line-height:1.5}
 .small{color:#cbb9d8;font-size:13px}
 </style>
 </head>
+
 <body>
+
 <header>
 <h1>👑 FBD44 ADMIN</h1>
 <p>Demo Gaming Website Management</p>
 </header>
 
 <main>
+
 <section class="card">
 <h2>Admin Login</h2>
-<input id="token" type="password" placeholder="Admin access token">
-<button onclick="loadUsers()">LOGIN / LOAD USERS</button>
+
+<input
+id="token"
+type="password"
+placeholder="Admin access token"
+autocomplete="off"
+>
+
+<button onclick="loadDashboard()">LOGIN / LOAD DASHBOARD</button>
 <button class="secondary" onclick="logout()">LOG OUT</button>
-<p id="message">Admin API সংযুক্ত হলে এখানে তথ্য দেখা যাবে।</p>
+
+<p id="message">Admin Secret দিয়ে Login করুন।</p>
 </section>
 
 <section class="card">
-<h2>Dashboard</h2>
+<h2>Dashboard Statistics</h2>
+
 <div class="stats">
-<div class="stat">Total Users<strong id="total">0</strong></div>
-<div class="stat">Registered Users<strong id="registered">0</strong></div>
+<div class="stat">
+Total Users
+<strong id="total">0</strong>
+</div>
+
+<div class="stat">
+Login Records
+<strong id="loginTotal">0</strong>
+</div>
 </div>
 </section>
 
 <section class="card">
 <h2>Registered Members</h2>
+
 <div class="tablewrap">
 <table>
 <thead>
 <tr>
-<th>ID</th>
+<th>User ID</th>
 <th>Name</th>
 <th>Email</th>
 <th>Phone</th>
-<th>Joined</th>
+<th>Role</th>
 </tr>
 </thead>
+
 <tbody id="users">
-<tr><td colspan="5">এখনো তথ্য লোড হয়নি।</td></tr>
+<tr><td colspan="5">Login করার পর তথ্য দেখা যাবে।</td></tr>
 </tbody>
 </table>
 </div>
 </section>
+
+<section class="card">
+<h2>Login History</h2>
+
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>User ID</th>
+<th>Username</th>
+<th>Login Identity</th>
+<th>IP Address</th>
+<th>Login Time</th>
+</tr>
+</thead>
+
+<tbody id="logins">
+<tr><td colspan="5">Login করার পর তথ্য দেখা যাবে।</td></tr>
+</tbody>
+</table>
+</div>
+
+<p class="small">সর্বশেষ ৫০০টি Login record দেখানো হবে।</p>
+</section>
+
 </main>
 
 <script>
 const API = "https://fbd44-api.jhonabraham4450.workers.dev";
-
-async function loadUsers(){
-  const token = document.getElementById("token").value.trim();
-  const message = document.getElementById("message");
-
-  if(!token){
-    message.textContent = "Admin access token দিন।";
-    return;
-  }
-
-  message.textContent = "Loading...";
-
-  try{
-    const response = await fetch(API + "/api/admin/users",{
-      headers:{
-        "Authorization":"Bearer " + token
-      }
-    });
-
-    const data = await response.json();
-
-    if(!response.ok || !data.success){
-      throw new Error(data.message || "Admin API এখনো প্রস্তুত নয়।");
-    }
-
-    const list = data.users || [];
-    document.getElementById("total").textContent = list.length;
-    document.getElementById("registered").textContent = list.length;
-
-    document.getElementById("users").innerHTML = list.map(user => `
-      <tr>
-        <td>${safe(user.id)}</td>
-        <td>${safe(user.name)}</td>
-        <td>${safe(user.email)}</td>
-        <td>${safe(user.phone)}</td>
-        <td>${safe(user.created_at)}</td>
-      </tr>
-    `).join("") || '<tr><td colspan="5">কোনো ইউজার নেই।</td></tr>';
-
-    message.textContent = "User list loaded successfully.";
-  }catch(error){
-    message.textContent = "সমস্যা: " + error.message;
-  }
-}
 
 function safe(value){
   const el = document.createElement("span");
@@ -126,14 +183,97 @@ function safe(value){
   return el.innerHTML;
 }
 
+async function apiGet(endpoint, token){
+  const res = await fetch(API + endpoint,{
+    method:"GET",
+    headers:{
+      "Authorization":"Bearer " + token
+    }
+  });
+
+  const data = await res.json();
+
+  if(!res.ok || !data.success){
+    throw new Error(data.message || "API request failed");
+  }
+
+  return data;
+}
+
+async function loadDashboard(){
+  const token = document.getElementById("token").value.trim();
+  const message = document.getElementById("message");
+
+  if(!token){
+    message.textContent = "Admin Secret দিন।";
+    return;
+  }
+
+  message.textContent = "Loading dashboard...";
+
+  try{
+    const [userData, loginData] = await Promise.all([
+      apiGet("/api/admin/users",token),
+      apiGet("/api/admin/logins",token)
+    ]);
+
+    const users = userData.users || [];
+    const logins = loginData.logins || [];
+
+    document.getElementById("total").textContent =
+      userData.total ?? users.length;
+
+    document.getElementById("loginTotal").textContent =
+      loginData.total ?? logins.length;
+
+    document.getElementById("users").innerHTML =
+      users.map(user => `
+        <tr>
+          <td>${safe(user.id)}</td>
+          <td>${safe(user.name)}</td>
+          <td>${safe(user.email)}</td>
+          <td>${safe(user.phone)}</td>
+          <td>${safe(user.role)}</td>
+        </tr>
+      `).join("") ||
+      '<tr><td colspan="5">কোনো User পাওয়া যায়নি।</td></tr>';
+
+    document.getElementById("logins").innerHTML =
+      logins.map(item => `
+        <tr>
+          <td>${safe(item.user_id)}</td>
+          <td>${safe(item.username)}</td>
+          <td>${safe(item.identity)}</td>
+          <td>${safe(item.ip_address)}</td>
+          <td>${safe(item.login_at)}</td>
+        </tr>
+      `).join("") ||
+      '<tr><td colspan="5">এখনো Login history নেই।</td></tr>';
+
+    message.textContent =
+      "Dashboard loaded successfully.";
+
+  }catch(error){
+    message.textContent = "সমস্যা: " + error.message;
+  }
+}
+
 function logout(){
   document.getElementById("token").value = "";
+
   document.getElementById("users").innerHTML =
     '<tr><td colspan="5">লগ আউট করা হয়েছে।</td></tr>';
+
+  document.getElementById("logins").innerHTML =
+    '<tr><td colspan="5">লগ আউট করা হয়েছে।</td></tr>';
+
   document.getElementById("total").textContent = "0";
-  document.getElementById("registered").textContent = "0";
-  document.getElementById("message").textContent = "Logged out.";
+  document.getElementById("loginTotal").textContent = "0";
+
+  document.getElementById("message").textContent =
+    "Logged out.";
 }
 </script>
+
 </body>
 </html>
