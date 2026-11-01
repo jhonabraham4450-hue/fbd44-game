@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -9,12 +10,12 @@
 *{box-sizing:border-box}
 body{margin:0;background:#100019;color:white;font-family:Arial,sans-serif}
 button,input{font:inherit}button{cursor:pointer}
-header{background:linear-gradient(110deg,#19002d,#35004f);padding:13px 15px;display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid #a000e8;position:sticky;top:0;z-index:10}
-.logo{font-size:23px;font-weight:900;color:#ffe34b}
+header{background:linear-gradient(110deg,#19002d,#35004f);padding:12px;display:flex;align-items:center;justify-content:space-between;gap:7px;border-bottom:1px solid #a000e8;position:sticky;top:0;z-index:10}
+.logo{font-size:22px;font-weight:900;color:#ffe34b}
 .logo small{display:block;font-size:11px;color:white}
-.menu{background:#29003e;color:white;border:1px solid #b500ff;border-radius:12px;padding:10px}
 .balance{background:#26003b;border:1px solid #bd00ff;padding:9px;border-radius:25px;font-weight:bold;font-size:11px}
 .account{background:#ffd52e;color:#260039;border:0;padding:10px 12px;border-radius:22px;font-weight:bold}
+.menu{background:#29003e;color:white;border:1px solid #b500ff;border-radius:12px;padding:10px}
 .hero{margin:14px;border-radius:17px;padding:24px 18px;background:linear-gradient(130deg,#6900a3,#21003c 65%,#f08a00);border:1px solid #d000ff;box-shadow:0 0 20px #7900a8}
 .hero h1{font-size:29px;margin:0 0 8px;color:#ffe34b}
 .hero p{line-height:1.5;margin:5px 0}
@@ -37,9 +38,9 @@ footer{padding:25px 12px 90px;text-align:center;color:#bda9c9;font-size:12px}
 .bottom{position:fixed;bottom:0;left:0;right:0;background:#1b0029;border-top:1px solid #7900a9;display:flex;justify-content:space-around;padding:10px 3px;z-index:9}
 .bottom button{border:0;background:none;color:#d6c1e4;font-size:11px;display:flex;flex-direction:column;align-items:center;gap:4px}
 .bottom span{font-size:21px}
-.modal{display:none;position:fixed;inset:0;z-index:30;background:#000d;align-items:flex-start;justify-content:center;padding:15px;overflow:auto}
+.modal{display:none;position:fixed;inset:0;z-index:30;background:#000d;align-items:flex-start;justify-content:center;padding:12px;overflow:auto}
 .modal.show{display:flex}
-.panel{width:100%;max-width:480px;background:linear-gradient(145deg,#390052,#160020);border:1px solid #d000ff;border-radius:20px;padding:20px;margin:auto;box-shadow:0 0 25px #8500b5}
+.panel{width:100%;max-width:480px;background:linear-gradient(145deg,#390052,#160020);border:1px solid #d000ff;border-radius:20px;padding:18px;margin:auto;box-shadow:0 0 25px #8500b5}
 .panel h2{text-align:center;color:#ffe34b}
 .tabs{display:flex;gap:10px;margin-bottom:18px}
 .tabs button{flex:1;padding:12px;border-radius:25px;border:1px solid #c000ff;background:transparent;color:white;font-weight:bold}
@@ -49,23 +50,30 @@ footer{padding:25px 12px 90px;text-align:center;color:#bda9c9;font-size:12px}
 .message{text-align:center;color:#ffe34b;min-height:22px;font-size:13px}
 .close{float:right;border:0;background:none;color:white;font-size:25px}
 .hidden{display:none!important}
-.profile{text-align:center;padding:12px;background:#260039;border:1px solid #8300b5;border-radius:15px;margin:15px 0}
-.avatar{width:75px;height:75px;border-radius:50%;background:#ffe34b;color:#310044;font-size:38px;display:flex;align-items:center;justify-content:center;margin:auto auto 10px}
-.profile h3{color:#ffe34b;margin:5px}
-.profile small{color:#d7c4e2}
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0}
-.stat{background:#260039;border:1px solid #8500b5;border-radius:12px;padding:14px;text-align:center}
-.stat b{display:block;color:#ffe34b;font-size:20px;margin-top:7px}
-.stat small{color:#d8c5e5}
-.dash-section{background:#260039;border:1px solid #65008c;border-radius:12px;padding:14px;margin:12px 0}
-.dash-section h3{color:#ffe34b;margin:0 0 12px}
-.dash-row{display:flex;justify-content:space-between;gap:8px;padding:9px 0;border-bottom:1px solid #ffffff20;font-size:13px}
-.dash-row:last-child{border:0}
-.history-item{font-size:13px;padding:10px 0;border-bottom:1px solid #ffffff20;color:#e5d8ed}
-.history-item:last-child{border:0}
+
+/* USER DASHBOARD */
+.profile-card{background:linear-gradient(120deg,#62008b,#25003a);border:1px solid #bd00ff;border-radius:16px;padding:18px;margin:12px 0;text-align:center}
+.avatar{width:65px;height:65px;border-radius:50%;background:#ffe34b;color:#310044;font-size:34px;display:flex;align-items:center;justify-content:center;margin:auto auto 8px}
+.profile-card h3{margin:5px;color:#ffe34b;font-size:20px}
+.profile-card p{margin:6px;font-size:13px;color:#eee}
+.balance-card{background:linear-gradient(110deg,#8b5100,#3b1600);border:1px solid #ffc34b;border-radius:14px;text-align:center;padding:18px;margin:12px 0}
+.balance-card small{color:#ffe6a0}
+.balance-card strong{display:block;font-size:29px;color:#ffe34b;margin:8px}
+.action-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.action-btn{border:1px solid #a000dc;background:#2c0040;color:white;border-radius:13px;padding:16px 5px;font-weight:bold;font-size:13px}
+.action-btn span{display:block;font-size:27px;margin-bottom:8px}
+.member-title{background:linear-gradient(90deg,#63008b,#31004b);padding:13px;border-radius:10px;color:#ffe34b;font-weight:bold;margin:16px 0 9px}
+.menu-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.menu-item{background:#260039;border:1px solid #7100a0;color:white;border-radius:11px;padding:14px 9px;text-align:left;min-height:67px;font-size:13px;display:flex;align-items:center;gap:9px}
+.menu-item span{font-size:22px}
+.menu-item:active,.action-btn:active{background:#580078}
+.detail-box{background:#260039;border:1px solid #8200b5;border-radius:13px;padding:17px;margin-top:15px;line-height:1.7}
+.detail-box h3{color:#ffe34b;margin-top:0}
+.detail-back{background:#510071;color:white;border:1px solid #bd00ff;padding:10px 16px;border-radius:20px;margin:10px 0}
+.history-row{padding:10px 0;border-bottom:1px solid #ffffff20;font-size:13px}
 .gamebox{text-align:center;background:#230034;padding:20px;border-radius:14px;margin-top:12px}
 .gamebox .big{font-size:48px;margin:15px}
-@media(min-width:700px){.games{grid-template-columns:repeat(4,minmax(0,1fr))}.hero{padding:35px}}
+@media(min-width:700px){.games{grid-template-columns:repeat(4,minmax(0,1fr))}.hero{padding:35px}.panel{max-width:520px}}
 </style>
 </head>
 <body>
@@ -130,56 +138,56 @@ Virtual Demo Gaming Platform<br><br>
 <button id="registerTab" onclick="setMode('register')">REGISTER</button>
 </div>
 <form id="accountForm">
-<input class="field hidden" id="regName" placeholder="Username" autocomplete="username">
-<input class="field" id="identity" placeholder="Mobile number or username" autocomplete="username" required>
+<input class="field hidden" id="regName" placeholder="Username">
+<input class="field" id="identity" placeholder="Mobile number or username" required>
 <input class="field hidden" id="regEmail" type="email" placeholder="Email (optional)">
 <input class="field" id="password" type="password" placeholder="Password (minimum 6 characters)" minlength="6" required>
 <button class="submit" id="submitBtn" type="submit">LOGIN</button>
 </form>
 <p class="message" id="accountMessage"></p>
-<p style="text-align:center;font-size:12px;color:#d8c6e3">Account registration only. No real-money transactions.</p>
+<p style="text-align:center;font-size:12px;color:#d8c6e3">Account registration only. Demo platform.</p>
 </div>
 
-<!-- USER DASHBOARD -->
+<!-- DASHBOARD -->
 <div id="dashboard" class="hidden">
-<div class="profile">
+<div id="dashboardHome">
+<div class="profile-card">
 <div class="avatar">👤</div>
-<h3 id="userName">User</h3>
-<small id="userId">User ID: --</small>
+<h3 id="userName">Username</h3>
+<p>ডাকনাম: <b id="nickName">--</b></p>
+<p>Joining Date: <b id="joinDate">তথ্য পাওয়া যায়নি</b></p>
+<p id="userId">User ID: --</p>
 </div>
 
-<div class="stats">
-<div class="stat"><small>🎮 DEMO BALANCE</small><b id="dashPoints">10,000</b><small>PTS</small></div>
-<div class="stat"><small>👑 VIP LEVEL</small><b>VIP 1</b><small>Demo Member</small></div>
-<div class="stat"><small>🎯 GAMES PLAYED</small><b id="playedCount">0</b></div>
-<div class="stat"><small>🏆 WINS</small><b id="winCount">0</b></div>
+<div class="balance-card">
+<small>💰 BALANCE</small>
+<strong><span id="dashPoints">10,000</span> PTS</strong>
+<small>Virtual Demo Points Only</small>
 </div>
 
-<div class="dash-section">
-<h3>👤 Account Information</h3>
-<div class="dash-row"><span>Username</span><b id="infoName">--</b></div>
-<div class="dash-row"><span>Email</span><b id="infoEmail">--</b></div>
-<div class="dash-row"><span>Phone</span><b id="infoPhone">--</b></div>
-<div class="dash-row"><span>Account Type</span><b>DEMO USER</b></div>
+<div class="action-grid">
+<button class="action-btn" onclick="openFeature('Deposit')"><span>➕</span>Deposit</button>
+<button class="action-btn" onclick="openFeature('Withdraw')"><span>➖</span>Withdraw</button>
+<button class="action-btn" onclick="openFeature('My Card')"><span>💳</span>My Card</button>
 </div>
 
-<div class="dash-section">
-<h3>🎮 Game History</h3>
-<div id="gameHistory"><div class="history-item">এখনো কোনো গেম খেলা হয়নি।</div></div>
+<div class="member-title">👑 সদস্য কেন্দ্র</div>
+<div class="menu-list" id="memberMenu"></div>
 </div>
 
-<div class="dash-section">
-<h3>🏆 Win / Loss History</h3>
-<div id="resultHistory"><div class="history-item">এখনো কোনো ফলাফল নেই।</div></div>
-</div>
-
-<p style="font-size:11px;color:#d8c5e5;text-align:center">Demo information is stored on this device. It is not a real-money account.</p>
-<button class="submit" onclick="logout()">LOG OUT</button>
-</div>
+<div id="featurePage" class="hidden">
+<button class="detail-back" onclick="backDashboard()">← ফিরে যান</button>
+<div class="detail-box">
+<h3 id="featureTitle">Option</h3>
+<div id="featureContent"></div>
 </div>
 </div>
 
-<!-- GAME -->
+</div>
+</div>
+</div>
+
+<!-- GAME MODAL -->
 <div class="modal" id="gameModal">
 <div class="panel">
 <button class="close" onclick="closeModal('gameModal')">×</button>
@@ -217,30 +225,41 @@ const gameList=[
 {name:"Speed Race",cat:"Arcade",emoji:"🏎️",desc:"Racing demo"}
 ];
 
+const menuItems=[
+["আমার পুরস্কার","🎁"],
+["পাশাপাশি বাজির ইতিহাস","📜"],
+["লাভ-লস","📊"],
+["জমা রেকর্ড","📥"],
+["উত্তোলন রেকর্ড","📤"],
+["লেনদেনের ইতিহাস","🧾"],
+["আমার অ্যাকাউন্ট","👤"],
+["সুরক্ষা কেন্দ্র","🛡️"],
+["বন্ধুদের আমন্ত্রণ","👥"],
+["রিবেট","🎉"],
+["মেইল","✉️"],
+["পরামর্শ","💡"],
+["Customer Service","🎧"],
+["Help Center","❓"],
+["Logout","🚪"]
+];
+
 let selectedCategory="All";
 let demoPoints=10000;
 let currentGame=null;
 let accountMode="login";
 let currentUser=null;
 let gameHistory=[];
-let resultHistory=[];
 
 function renderGames(){
 const query=document.getElementById("search").value.toLowerCase();
-const filtered=gameList.filter(g=>
-(selectedCategory==="All"||g.cat===selectedCategory)&&g.name.toLowerCase().includes(query));
+const filtered=gameList.filter(g=>(selectedCategory==="All"||g.cat===selectedCategory)&&g.name.toLowerCase().includes(query));
 document.getElementById("games").innerHTML=filtered.map(g=>`
-<article class="game">
-<div class="game-art">${g.emoji}</div>
-<div class="game-info">
-<b>${g.name}</b><small>${g.cat} • DEMO</small>
-<button class="play" onclick="openGame(${gameList.indexOf(g)})">PLAY</button>
-</div></article>`).join("")||"<p>No games found.</p>";
+<article class="game"><div class="game-art">${g.emoji}</div>
+<div class="game-info"><b>${g.name}</b><small>${g.cat} • DEMO</small>
+<button class="play" onclick="openGame(${gameList.indexOf(g)})">PLAY</button></div></article>`).join("")||"<p>No games found.</p>";
 }
 
-document.querySelectorAll(".cat").forEach(btn=>{
-btn.addEventListener("click",()=>showCategory(btn.dataset.cat));
-});
+document.querySelectorAll(".cat").forEach(btn=>btn.addEventListener("click",()=>showCategory(btn.dataset.cat)));
 
 function showCategory(cat){
 selectedCategory=cat;
@@ -261,17 +280,14 @@ document.getElementById("gameModal").classList.add("show");
 
 function playDemo(){
 if(!currentUser){
-document.getElementById("gameModal").classList.remove("show");
-openAccount();
+closeModal("gameModal");openAccount();
 document.getElementById("accountMessage").textContent="গেম খেলতে আগে Login করুন।";
 return;
 }
-const item={name:currentGame.name,time:new Date().toLocaleString()};
-gameHistory.unshift(item);
-gameHistory=gameHistory.slice(0,30);
+gameHistory.unshift({name:currentGame.name,time:new Date().toLocaleString()});
+gameHistory=gameHistory.slice(0,100);
 saveUserData();
-updateDashboard();
-document.getElementById("gameResult").textContent="Demo preview started! এটি শুধু একটি demo preview.";
+document.getElementById("gameResult").textContent="Demo preview started!";
 }
 
 function openAccount(){
@@ -303,44 +319,81 @@ function updateDashboard(){
 if(!currentUser)return;
 const name=currentUser.name||"User";
 document.getElementById("userName").textContent=name;
-document.getElementById("infoName").textContent=name;
-document.getElementById("userId").textContent="User ID: "+(currentUser.id||"Not available");
-document.getElementById("infoEmail").textContent=currentUser.email||"Not provided";
-document.getElementById("infoPhone").textContent=currentUser.phone||"Not provided";
+document.getElementById("nickName").textContent=currentUser.nickname||name;
+document.getElementById("userId").textContent="User ID: "+(currentUser.id||"--");
+document.getElementById("joinDate").textContent=currentUser.created_at||"তথ্য পাওয়া যায়নি";
 document.getElementById("dashPoints").textContent=demoPoints.toLocaleString();
 document.getElementById("points").textContent=demoPoints.toLocaleString();
 document.getElementById("gamePoints").textContent=demoPoints.toLocaleString();
-document.getElementById("playedCount").textContent=gameHistory.length;
-document.getElementById("winCount").textContent=resultHistory.filter(x=>x.result==="WIN").length;
 
-document.getElementById("gameHistory").innerHTML=gameHistory.length
-?gameHistory.map(x=>`<div class="history-item">🎮 ${escapeHTML(x.name)}<br><small>${escapeHTML(x.time)}</small></div>`).join("")
-:'<div class="history-item">এখনো কোনো গেম খেলা হয়নি।</div>';
-
-document.getElementById("resultHistory").innerHTML=resultHistory.length
-?resultHistory.map(x=>`<div class="history-item">${escapeHTML(x.result)} — ${escapeHTML(x.name)}<br><small>${escapeHTML(x.time)}</small></div>`).join("")
-:'<div class="history-item">এখনো কোনো ফলাফল নেই।</div>';
+document.getElementById("memberMenu").innerHTML=menuItems.map(([label,icon])=>
+`<button class="menu-item" onclick="openFeature('${label.replace(/'/g,"")}')"><span>${icon}</span>${label}</button>`
+).join("");
 }
 
+function openFeature(label){
+if(label==="Logout"){logout();return;}
+document.getElementById("dashboardHome").classList.add("hidden");
+document.getElementById("featurePage").classList.remove("hidden");
+document.getElementById("featureTitle").textContent=label;
+const content=document.getElementById("featureContent");
+const history=gameHistory.length?gameHistory.map(x=>`<div class="history-row">🎮 ${escapeHTML(x.name)}<br><small>${escapeHTML(x.time)}</small></div>`).join(""):"এখনো কোনো রেকর্ড নেই।";
+
+if(label==="Deposit"){
+content.innerHTML="<p>এটি Demo Deposit পৃষ্ঠা। এখানে কোনো বাস্তব টাকা জমা হবে না।</p><p>বর্তমান Demo Balance: <b>"+demoPoints.toLocaleString()+" PTS</b></p><p>Demo Points যোগ করার সুবিধা পরবর্তী ধাপে Admin-এর নিয়ন্ত্রণসহ তৈরি করা হবে।</p>";
+}else if(label==="Withdraw"){
+content.innerHTML="<p>এটি Demo Withdraw পৃষ্ঠা। কোনো বাস্তব অর্থ উত্তোলন হয় না।</p><p>বর্তমান Demo Balance: <b>"+demoPoints.toLocaleString()+" PTS</b></p>";
+}else if(label==="My Card"){
+content.innerHTML="<div style='background:linear-gradient(120deg,#8c5900,#3a075a);padding:22px;border-radius:15px'><h2>👑 FBD44 DEMO CARD</h2><h3>"+escapeHTML(currentUser.name||"User")+"</h3><p>DEMO MEMBER</p><p>Balance: "+demoPoints.toLocaleString()+" PTS</p><p>Virtual Card • No Cash Value</p></div>";
+}else if(label==="আমার অ্যাকাউন্ট"){
+content.innerHTML="<p>Username: "+escapeHTML(currentUser.name||"--")+"</p><p>User ID: "+escapeHTML(currentUser.id||"--")+"</p><p>Email: "+escapeHTML(currentUser.email||"তথ্য নেই")+"</p><p>Phone: "+escapeHTML(currentUser.phone||"তথ্য নেই")+"</p>";
+}else if(label==="পাশাপাশি বাজির ইতিহাস"){
+content.innerHTML="<p>গেমের Demo Activity:</p>"+history;
+}else if(label==="লাভ-লস"){
+content.innerHTML="<p>Demo লাভ-লসের হিসাব এখনো চালু হয়নি। কোনো বাস্তব অর্থের হিসাব নেই।</p>";
+}else if(label==="জমা রেকর্ড"||label==="উত্তোলন রেকর্ড"||label==="লেনদেনের ইতিহাস"){
+content.innerHTML="<p>এখনো কোনো Demo "+escapeHTML(label)+" নেই।</p><p>এখানে ভবিষ্যতে ভার্চুয়াল পয়েন্টের রেকর্ড দেখানো হবে।</p>";
+}else if(label==="আমার পুরস্কার"||label==="রিবেট"){
+content.innerHTML="<p>Demo Rewards</p><p>বর্তমানে কোনো পুরস্কার বা রিবেট যোগ করা হয়নি।</p>";
+}else if(label==="সুরক্ষা কেন্দ্র"){
+content.innerHTML="<p>আপনার অ্যাকাউন্ট নিরাপদ রাখতে পাসওয়ার্ড অন্য কারও সঙ্গে শেয়ার করবেন না।</p><p>পাসওয়ার্ড পরিবর্তনের সুবিধা পরবর্তী ধাপে যুক্ত করা হবে।</p>";
+}else if(label==="বন্ধুদের আমন্ত্রণ"){
+content.innerHTML="<p>বন্ধুদের FBD44 Demo Gaming World সম্পর্কে জানাতে পারেন।</p><p>Referral সুবিধা এখনো চালু হয়নি।</p>";
+}else if(label==="মেইল"){
+content.innerHTML="<p>আপনার কোনো নতুন Demo Mail নেই।</p>";
+}else if(label==="পরামর্শ"){
+content.innerHTML="<p>আপনার পরামর্শ:</p><textarea id='suggestion' class='field' placeholder='আপনার পরামর্শ লিখুন'></textarea><button class='submit' onclick='sendSuggestion()'>SUBMIT</button><p id='suggestionMessage'></p>";
+}else if(label==="Customer Service"||label==="Help Center"){
+content.innerHTML="<p>FBD44 Demo Support</p><p>Customer Service এবং Help Center-এর যোগাযোগ ব্যবস্থা এখনো সংযুক্ত করা হয়নি।</p>";
+}else{
+content.innerHTML="<p>এই সুবিধাটি পরবর্তী ধাপে তৈরি করা হবে।</p>";
+}
+}
+
+function sendSuggestion(){
+const value=document.getElementById("suggestion").value.trim();
+document.getElementById("suggestionMessage").textContent=value?"পরামর্শটি এই Demo পেজে লেখা হয়েছে। পাঠানোর সার্ভার এখনো যুক্ত হয়নি।":"আগে পরামর্শ লিখুন।";
+}
+function backDashboard(){
+document.getElementById("featurePage").classList.add("hidden");
+document.getElementById("dashboardHome").classList.remove("hidden");
+}
 function escapeHTML(value){
 return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 }
 
 function saveUserData(){
 if(!currentUser)return;
-const key="fbd44_demo_"+currentUser.id;
-localStorage.setItem(key,JSON.stringify({demoPoints,gameHistory,resultHistory}));
+localStorage.setItem("fbd44_demo_"+currentUser.id,JSON.stringify({demoPoints,gameHistory}));
 }
-
 function loadUserData(){
-demoPoints=10000;gameHistory=[];resultHistory=[];
+demoPoints=10000;gameHistory=[];
 if(!currentUser)return;
 try{
 const saved=JSON.parse(localStorage.getItem("fbd44_demo_"+currentUser.id)||"null");
 if(saved){
 demoPoints=Number(saved.demoPoints)||10000;
 gameHistory=Array.isArray(saved.gameHistory)?saved.gameHistory:[];
-resultHistory=Array.isArray(saved.resultHistory)?saved.resultHistory:[];
 }
 }catch(e){}
 }
@@ -369,16 +422,13 @@ endpoint="/api/login";
 button.disabled=true;
 button.textContent="PLEASE WAIT...";
 message.textContent="Connecting to FBD44...";
-
 try{
 const res=await fetch(API_URL+endpoint,{
-method:"POST",
-headers:{"Content-Type":"application/json"},
+method:"POST",headers:{"Content-Type":"application/json"},
 body:JSON.stringify(payload)
 });
 const data=await res.json();
 if(!res.ok||!data.success)throw new Error(data.message||data.detail||"Request failed");
-
 currentUser=data.user;
 localStorage.setItem("fbd44_current_user",JSON.stringify(currentUser));
 loadUserData();
@@ -395,7 +445,7 @@ button.textContent=accountMode==="register"?"CREATE ACCOUNT":"LOGIN";
 function logout(){
 currentUser=null;
 localStorage.removeItem("fbd44_current_user");
-demoPoints=10000;gameHistory=[];resultHistory=[];
+demoPoints=10000;gameHistory=[];
 setMode("login");
 updateAccountView();
 document.getElementById("accountMessage").textContent="Logged out.";
@@ -403,14 +453,9 @@ document.getElementById("accountMessage").textContent="Logged out.";
 
 function scrollToTop(){window.scrollTo({top:0,behavior:"smooth"});}
 
-// Restore the signed-in display on this device.
-// This is only a UI convenience; it does not verify the session with the server.
 try{
 const savedUser=JSON.parse(localStorage.getItem("fbd44_current_user")||"null");
-if(savedUser&&savedUser.id){
-currentUser=savedUser;
-loadUserData();
-}
+if(savedUser&&savedUser.id){currentUser=savedUser;loadUserData();}
 }catch(e){}
 
 renderGames();
