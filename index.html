@@ -9,7 +9,7 @@
 :root{
   --bg:#100019;
   --panel:#210b32;
-  --panel2:#2c1040;
+  --panel2:#301044;
   --gold:#ffe34b;
   --purple:#8d35d6;
   --text:#fff;
@@ -18,63 +18,56 @@
 }
 *{box-sizing:border-box}
 body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
+  margin:0;background:var(--bg);color:var(--text);
   font-family:Arial,"Noto Sans Bengali",sans-serif;
 }
 button,input{font:inherit}
 button{cursor:pointer}
 button:active{transform:scale(.97)}
+
 header{
   position:sticky;top:0;z-index:50;
-  background:#190526;
-  border-bottom:1px solid var(--border);
-  padding:10px 13px;
-  display:flex;align-items:center;gap:10px;
+  background:#190526;border-bottom:1px solid var(--border);
+  padding:10px 12px;display:flex;align-items:center;gap:9px;
 }
-.menu-btn{
-  border:0;background:transparent;color:var(--gold);
-  font-size:25px;padding:3px;
-}
-.logo{font-weight:bold;color:var(--gold);font-size:19px}
-.logo small{display:block;font-size:10px;color:#ddd;font-weight:normal}
-.header-right{margin-left:auto;display:flex;align-items:center;gap:7px}
+.menu-btn{border:0;background:none;color:var(--gold);font-size:25px}
+.logo{font-weight:bold;color:var(--gold);font-size:18px}
+.logo small{display:block;color:#ddd;font-size:10px;font-weight:normal}
+.header-right{margin-left:auto;display:flex;align-items:center;gap:6px}
 .balance-pill{
-  background:#34114c;border:1px solid #8753a4;
-  border-radius:20px;padding:7px 10px;font-size:11px;
-  color:var(--gold);white-space:nowrap;
+  background:#34114c;border:1px solid #8753a4;border-radius:20px;
+  padding:7px 9px;font-size:10px;color:var(--gold);white-space:nowrap;
 }
 .account-btn{
   border:0;border-radius:8px;background:var(--gold);
-  color:#210b32;font-weight:bold;padding:8px 10px;font-size:11px;
+  color:#210b32;font-weight:bold;padding:8px;font-size:10px;
 }
 main{padding:12px 12px 85px;max-width:1200px;margin:auto}
 .demo-alert{
   background:#321b0d;border:1px solid #a66d25;color:#ffe5a4;
-  border-radius:9px;padding:10px;text-align:center;
-  font-size:12px;margin:5px 0 13px;
+  border-radius:9px;padding:10px;text-align:center;font-size:12px;
+  margin:5px 0 13px;
 }
+
+/* Slider */
 .slider{
-  height:190px;position:relative;overflow:hidden;
-  border-radius:15px;border:1px solid #6a3985;
-  margin-bottom:15px;background:#2a1040;
+  height:190px;position:relative;overflow:hidden;border-radius:15px;
+  border:1px solid #6a3985;margin-bottom:15px;background:#2a1040;
 }
 .slide{
-  position:absolute;inset:0;display:none;
-  background-size:cover;background-position:center;
+  position:absolute;inset:0;display:none;background-size:cover;
+  background-position:center;
 }
 .slide.active{display:flex}
 .slide:before{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(90deg,rgba(14,0,24,.92),rgba(20,0,30,.25));
+  background:linear-gradient(90deg,rgba(14,0,24,.92),rgba(20,0,30,.22));
 }
 .slide-content{
-  position:relative;z-index:1;padding:23px 20px;
-  max-width:75%;display:flex;flex-direction:column;
-  justify-content:center;
+  position:relative;z-index:1;padding:20px;max-width:78%;
+  display:flex;flex-direction:column;justify-content:center;
 }
-.slide h2{color:var(--gold);margin:0 0 8px;font-size:24px}
+.slide h2{color:var(--gold);margin:0 0 8px;font-size:23px}
 .slide p{font-size:12px;line-height:1.5;margin:0 0 10px}
 .slide-tag{
   display:inline-block;background:var(--gold);color:#230b32;
@@ -90,14 +83,13 @@ main{padding:12px 12px 85px;max-width:1200px;margin:auto}
   background:#a99ab4;padding:0;
 }
 .slider-dots button.active{background:var(--gold);width:19px;border-radius:9px}
+
 .section-title{
   display:flex;align-items:center;justify-content:space-between;
   color:var(--gold);font-size:17px;font-weight:bold;margin:17px 0 10px;
 }
 .section-title small{font-size:11px;color:var(--muted);font-weight:normal}
-.categories{
-  display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;
-}
+.categories{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px}
 .cat{
   flex-shrink:0;border:1px solid var(--border);background:var(--panel);
   color:#eee;border-radius:20px;padding:9px 14px;font-size:12px;
@@ -108,27 +100,23 @@ main{padding:12px 12px 85px;max-width:1200px;margin:auto}
   width:100%;background:var(--panel);border:1px solid var(--border);
   border-radius:9px;padding:11px;color:white;outline:none;
 }
-.game-grid{
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;
-}
+.game-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
 .game-card{
   background:var(--panel);border:1px solid var(--border);
-  border-radius:12px;overflow:hidden;position:relative;
+  border-radius:12px;overflow:hidden;
 }
 .game-card img{
-  width:100%;height:125px;object-fit:cover;display:block;
-  background:#321544;
+  width:100%;height:125px;object-fit:cover;display:block;background:#321544;
 }
 .game-info{padding:9px}
 .game-name{font-weight:bold;font-size:13px;margin-bottom:6px}
 .game-category{color:var(--muted);font-size:10px}
 .game-actions{display:flex;gap:6px;margin-top:9px}
-.game-actions button{
-  border:0;border-radius:7px;padding:7px 8px;font-size:11px;
-}
+.game-actions button{border:0;border-radius:7px;padding:7px 8px;font-size:11px}
 .play-btn{background:var(--gold);color:#250b33;font-weight:bold;flex:1}
 .fav-btn{background:#4b235f;color:white;width:36px}
 .fav-btn.active{background:#e83e85}
+
 .page{display:none}
 .page.active{display:block}
 .empty-state{
@@ -137,41 +125,38 @@ main{padding:12px 12px 85px;max-width:1200px;margin:auto}
 }
 .bottom-nav{
   position:fixed;bottom:0;left:0;right:0;z-index:60;
-  display:flex;justify-content:space-around;
-  background:#190526;border-top:1px solid var(--border);
+  display:flex;justify-content:space-around;background:#190526;
+  border-top:1px solid var(--border);
   padding:9px 3px calc(9px + env(safe-area-inset-bottom));
 }
 .bottom-nav button{
-  border:0;background:transparent;color:#c9b6d6;
-  font-size:10px;display:flex;flex-direction:column;align-items:center;gap:4px;
+  border:0;background:transparent;color:#c9b6d6;font-size:10px;
+  display:flex;flex-direction:column;align-items:center;gap:4px;
 }
 .bottom-nav button span{font-size:19px}
 .bottom-nav button.active{color:var(--gold)}
+
 .sidebar{
-  position:fixed;z-index:100;left:-290px;top:0;bottom:0;
-  width:270px;background:#1b0628;border-right:1px solid var(--border);
+  position:fixed;z-index:100;left:-290px;top:0;bottom:0;width:270px;
+  background:#1b0628;border-right:1px solid var(--border);
   padding:16px;overflow-y:auto;transition:left .25s;
 }
 .sidebar.open{left:0}
 .sidebar-head{
   color:var(--gold);font-size:19px;font-weight:bold;
-  padding:12px 5px 18px;border-bottom:1px solid var(--border);
-  margin-bottom:10px;
+  padding:12px 5px 18px;border-bottom:1px solid var(--border);margin-bottom:10px;
 }
 .sidebar button{
-  width:100%;display:block;text-align:left;color:#eee;
-  background:transparent;border:0;border-radius:8px;
-  padding:12px 10px;font-size:13px;
+  width:100%;display:block;text-align:left;color:#eee;background:transparent;
+  border:0;border-radius:8px;padding:12px 10px;font-size:13px;
 }
 .sidebar button:hover{background:var(--panel2)}
-.overlay{
-  display:none;position:fixed;inset:0;background:#0009;z-index:90;
-}
+.overlay{display:none;position:fixed;inset:0;background:#0009;z-index:90}
 .overlay.show{display:block}
+
 .modal{
-  display:none;position:fixed;z-index:110;inset:0;
-  align-items:center;justify-content:center;padding:15px;
-  background:#0009;
+  display:none;position:fixed;z-index:110;inset:0;align-items:center;
+  justify-content:center;padding:15px;background:#0009;
 }
 .modal.show{display:flex}
 .modal-box{
@@ -182,8 +167,8 @@ main{padding:12px 12px 85px;max-width:1200px;margin:auto}
 .modal-head h3{margin:0;color:var(--gold)}
 .close-btn{background:transparent;border:0;color:white;font-size:25px}
 .modal-box input{
-  width:100%;padding:12px;margin:6px 0;
-  background:#13051d;border:1px solid var(--border);color:white;border-radius:8px;
+  width:100%;padding:12px;margin:6px 0;background:#13051d;
+  border:1px solid var(--border);color:white;border-radius:8px;
 }
 .primary-btn{
   width:100%;padding:11px;border:0;border-radius:8px;
@@ -195,6 +180,7 @@ main{padding:12px 12px 85px;max-width:1200px;margin:auto}
   border-radius:8px;background:#321344;color:white;
 }
 .switch-row button.active{background:var(--gold);color:#220a30}
+
 .profile-card,.dash-balance,.dash-actions,.menu-list{
   background:var(--panel);border:1px solid var(--border);
   border-radius:12px;padding:14px;margin-bottom:12px;
@@ -215,14 +201,14 @@ main{padding:12px 12px 85px;max-width:1200px;margin:auto}
   border-radius:9px;padding:13px 5px;font-size:12px;
 }
 .menu-list button{
-  display:block;width:100%;text-align:left;
-  background:transparent;color:#eee;border:0;
-  border-bottom:1px solid #432052;padding:12px 5px;font-size:13px;
+  display:block;width:100%;text-align:left;background:transparent;color:#eee;
+  border:0;border-bottom:1px solid #432052;padding:12px 5px;font-size:13px;
 }
 .menu-list button:last-child{border-bottom:0}
 .notice-small{font-size:11px;color:var(--muted);line-height:1.5}
 .game-detail{text-align:center}
 .game-detail img{width:100%;height:190px;object-fit:cover;border-radius:10px}
+
 @media(min-width:650px){
   .game-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
   .slider{height:240px}
@@ -268,7 +254,7 @@ main{padding:12px 12px 85px;max-width:1200px;margin:auto}
 
   <section class="page active" id="page-home">
     <div class="slider" id="heroSlider">
-      <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-151151257 天天中彩票实名?auto=format&fit=crop&w=1200&q=85')">
+      <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=85')">
         <div class="slide-content">
           <h2>Welcome to FBD44</h2>
           <p>Explore your favourite games in our virtual demo world.</p>
@@ -289,14 +275,14 @@ main{padding:12px 12px 85px;max-width:1200px;margin:auto}
           <span class="slide-tag">DEMO GAMES</span>
         </div>
       </div>
-      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-149 firmware?auto=format&fit=crop&w=1200&q=85')">
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=85')">
         <div class="slide-content">
           <h2>Crash Games</h2>
           <p>Explore exciting virtual arcade experiences.</p>
           <span class="slide-tag">PLAY FOR FUN</span>
         </div>
       </div>
-      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=85')">
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1200&q=85')">
         <div class="slide-content">
           <h2>Gaming World</h2>
           <p>One place for your favourite demo games.</p>
@@ -325,9 +311,6 @@ main{padding:12px 12px 85px;max-width:1200px;margin:auto}
 
   <section class="page" id="page-games">
     <div class="section-title">🎮 Game Center</div>
-    <div class="categories">
-      <button class="cat active" onclick="goPage('home')">All Games</button>
-    </div>
     <div class="game-grid" id="allGamesGrid"></div>
   </section>
 
@@ -435,7 +418,7 @@ const gameData = [
  {id:10,name:"Roulette Preview",cat:"Live Casino",img:"https://images.unsplash.com/photo-1606167668584-78701c57f13d?auto=format&fit=crop&w=700&q=85"},
  {id:11,name:"Card Room",cat:"Live Casino",img:"https://images.unsplash.com/photo-1511193311914-0346f16efe90?auto=format&fit=crop&w=700&q=85"},
  {id:12,name:"Crash Rocket",cat:"Crash",img:"https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=700&q=85"},
- {id:13,name:"Sky Rush",cat:"Crash",img:"https://images.unsplash.com/photo-146 puls?auto=format&fit=crop&w=700&q=85"},
+ {id:13,name:"Sky Rush",cat:"Crash",img:"https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=700&q=85"},
  {id:14,name:"Neon Flight",cat:"Crash",img:"https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=700&q=85"},
  {id:15,name:"Arcade Quest",cat:"Arcade",img:"https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=700&q=85"},
  {id:16,name:"Pixel Arena",cat:"Arcade",img:"https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=700&q=85"},
@@ -456,8 +439,6 @@ let favorites=JSON.parse(localStorage.getItem("fbd44_favorites")||"[]");
 let demoPoints=Number(localStorage.getItem("fbd44_points")||10000);
 let gameHistory=JSON.parse(localStorage.getItem("fbd44_history")||"[]");
 
-function saveFavorites(){localStorage.setItem("fbd44_favorites",JSON.stringify(favorites))}
-function saveUser(){localStorage.setItem("fbd44_user",JSON.stringify(loggedUser))}
 function updateHeader(){
  document.getElementById("headerBalance").textContent=
  "🎮 "+(loggedUser?loggedUser.username:"DEMO")+" • "+demoPoints.toLocaleString()+" PTS";
@@ -485,7 +466,8 @@ function gameCard(g){
 }
 function toggleFavorite(id){
  favorites.includes(id)?favorites=favorites.filter(x=>x!==id):favorites.push(id);
- saveFavorites();renderGames();renderFavorites();
+ localStorage.setItem("fbd44_favorites",JSON.stringify(favorites));
+ renderGames();renderFavorites();
 }
 function renderFavorites(){
  const items=gameData.filter(g=>favorites.includes(g.id));
@@ -533,17 +515,18 @@ document.getElementById("authForm").addEventListener("submit",function(e){
  const username=document.getElementById("authUsername").value.trim();
  const password=document.getElementById("authPassword").value;
  if(!username||!password){alert("Username এবং Password দিন।");return}
+ const users=JSON.parse(localStorage.getItem("fbd44_demo_users")||"[]");
  if(authMode==="register"){
-   const users=JSON.parse(localStorage.getItem("fbd44_demo_users")||"[]");
    if(users.some(u=>u.username===username)){alert("এই Username আগে ব্যবহার করা হয়েছে।");return}
    users.push({username,password,joinDate:new Date().toLocaleDateString()});
    localStorage.setItem("fbd44_demo_users",JSON.stringify(users));
  }
- const users=JSON.parse(localStorage.getItem("fbd44_demo_users")||"[]");
- const found=users.find(u=>u.username===username&&u.password===password);
- if(authMode==="login"&&users.length&&!found){alert("Demo login details মিলছে না। আগে Register করুন।");return}
+ const stored=JSON.parse(localStorage.getItem("fbd44_demo_users")||"[]");
+ const found=stored.find(u=>u.username===username&&u.password===password);
+ if(authMode==="login"&&!found){alert("Demo login details মিলছে না। আগে Register করুন।");return}
  loggedUser={username,joinDate:found?.joinDate||new Date().toLocaleDateString(),id:"FBD-"+Math.floor(100000+Math.random()*900000)};
- saveUser();updateHeader();closeModal("accountModal");openDashboard();
+ localStorage.setItem("fbd44_user",JSON.stringify(loggedUser));
+ updateHeader();closeModal("accountModal");openDashboard();
 });
 function logout(){
  loggedUser=null;localStorage.removeItem("fbd44_user");updateHeader();closeSidebar();goPage("home");
