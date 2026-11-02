@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-
-
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FBD44 - Gaming World</title>
-
 
 <style>
 :root{
@@ -69,6 +66,38 @@ header{
   color:var(--gold);
   font-size:12px
 }
+
+/* ACCOUNT DROPDOWN */
+.account-wrap{position:relative}
+.account-menu{
+  display:none;
+  position:absolute;
+  right:0;
+  top:calc(100% + 8px);
+  min-width:170px;
+  background:#260c38;
+  border:1px solid var(--purple);
+  border-radius:12px;
+  padding:7px;
+  box-shadow:0 8px 25px #0008;
+  z-index:25
+}
+.account-menu.open{display:block}
+.account-item{
+  display:block;
+  width:100%;
+  border:0;
+  border-radius:8px;
+  background:transparent;
+  color:white;
+  text-align:left;
+  padding:12px;
+  font-size:13px
+}
+.account-item:hover{background:#3b1550}
+.account-item.logout-item{color:#ff8b9e}
+
+/* PAGE */
 .page{
   max-width:1000px;
   margin:auto;
@@ -85,7 +114,7 @@ header{
   margin-bottom:12px
 }
 
-/* FIXED HERO BANNER */
+/* HERO */
 .hero{
   height:205px;
   border-radius:14px;
@@ -121,6 +150,7 @@ header{
   z-index:2
 }
 
+/* CATEGORIES */
 .categories{
   display:flex;
   gap:8px;
@@ -166,6 +196,8 @@ header{
   font-size:12px;
   color:#e0b9f0
 }
+
+/* GAMES */
 .games{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -229,6 +261,8 @@ header{
   padding:25px;
   color:#d8b7e7
 }
+
+/* BOTTOM NAVIGATION */
 .bottom{
   position:fixed;
   bottom:0;
@@ -256,6 +290,7 @@ header{
 .view{display:none}
 .view.active{display:block}
 
+/* MEMBER DASHBOARD */
 .dash-card{
   background:linear-gradient(130deg,#ffe878,#bb8528);
   color:#38200a;
@@ -317,6 +352,8 @@ header{
   color:var(--gold);
   margin:16px 0 12px
 }
+
+/* MODAL */
 .modal{
   display:none;
   position:fixed;
@@ -398,63 +435,105 @@ header{
   font-weight:bold
 }
 
+/* SIDEBAR */
+.side-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#0009;
+  z-index:20
+}
+.side-overlay.open{display:block}
+.sidebar{
+  width:280px;
+  max-width:85vw;
+  height:100%;
+  overflow-y:auto;
+  background:#200832;
+  padding:18px
+}
+.sidebar h2{
+  color:var(--gold);
+  margin:0 0 14px
+}
+.side-btn{
+  display:block;
+  width:100%;
+  margin:6px 0;
+  background:#321344;
+  color:white;
+  text-align:left;
+  border:0;
+  border-radius:10px;
+  padding:12px
+}
+.side-btn.logout-item{color:#ff8b9e}
+
 @media(min-width:650px){
   .games{grid-template-columns:repeat(4,minmax(0,1fr))}
   .game img{height:160px}
   .hero{height:260px}
 }
 </style>
-
-
 </head>
-
-
 <body>
-
 
 <header>
   <div class="headleft">
-    <button class="btn" style="background:#310b49;color:white" onclick="toggleMenu()">☰</button>
+    <button class="btn" style="background:#310b49;color:white"
+      onclick="toggleMenu()">☰</button>
+
     <div class="brand">👑 FBD44
       <small>Gaming World • Demo Mode</small>
     </div>
   </div>
 
-
   <div class="headleft">
     <div class="balance">🎮 <span id="balanceTop">10,000</span> PTS</div>
-    <button class="btn gold" id="accountBtn" onclick="accountClick()">ACCOUNT</button>
+
+    <div class="account-wrap">
+      <button class="btn gold" id="accountBtn"
+        onclick="accountClick()">ACCOUNT</button>
+
+      <div class="account-menu" id="accountMenu">
+        <button class="account-item" onclick="openMember()">
+          👤 Member Center
+        </button>
+        <button class="account-item" onclick="openFavorites()">
+          ❤️ My Favorites
+        </button>
+        <button class="account-item logout-item" onclick="logout()">
+          🚪 Logout
+        </button>
+      </div>
+    </div>
   </div>
 </header>
 
-
 <div class="page">
-  <div class="notice">VIRTUAL DEMO ONLY • No real money • No cash prizes</div>
-
+  <div class="notice">
+    VIRTUAL DEMO ONLY • No real money • No cash prizes
+  </div>
 
   <section id="home" class="view active">
+    <div class="hero">
+      <img src="assets/fbd44_hero.jpg" alt="FBD44 Welcome Banner">
+      <button class="btn gold" onclick="showGames()">PLAY DEMO ❯</button>
+    </div>
 
+    <div class="categories" id="categoryBar"></div>
 
-<div class="hero">
-<img src="assets/fbd44_hero.jpg" alt="FBD44 Welcome Banner">
-<button class="btn gold" onclick="showGames()">PLAY DEMO ❯</button>
-</div>
-
-<div class="categories" id="categoryBar"></div>
-
-<input class="search" id="search"
+    <input class="search" id="search"
       placeholder="🔎 Search games..."
       oninput="renderGames()">
 
-<div class="section">
-<h2 id="gameHeading">🎮 All Games</h2>
-<span id="count"></span>
-</div>
+    <div class="section">
+      <h2 id="gameHeading">🎮 All Games</h2>
+      <span id="count"></span>
+    </div>
 
-<div class="games" id="gameGrid"></div>
-
+    <div class="games" id="gameGrid"></div>
   </section>
-
 
   <section id="member" class="view">
     <div class="dash-card">
@@ -465,36 +544,31 @@ header{
           <small>User ID: <span id="userId">FBD44-0001</span></small>
         </div>
       </div>
+
       <div class="demo-balance">
         🎮 Demo Balance: <span id="balanceMember">10,000</span> PTS
       </div>
     </div>
 
-
-<h3 class="dash-title">👤 Member Center</h3>
-<div class="dash-grid" id="dashGrid"></div>
-
+    <h3 class="dash-title">👤 Member Center</h3>
+    <div class="dash-grid" id="dashGrid"></div>
   </section>
-
 
   <section id="promotion" class="view">
     <div class="section"><h2>🎁 Promotion</h2></div>
     <div class="notice">Welcome Demo Bonus — Virtual points only.</div>
   </section>
 
-
   <section id="share" class="view">
     <div class="section"><h2>🔗 Share FBD44</h2></div>
     <button class="btn gold" onclick="sharePage()">SHARE WEBSITE</button>
   </section>
-
 
   <section id="rewards" class="view">
     <div class="section"><h2>🏆 Rewards Center</h2></div>
     <div class="notice">Demo Rewards Center • No cash prizes</div>
   </section>
 </div>
-
 
 <nav class="bottom">
   <button class="nav active" onclick="go('home',this)">
@@ -514,24 +588,28 @@ header{
   </button>
 </nav>
 
+<!-- SIDEBAR: FULL MENU -->
+<div id="side" class="side-overlay" onclick="toggleMenu()">
+  <div class="sidebar" onclick="event.stopPropagation()">
+    <h2>👑 FBD44</h2>
 
-<div id="side" style="display:none;position:fixed;inset:0;background:#0009;z-index:20" onclick="toggleMenu()">
-  <div style="width:270px;height:100%;background:#200832;padding:18px" onclick="event.stopPropagation()">
-    <h2 style="color:var(--gold)">👑 FBD44</h2>
+    <button class="side-btn" onclick="go('home');toggleMenu()">
+      🏠 Home
+    </button>
 
+    <button class="side-btn" onclick="openFavorites();toggleMenu()">
+      ❤️ My Favorites
+    </button>
 
-<button class="btn" style="display:block;width:100%;margin:6px 0;background:#321344;color:white;text-align:left" onclick="go('home');toggleMenu()">🏠 Home</button>
+    <button class="side-btn" onclick="go('member');toggleMenu()">
+      👤 Member Center
+    </button>
 
-<button class="btn" style="display:block;width:100%;margin:6px 0;background:#321344;color:white;text-align:left" onclick="favoritesOnly();toggleMenu()">❤️ My Favorites</button>
-
-<button class="btn" style="display:block;width:100%;margin:6px 0;background:#321344;color:white;text-align:left" onclick="go('member');toggleMenu()">👤 Member Center</button>
-
-<button class="btn" style="display:block;width:100%;margin:6px 0;background:#321344;color:white;text-align:left" onclick="logout();toggleMenu()">🚪 Logout</button>
-
+    <div id="sideFullMenu"></div>
   </div>
 </div>
 
-
+<!-- LOGIN / REGISTER MODAL -->
 <div class="modal" id="loginModal">
   <div class="modalbox">
     <div class="modalhead">
@@ -539,38 +617,40 @@ header{
       <button class="close" onclick="closeLogin()">×</button>
     </div>
 
+    <div class="tabs">
+      <button class="tab active" id="loginTab"
+        onclick="setMode('login')">Login</button>
+      <button class="tab" id="registerTab"
+        onclick="setMode('register')">Register</button>
+    </div>
 
-<div class="tabs">
-<button class="tab active" id="loginTab" onclick="setMode('login')">Login</button>
-<button class="tab" id="registerTab" onclick="setMode('register')">Register</button>
-</div>
+    <form onsubmit="authSubmit(event)">
+      <label>Username</label>
+      <input class="field" id="username" required
+        placeholder="Enter username">
 
-<form onsubmit="authSubmit(event)">
-<label>Username</label>
-<input class="field" id="username" required placeholder="Enter username">
+      <div id="registerExtra" style="display:none">
+        <label>Mobile number (optional)</label>
+        <input class="field" id="mobile" placeholder="Mobile number">
 
-<div id="registerExtra" style="display:none">
-<label>Mobile number (optional)</label>
-<input class="field" id="mobile" placeholder="Mobile number">
+        <label>Email (optional)</label>
+        <input class="field" id="email" type="email" placeholder="Email">
+      </div>
 
-<label>Email (optional)</label>
-<input class="field" id="email" type="email" placeholder="Email">
-</div>
+      <label>Password</label>
+      <input class="field" id="password" type="password"
+        required minlength="4" placeholder="Password">
 
-<label>Password</label>
-<input class="field" id="password" type="password" required minlength="4" placeholder="Password">
+      <button class="btn gold" id="submitBtn">LOGIN</button>
 
-<button class="btn gold" id="submitBtn">LOGIN</button>
-<p style="font-size:10px;color:#cbb7d9">Demo only. Do not use your real password.</p>
-</form>
-
+      <p style="font-size:10px;color:#cbb7d9">
+        Demo only. Do not use your real password.
+      </p>
+    </form>
   </div>
 </div>
 
-
 <div id="toast"></div>
-
-
 <script>
 const categories=["All Games","Slots","Live Casino","Crash","Fishing","Arcade"];
 
@@ -612,13 +692,31 @@ let category="All Games";
 let favorites=JSON.parse(localStorage.getItem("fbd44Favs")||"[]");
 let mode="login";
 let user=JSON.parse(localStorage.getItem("fbd44User")||"null");
+let showingFavorites=false;
 
 function init(){
   document.getElementById("categoryBar").innerHTML=
-    categories.map(c=>`<button class="cat ${c===category?"active":""}" onclick="setCategory('${c}')">${c}</button>`).join("");
+    categories.map(c=>`
+      <button class="cat ${c===category?"active":""}"
+        onclick="setCategory('${c}')">${c}</button>
+    `).join("");
 
   document.getElementById("dashGrid").innerHTML=
-    menus.map((m,i)=>`<button class="dash-item" onclick="dashAction(${i})"><span class="dico">${m[0]}</span><span class="dname">${m[2]}</span></button>`).join("");
+    menus.map((m,i)=>`
+      <button class="dash-item" onclick="dashAction(${i})">
+        <span class="dico">${m[0]}</span>
+        <span class="dname">${m[2]}</span>
+      </button>
+    `).join("");
+
+  // Full sidebar menu
+  document.getElementById("sideFullMenu").innerHTML=
+    menus.map((m,i)=>`
+      <button class="side-btn ${i===15?"logout-item":""}"
+        onclick="sideMenuAction(${i})">
+        ${m[0]} ${m[1]}
+      </button>
+    `).join("");
 
   renderGames();
   updateAccount();
@@ -634,42 +732,82 @@ function renderGames(list=null){
     );
   }
 
-  document.getElementById("gameHeading").textContent="🎮 "+category;
+  document.getElementById("gameHeading").textContent=
+    "🎮 "+(showingFavorites?"My Favorites":category);
+
   document.getElementById("count").textContent=list.length+" Games";
 
   document.getElementById("gameGrid").innerHTML=list.length?
     list.map(g=>{
       const id=games.indexOf(g);
-      return `<article class="game">
-        <img src="${g.img}" alt="${g.name}" onerror="this.style.background='#351344';this.alt='Image missing'">
-        <button class="heart ${favorites.includes(id)?"on":""}" onclick="favorite(${id})">${favorites.includes(id)?"♥":"♡"}</button>
-        <div class="game-info">
-          <div class="game-name">${g.name}</div>
-          <div class="game-meta">${g.tag}</div>
-          <button class="play" onclick="playDemo('${g.name}')">PLAY DEMO</button>
-        </div>
-      </article>`;
+      return `
+        <article class="game">
+          <img src="${g.img}" alt="${g.name}"
+            onerror="this.style.background='#351344';this.alt='Image missing'">
+
+          <button class="heart ${favorites.includes(id)?"on":""}"
+            onclick="favorite(${id})">
+            ${favorites.includes(id)?"♥":"♡"}
+          </button>
+
+          <div class="game-info">
+            <div class="game-name">${g.name}</div>
+            <div class="game-meta">${g.tag}</div>
+            <button class="play" onclick="playDemo('${g.name}')">
+              PLAY DEMO
+            </button>
+          </div>
+        </article>
+      `;
     }).join("")
     :'<div class="empty">No games found.</div>';
 }
 
 function setCategory(c){
+  showingFavorites=false;
   category=c;
-  document.querySelectorAll(".cat").forEach(b=>b.classList.toggle("active",b.textContent===c));
+
+  document.querySelectorAll(".cat").forEach(b=>
+    b.classList.toggle("active",b.textContent===c)
+  );
+
   renderGames();
 }
 
 function favorite(i){
-  favorites=favorites.includes(i)?favorites.filter(x=>x!==i):[...favorites,i];
+  favorites=favorites.includes(i)?
+    favorites.filter(x=>x!==i):
+    [...favorites,i];
+
   localStorage.setItem("fbd44Favs",JSON.stringify(favorites));
-  renderGames();
-  toast(favorites.includes(i)?"Added to Favorites":"Removed from Favorites");
+
+  if(showingFavorites){
+    renderGames(games.filter((g,index)=>favorites.includes(index)));
+  }else{
+    renderGames();
+  }
+
+  toast(favorites.includes(i)?
+    "Added to Favorites":
+    "Removed from Favorites");
 }
 
 function favoritesOnly(){
+  showingFavorites=true;
   category="All Games";
-  document.querySelectorAll(".cat").forEach(b=>b.classList.toggle("active",b.textContent===category));
+
+  document.querySelectorAll(".cat").forEach(b=>
+    b.classList.toggle("active",b.textContent===category)
+  );
+
   renderGames(games.filter((g,i)=>favorites.includes(i)));
+}
+
+function openFavorites(){
+  closeAccountMenu();
+  go("home",document.querySelector(".nav"));
+  favoritesOnly();
+  window.scrollTo(0,0);
 }
 
 function playDemo(name){
@@ -677,25 +815,75 @@ function playDemo(name){
 }
 
 function showGames(){
-  document.getElementById("gameHeading").scrollIntoView({behavior:"smooth"});
+  document.getElementById("gameHeading").scrollIntoView({
+    behavior:"smooth"
+  });
 }
 
 function go(id,btn){
-  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
+  document.querySelectorAll(".view").forEach(v=>
+    v.classList.remove("active")
+  );
+
   document.getElementById(id).classList.add("active");
-  document.querySelectorAll(".nav").forEach(v=>v.classList.remove("active"));
+
+  document.querySelectorAll(".nav").forEach(v=>
+    v.classList.remove("active")
+  );
+
   if(btn)btn.classList.add("active");
+
   window.scrollTo(0,0);
 }
 
 function toggleMenu(){
   const s=document.getElementById("side");
-  s.style.display=s.style.display==="none"?"block":"none";
+  s.classList.toggle("open");
 }
 
+function sideMenuAction(i){
+  toggleMenu();
+
+  if(i===15){
+    logout();
+    return;
+  }
+
+  if(i===0){
+    go("rewards",document.querySelectorAll(".nav")[3]);
+    return;
+  }
+
+  if(i===6){
+    openMember();
+    return;
+  }
+
+  if(i===8){
+    go("share",document.querySelectorAll(".nav")[2]);
+    return;
+  }
+
+  toast(menus[i][1]+" demo page");
+}
+
+// Username button dropdown
 function accountClick(){
-  if(user)go("member",document.querySelectorAll(".nav")[4]);
-  else openLogin();
+  if(!user){
+    openLogin();
+    return;
+  }
+
+  document.getElementById("accountMenu").classList.toggle("open");
+}
+
+function closeAccountMenu(){
+  document.getElementById("accountMenu").classList.remove("open");
+}
+
+function openMember(){
+  closeAccountMenu();
+  go("member",document.querySelectorAll(".nav")[4]);
 }
 
 function openLogin(){
@@ -708,10 +896,15 @@ function closeLogin(){
 
 function setMode(m){
   mode=m;
+
   document.getElementById("loginTab").classList.toggle("active",m==="login");
   document.getElementById("registerTab").classList.toggle("active",m==="register");
-  document.getElementById("registerExtra").style.display=m==="register"?"block":"none";
-  document.getElementById("submitBtn").textContent=m==="login"?"LOGIN":"REGISTER";
+
+  document.getElementById("registerExtra").style.display=
+    m==="register"?"block":"none";
+
+  document.getElementById("submitBtn").textContent=
+    m==="login"?"LOGIN":"REGISTER";
 }
 
 function authSubmit(e){
@@ -719,6 +912,7 @@ function authSubmit(e){
 
   const name=document.getElementById("username").value.trim();
   const pass=document.getElementById("password").value;
+
   let users=JSON.parse(localStorage.getItem("fbd44DemoUsers")||"{}");
 
   if(mode==="register"){
@@ -726,10 +920,12 @@ function authSubmit(e){
       toast("Username already exists");
       return;
     }
+
     users[name]={
       password:pass,
       id:"FBD44-"+Math.floor(1000+Math.random()*9000)
     };
+
     localStorage.setItem("fbd44DemoUsers",JSON.stringify(users));
   }
   else if(users[name]&&users[name].password!==pass){
@@ -741,17 +937,26 @@ function authSubmit(e){
   }
 
   user={name,id:users[name].id};
+
   localStorage.setItem("fbd44User",JSON.stringify(user));
+
   closeLogin();
   updateAccount();
   go("member",document.querySelectorAll(".nav")[4]);
+
   toast("Demo login successful");
 }
 
 function updateAccount(){
-  document.getElementById("accountBtn").textContent=user?user.name+" ▾":"ACCOUNT";
-  document.getElementById("userName").textContent=user?user.name:"Demo Member";
-  document.getElementById("userId").textContent=user?user.id:"FBD44-0001";
+  const btn=document.getElementById("accountBtn");
+
+  btn.textContent=user?user.name+" ▾":"ACCOUNT";
+
+  document.getElementById("userName").textContent=
+    user?user.name:"Demo Member";
+
+  document.getElementById("userId").textContent=
+    user?user.id:"FBD44-0001";
 }
 
 function dashAction(i){
@@ -759,20 +964,44 @@ function dashAction(i){
     logout();
     return;
   }
+
+  if(i===0){
+    go("rewards",document.querySelectorAll(".nav")[3]);
+    return;
+  }
+
+  if(i===6){
+    openMember();
+    return;
+  }
+
+  if(i===8){
+    go("share",document.querySelectorAll(".nav")[2]);
+    return;
+  }
+
   toast(menus[i][1]+" demo page");
 }
 
 function logout(){
   user=null;
+
   localStorage.removeItem("fbd44User");
+
+  closeAccountMenu();
   updateAccount();
+
   go("home",document.querySelector(".nav"));
+
   toast("Logged out");
 }
 
 function sharePage(){
   if(navigator.share){
-    navigator.share({title:"FBD44 Gaming World",url:location.href});
+    navigator.share({
+      title:"FBD44 Gaming World",
+      url:location.href
+    });
   }else{
     toast("FBD44 website: "+location.href);
   }
@@ -780,15 +1009,28 @@ function sharePage(){
 
 function toast(t){
   const e=document.getElementById("toast");
+
   e.textContent=t;
   e.style.display="block";
+
   clearTimeout(window.toastTimer);
-  window.toastTimer=setTimeout(()=>e.style.display="none",2200);
+
+  window.toastTimer=setTimeout(()=>{
+    e.style.display="none";
+  },2200);
 }
+
+// Close username dropdown when tapping outside it
+document.addEventListener("click",function(e){
+  const wrap=document.querySelector(".account-wrap");
+
+  if(wrap&&!wrap.contains(e.target)){
+    closeAccountMenu();
+  }
+});
 
 init();
 </script>
-
 
 </body>
 </html>
