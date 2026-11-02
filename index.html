@@ -3,472 +3,601 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#160020">
 <title>FBD44 - Gaming World</title>
 
 <style>
+:root{
+  --bg:#100019;
+  --panel:#210b32;
+  --panel2:#2c1040;
+  --gold:#ffe34b;
+  --purple:#8d35d6;
+  --text:#fff;
+  --muted:#bba8c9;
+  --border:#572a70;
+}
 *{box-sizing:border-box}
-body{margin:0;background:#100019;color:white;font-family:Arial,sans-serif;padding-bottom:80px}
-button,input{font:inherit;cursor:pointer}
-header{background:linear-gradient(110deg,#19002d,#35004f);padding:12px;display:flex;align-items:center;justify-content:space-between;gap:7px;border-bottom:1px solid #a000e8;position:sticky;top:0;z-index:20}
-.logo{font-size:22px;font-weight:900;color:#ffe34b}
-.logo small{display:block;font-size:11px;color:white}
-.balance{background:#26003b;border:1px solid #bd00ff;padding:9px;border-radius:25px;font-weight:bold;font-size:11px}
-.account,.menu{border:0;padding:10px 12px;border-radius:22px;font-weight:bold}
-.account{background:#ffd52e;color:#260039;max-width:125px}
-.menu{background:#29003e;color:white;border:1px solid #b500ff;font-size:18px}
-
-.hero{margin:13px;border-radius:18px;overflow:hidden;min-height:220px;border:1px solid #bd00ff;box-shadow:0 0 20px #7900a8;background:linear-gradient(90deg,#160020ed,#16002055),url('https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1000') center/cover;display:flex;align-items:center;padding:22px}
-.hero h1{font-size:27px;color:#ffe34b;margin:0 0 8px}
-.hero p{font-size:13px;line-height:1.5}
-.label{display:inline-block;background:#ffe34b;color:#290039;padding:7px 13px;border-radius:20px;font-size:11px;font-weight:bold}
-
-.section{padding:5px 14px 16px}
-.section h2{font-size:19px;color:#ffdf42}
-.categories{display:flex;gap:9px;overflow-x:auto;padding:5px 0 12px}
-.cat{flex:0 0 auto;background:#29003d;color:white;border:1px solid #9200c9;border-radius:20px;padding:10px 15px}
-.cat.active{background:#ffd52e;color:#28003a}
-.search{width:100%;padding:13px;border-radius:12px;background:#21002f;border:1px solid #a000dc;color:white;margin:5px 0 12px}
-
-.games{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.game{background:linear-gradient(145deg,#32004d,#170023);border:1px solid #7900a9;border-radius:14px;overflow:hidden}
-.game-art{height:130px;position:relative;overflow:hidden;background:radial-gradient(circle,#69008d,#21002f)}
-.game-art img{width:100%;height:100%;object-fit:cover;display:block}
-.fav{position:absolute;top:8px;right:8px;width:36px;height:36px;border-radius:50%;border:1px solid #ffffff70;background:#160020d9;color:white;font-size:23px}
-.fav.active{color:#ffe34b}
-.game-info{padding:11px}
-.game-info b{display:block;font-size:14px}
-.game-info small{color:#cdb5d8}
-.play{width:100%;margin-top:9px;padding:10px;background:linear-gradient(#ffe85b,#ffb900);color:#290039;border:0;border-radius:20px;font-weight:bold}
-
-.notice{margin:12px 14px;padding:13px;background:#21002f;border:1px solid #6b008e;border-radius:12px;color:#d9c5e5;font-size:12px;line-height:1.6}
-footer{padding:25px 12px;text-align:center;color:#bda9c9;font-size:12px}
-
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#1b0029;border-top:1px solid #7900a9;display:grid;grid-template-columns:repeat(5,1fr);padding:7px 2px max(7px,env(safe-area-inset-bottom));z-index:20}
-.bottom button{border:0;background:none;color:#d6c1e4;font-size:10px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:3px 1px}
-.bottom button.active{color:#ffe34b}
-.bottom span{font-size:21px}
-
-.modal{display:none;position:fixed;inset:0;z-index:50;background:#000d;align-items:center;justify-content:center;padding:12px;overflow:auto}
-.modal.show{display:flex}
-.panel{width:100%;max-width:480px;background:linear-gradient(145deg,#390052,#160020);border:1px solid #d000ff;border-radius:20px;padding:18px;margin:auto}
-.panel h2{text-align:center;color:#ffe34b}
-.close{float:right;border:0;background:none;color:white;font-size:25px}
-.field{width:100%;padding:14px;margin:7px 0;border:1px solid #bd00ff;border-radius:12px;background:#160020;color:white}
-.submit{width:100%;padding:14px;border:0;border-radius:25px;background:linear-gradient(#ffe85b,#ffb900);color:#280039;font-weight:bold;margin-top:12px}
-.tabs{display:flex;gap:10px;margin-bottom:15px}
-.tabs button{flex:1;padding:12px;border-radius:25px;border:1px solid #c000ff;background:transparent;color:white}
-.tabs button.active{background:#ffd52e;color:#290039}
-.message{text-align:center;color:#ffe34b;font-size:13px}
-.hidden{display:none!important}
-
-.sidebar{position:fixed;top:0;bottom:0;left:-290px;width:275px;background:#260039;z-index:41;padding:18px;transition:.25s;overflow:auto;border-right:1px solid #a000dc}
-.sidebar.show{left:0}
-.sidebar button{width:100%;padding:13px;margin:5px 0;background:#32004d;color:white;border:1px solid #7900a9;border-radius:10px;text-align:left}
-.overlay{display:none;position:fixed;inset:0;background:#000b;z-index:40}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,"Noto Sans Bengali",sans-serif;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+button:active{transform:scale(.97)}
+header{
+  position:sticky;top:0;z-index:50;
+  background:#190526;
+  border-bottom:1px solid var(--border);
+  padding:10px 13px;
+  display:flex;align-items:center;gap:10px;
+}
+.menu-btn{
+  border:0;background:transparent;color:var(--gold);
+  font-size:25px;padding:3px;
+}
+.logo{font-weight:bold;color:var(--gold);font-size:19px}
+.logo small{display:block;font-size:10px;color:#ddd;font-weight:normal}
+.header-right{margin-left:auto;display:flex;align-items:center;gap:7px}
+.balance-pill{
+  background:#34114c;border:1px solid #8753a4;
+  border-radius:20px;padding:7px 10px;font-size:11px;
+  color:var(--gold);white-space:nowrap;
+}
+.account-btn{
+  border:0;border-radius:8px;background:var(--gold);
+  color:#210b32;font-weight:bold;padding:8px 10px;font-size:11px;
+}
+main{padding:12px 12px 85px;max-width:1200px;margin:auto}
+.demo-alert{
+  background:#321b0d;border:1px solid #a66d25;color:#ffe5a4;
+  border-radius:9px;padding:10px;text-align:center;
+  font-size:12px;margin:5px 0 13px;
+}
+.slider{
+  height:190px;position:relative;overflow:hidden;
+  border-radius:15px;border:1px solid #6a3985;
+  margin-bottom:15px;background:#2a1040;
+}
+.slide{
+  position:absolute;inset:0;display:none;
+  background-size:cover;background-position:center;
+}
+.slide.active{display:flex}
+.slide:before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(14,0,24,.92),rgba(20,0,30,.25));
+}
+.slide-content{
+  position:relative;z-index:1;padding:23px 20px;
+  max-width:75%;display:flex;flex-direction:column;
+  justify-content:center;
+}
+.slide h2{color:var(--gold);margin:0 0 8px;font-size:24px}
+.slide p{font-size:12px;line-height:1.5;margin:0 0 10px}
+.slide-tag{
+  display:inline-block;background:var(--gold);color:#230b32;
+  border-radius:5px;padding:6px 9px;font-size:10px;font-weight:bold;
+  width:max-content;
+}
+.slider-dots{
+  position:absolute;bottom:10px;right:14px;z-index:3;
+  display:flex;gap:6px;
+}
+.slider-dots button{
+  width:8px;height:8px;border:0;border-radius:50%;
+  background:#a99ab4;padding:0;
+}
+.slider-dots button.active{background:var(--gold);width:19px;border-radius:9px}
+.section-title{
+  display:flex;align-items:center;justify-content:space-between;
+  color:var(--gold);font-size:17px;font-weight:bold;margin:17px 0 10px;
+}
+.section-title small{font-size:11px;color:var(--muted);font-weight:normal}
+.categories{
+  display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;
+}
+.cat{
+  flex-shrink:0;border:1px solid var(--border);background:var(--panel);
+  color:#eee;border-radius:20px;padding:9px 14px;font-size:12px;
+}
+.cat.active{background:var(--gold);color:#230b32;border-color:var(--gold);font-weight:bold}
+.search-row{display:flex;gap:8px;margin:10px 0}
+.search-row input{
+  width:100%;background:var(--panel);border:1px solid var(--border);
+  border-radius:9px;padding:11px;color:white;outline:none;
+}
+.game-grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;
+}
+.game-card{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;position:relative;
+}
+.game-card img{
+  width:100%;height:125px;object-fit:cover;display:block;
+  background:#321544;
+}
+.game-info{padding:9px}
+.game-name{font-weight:bold;font-size:13px;margin-bottom:6px}
+.game-category{color:var(--muted);font-size:10px}
+.game-actions{display:flex;gap:6px;margin-top:9px}
+.game-actions button{
+  border:0;border-radius:7px;padding:7px 8px;font-size:11px;
+}
+.play-btn{background:var(--gold);color:#250b33;font-weight:bold;flex:1}
+.fav-btn{background:#4b235f;color:white;width:36px}
+.fav-btn.active{background:#e83e85}
+.page{display:none}
+.page.active{display:block}
+.empty-state{
+  background:var(--panel);border:1px dashed var(--border);
+  border-radius:12px;padding:25px;text-align:center;color:var(--muted);
+}
+.bottom-nav{
+  position:fixed;bottom:0;left:0;right:0;z-index:60;
+  display:flex;justify-content:space-around;
+  background:#190526;border-top:1px solid var(--border);
+  padding:9px 3px calc(9px + env(safe-area-inset-bottom));
+}
+.bottom-nav button{
+  border:0;background:transparent;color:#c9b6d6;
+  font-size:10px;display:flex;flex-direction:column;align-items:center;gap:4px;
+}
+.bottom-nav button span{font-size:19px}
+.bottom-nav button.active{color:var(--gold)}
+.sidebar{
+  position:fixed;z-index:100;left:-290px;top:0;bottom:0;
+  width:270px;background:#1b0628;border-right:1px solid var(--border);
+  padding:16px;overflow-y:auto;transition:left .25s;
+}
+.sidebar.open{left:0}
+.sidebar-head{
+  color:var(--gold);font-size:19px;font-weight:bold;
+  padding:12px 5px 18px;border-bottom:1px solid var(--border);
+  margin-bottom:10px;
+}
+.sidebar button{
+  width:100%;display:block;text-align:left;color:#eee;
+  background:transparent;border:0;border-radius:8px;
+  padding:12px 10px;font-size:13px;
+}
+.sidebar button:hover{background:var(--panel2)}
+.overlay{
+  display:none;position:fixed;inset:0;background:#0009;z-index:90;
+}
 .overlay.show{display:block}
-.profile{background:#4c0069;padding:15px;border-radius:14px;text-align:center;margin:12px 0}
-.balance-card{background:#4c2700;padding:15px;border-radius:14px;text-align:center;margin:12px 0}
-.balance-card strong{display:block;color:#ffe34b;font-size:25px}
-.member-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-.member-grid button{padding:12px;background:#29003d;border:1px solid #7900a9;color:white;border-radius:10px}
-@media(min-width:700px){.games{grid-template-columns:repeat(4,1fr)}.hero,.section,.notice{max-width:1100px;margin-left:auto;margin-right:auto}.bottom{max-width:700px;left:50%;transform:translateX(-50%)}}
+.modal{
+  display:none;position:fixed;z-index:110;inset:0;
+  align-items:center;justify-content:center;padding:15px;
+  background:#0009;
+}
+.modal.show{display:flex}
+.modal-box{
+  width:100%;max-width:430px;max-height:90vh;overflow:auto;
+  background:#210b32;border:1px solid #71408c;border-radius:15px;padding:17px;
+}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+.modal-head h3{margin:0;color:var(--gold)}
+.close-btn{background:transparent;border:0;color:white;font-size:25px}
+.modal-box input{
+  width:100%;padding:12px;margin:6px 0;
+  background:#13051d;border:1px solid var(--border);color:white;border-radius:8px;
+}
+.primary-btn{
+  width:100%;padding:11px;border:0;border-radius:8px;
+  background:var(--gold);color:#230b32;font-weight:bold;margin-top:10px;
+}
+.switch-row{display:flex;gap:8px;margin-bottom:10px}
+.switch-row button{
+  flex:1;padding:9px;border:1px solid var(--border);
+  border-radius:8px;background:#321344;color:white;
+}
+.switch-row button.active{background:var(--gold);color:#220a30}
+.profile-card,.dash-balance,.dash-actions,.menu-list{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:12px;padding:14px;margin-bottom:12px;
+}
+.profile-top{display:flex;gap:12px;align-items:center}
+.avatar{
+  width:54px;height:54px;border-radius:50%;background:#4b2367;
+  display:grid;place-items:center;font-size:27px;border:2px solid var(--gold);
+}
+.profile-name{font-size:17px;font-weight:bold;color:var(--gold)}
+.profile-meta{font-size:11px;color:var(--muted);line-height:1.7}
+.dash-balance{text-align:center}
+.dash-balance small{color:var(--muted)}
+.dash-balance h2{margin:7px 0;color:var(--gold)}
+.dash-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.dash-actions button{
+  background:#35134a;border:1px solid var(--border);color:white;
+  border-radius:9px;padding:13px 5px;font-size:12px;
+}
+.menu-list button{
+  display:block;width:100%;text-align:left;
+  background:transparent;color:#eee;border:0;
+  border-bottom:1px solid #432052;padding:12px 5px;font-size:13px;
+}
+.menu-list button:last-child{border-bottom:0}
+.notice-small{font-size:11px;color:var(--muted);line-height:1.5}
+.game-detail{text-align:center}
+.game-detail img{width:100%;height:190px;object-fit:cover;border-radius:10px}
+@media(min-width:650px){
+  .game-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .slider{height:240px}
+  .slide h2{font-size:32px}
+}
+@media(min-width:950px){
+  .game-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<button class="menu" onclick="toggleSidebar()">☰</button>
-<div class="logo">👑 FBD44<small>Gaming World</small></div>
-<div class="balance">🎮 DEMO <span id="points">10,000</span> PTS</div>
-<button class="account" id="headerAccount" onclick="openAccount()">ACCOUNT</button>
+  <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+  <div class="logo">👑 FBD44<small>Gaming World</small></div>
+  <div class="header-right">
+    <div class="balance-pill" id="headerBalance">🎮 DEMO 10,000 PTS</div>
+    <button class="account-btn" onclick="openAccount()">ACCOUNT</button>
+  </div>
 </header>
 
-<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
-
+<div class="overlay" id="sideOverlay" onclick="toggleSidebar()"></div>
 <aside class="sidebar" id="sidebar">
-<h2 style="color:#ffe34b">👑 FBD44</h2>
-<button onclick="openAccount();toggleSidebar()">👤 My Account</button>
-<button onclick="showFavorites();toggleSidebar()">⭐ My Favorite</button>
-<button onclick="showPromotion();toggleSidebar()">🎁 Promotion</button>
-<button onclick="openRewards();toggleSidebar()">🏆 Rewards</button>
-<button onclick="logout();toggleSidebar()">🚪 Logout</button>
+  <div class="sidebar-head">👑 FBD44 MENU</div>
+  <button onclick="openDashboard()">👤 আমার অ্যাকাউন্ট</button>
+  <button onclick="goPage('promotion')">🎁 Promotion</button>
+  <button onclick="goPage('rewards')">🏆 পুরস্কার</button>
+  <button onclick="goPage('invite')">👥 আমন্ত্রণ করুন</button>
+  <button onclick="goPage('cashback')">🎉 Cashback</button>
+  <button onclick="goPage('tournament')">🏅 Tournament</button>
+  <button onclick="goPage('games')">🎮 খেলার কেন্দ্র</button>
+  <button onclick="goPage('service')">🎧 Customer Service</button>
+  <button onclick="goPage('help')">❓ Help Centre</button>
+  <button onclick="goPage('language')">🌐 Language</button>
+  <button onclick="logout()">🚪 Logout</button>
 </aside>
 
-<section class="hero">
-<div>
-<h1>👑 Welcome to FBD44</h1>
-<p>Explore your favourite games in one gaming world.</p>
-<span class="label">VIRTUAL DEMO ONLY</span>
-</div>
-</section>
+<main>
+  <div class="demo-alert">
+    ⚠️ VIRTUAL DEMO ONLY — এখানে বাস্তব টাকা জমা, উত্তোলন বা ক্যাশ পুরস্কার নেই।
+  </div>
 
-<section class="section" id="gameSection">
-<h2 id="sectionTitle">🎮 Game Categories</h2>
+  <section class="page active" id="page-home">
+    <div class="slider" id="heroSlider">
+      <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-151151257 天天中彩票实名?auto=format&fit=crop&w=1200&q=85')">
+        <div class="slide-content">
+          <h2>Welcome to FBD44</h2>
+          <p>Explore your favourite games in our virtual demo world.</p>
+          <span class="slide-tag">VIRTUAL DEMO ONLY</span>
+        </div>
+      </div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=85')">
+        <div class="slide-content">
+          <h2>Fishing World</h2>
+          <p>Discover underwater demo games.</p>
+          <span class="slide-tag">EXPLORE GAMES</span>
+        </div>
+      </div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=85')">
+        <div class="slide-content">
+          <h2>Slots Collection</h2>
+          <p>Enjoy colourful virtual slot previews.</p>
+          <span class="slide-tag">DEMO GAMES</span>
+        </div>
+      </div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-149 firmware?auto=format&fit=crop&w=1200&q=85')">
+        <div class="slide-content">
+          <h2>Crash Games</h2>
+          <p>Explore exciting virtual arcade experiences.</p>
+          <span class="slide-tag">PLAY FOR FUN</span>
+        </div>
+      </div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=85')">
+        <div class="slide-content">
+          <h2>Gaming World</h2>
+          <p>One place for your favourite demo games.</p>
+          <span class="slide-tag">FBD44 WORLD</span>
+        </div>
+      </div>
+      <div class="slider-dots" id="sliderDots"></div>
+    </div>
 
-<div class="categories">
-<button class="cat active" data-cat="All">All Games</button>
-<button class="cat" data-cat="Slots">🎰 Slots</button>
-<button class="cat" data-cat="Live">🎥 Live Casino</button>
-<button class="cat" data-cat="Crash">🚀 Crash</button>
-<button class="cat" data-cat="Fishing">🐟 Fishing</button>
-<button class="cat" data-cat="Arcade">🕹️ Arcade</button>
-</div>
+    <div class="section-title">🎮 Game Categories <small>Choose your game</small></div>
+    <div class="categories" id="categories">
+      <button class="cat active" data-cat="All">All Games</button>
+      <button class="cat" data-cat="Slots">Slots</button>
+      <button class="cat" data-cat="Live Casino">Live Casino</button>
+      <button class="cat" data-cat="Crash">Crash</button>
+      <button class="cat" data-cat="Fishing">Fishing</button>
+      <button class="cat" data-cat="Arcade">Arcade</button>
+    </div>
 
-<input class="search" id="search" placeholder="🔎 Search games..." oninput="renderGames()">
-<div class="games" id="games"></div>
-</section>
+    <div class="search-row">
+      <input id="gameSearch" placeholder="Search games..." oninput="renderGames()">
+    </div>
+    <div class="section-title">🔥 Popular Games <small id="gameCount"></small></div>
+    <div class="game-grid" id="gameGrid"></div>
+  </section>
 
-<div class="notice">
-<b>ℹ️ DEMO INFORMATION</b><br>
-FBD44 is a virtual demo gaming website. Points are virtual only.
-No real-money deposits, withdrawals or cash prizes are available.
-</div>
+  <section class="page" id="page-games">
+    <div class="section-title">🎮 Game Center</div>
+    <div class="categories">
+      <button class="cat active" onclick="goPage('home')">All Games</button>
+    </div>
+    <div class="game-grid" id="allGamesGrid"></div>
+  </section>
 
-<footer>
-<h2 style="color:#ffe34b">👑 FBD44 Gaming World</h2>
-Virtual Demo Gaming Platform<br><br>
-© 2026 FBD44. All rights reserved.
-</footer>
+  <section class="page" id="page-favorites">
+    <div class="section-title">❤️ My Favorites</div>
+    <div class="game-grid" id="favoriteGrid"></div>
+  </section>
 
-<nav class="bottom">
-<button id="navHome" class="active" onclick="goHome()"><span>🏠</span>Home</button>
-<button id="navPromotion" onclick="showPromotion()"><span>🎁</span>Promotion</button>
-<button id="navFavorite" onclick="showFavorites()"><span>⭐</span>Favorite</button>
-<button id="navRewards" onclick="openRewards()"><span>🏆</span>Rewards</button>
-<button id="navMember" onclick="openAccount()"><span>👤</span>Member</button>
+  <section class="page" id="page-dashboard">
+    <div class="section-title">👤 User Dashboard</div>
+    <div class="profile-card">
+      <div class="profile-top">
+        <div class="avatar">👤</div>
+        <div>
+          <div class="profile-name" id="dashUsername">Guest User</div>
+          <div class="profile-meta">
+            Nickname: <span id="dashNickname">Guest</span><br>
+            Join Date: <span id="dashJoin">Demo Account</span><br>
+            User ID: <span id="dashId">DEMO-USER</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dash-balance">
+      <small>Virtual Demo Balance</small>
+      <h2 id="dashPoints">10,000 PTS</h2>
+      <div id="dashMoney">৳ 0.00 Demo Value</div>
+    </div>
+    <div class="dash-actions">
+      <button onclick="showInfo('Deposit')">＋ Deposit<br><small>Demo only</small></button>
+      <button onclick="showInfo('Withdraw')">⇧ Withdraw<br><small>Demo only</small></button>
+      <button onclick="showInfo('My Card')">💳 My Card<br><small>Demo only</small></button>
+    </div>
+    <div class="section-title">My Account Options</div>
+    <div class="menu-list" id="dashboardMenu"></div>
+  </section>
+
+  <section class="page" id="page-promotion"><div class="section-title">🎁 Promotion</div><div class="empty-state">Virtual demo promotions will appear here.</div></section>
+  <section class="page" id="page-rewards"><div class="section-title">🏆 পুরস্কার</div><div class="empty-state">Demo rewards only.</div></section>
+  <section class="page" id="page-invite"><div class="section-title">👥 Invite Friends</div><div class="empty-state">Demo invitation feature.</div></section>
+  <section class="page" id="page-cashback"><div class="section-title">🎉 Cashback</div><div class="empty-state">No real cashback. Virtual demo only.</div></section>
+  <section class="page" id="page-tournament"><div class="section-title">🏅 Tournament</div><div class="empty-state">Demo tournaments coming soon.</div></section>
+  <section class="page" id="page-service"><div class="section-title">🎧 Customer Service</div><div class="empty-state">Demo customer service page.</div></section>
+  <section class="page" id="page-help"><div class="section-title">❓ Help Centre</div><div class="empty-state">Help and support information.</div></section>
+  <section class="page" id="page-language"><div class="section-title">🌐 Language</div><div class="empty-state">বাংলা / English</div></section>
+</main>
+
+<nav class="bottom-nav">
+  <button class="active" onclick="goPage('home')"><span>🏠</span>Home</button>
+  <button onclick="goPage('promotion')"><span>🎁</span>Promotion</button>
+  <button onclick="shareSite()"><span>🔗</span>Share</button>
+  <button onclick="goPage('rewards')"><span>🏆</span>পুরস্কার</button>
+  <button onclick="openDashboard()"><span>👤</span>Member</button>
 </nav>
 
-<!-- ACCOUNT -->
 <div class="modal" id="accountModal">
-<div class="panel">
-<button class="close" onclick="closeModal('accountModal')">×</button>
-<h2>👑 FBD44 ACCOUNT</h2>
-
-<div id="authArea">
-<div class="tabs">
-<button id="loginTab" class="active" onclick="setMode('login')">LOGIN</button>
-<button id="registerTab" onclick="setMode('register')">REGISTER</button>
+  <div class="modal-box">
+    <div class="modal-head"><h3>FBD44 Account</h3><button class="close-btn" onclick="closeModal('accountModal')">×</button></div>
+    <div class="switch-row">
+      <button id="loginTab" class="active" onclick="setAuthMode('login')">Login</button>
+      <button id="registerTab" onclick="setAuthMode('register')">Register</button>
+    </div>
+    <form id="authForm">
+      <input id="authUsername" placeholder="Username" required>
+      <input id="authPhone" placeholder="Mobile number (Register only)">
+      <input id="authEmail" type="email" placeholder="Email (optional)">
+      <input id="authPassword" type="password" placeholder="Password" required>
+      <button class="primary-btn" type="submit" id="authSubmit">LOGIN</button>
+    </form>
+    <p class="notice-small">Demo account only. Do not use your real banking password.</p>
+  </div>
 </div>
 
-<form id="accountForm">
-<input class="field hidden" id="regName" placeholder="Username">
-<input class="field" id="identity" placeholder="Mobile number or username" required>
-<input class="field hidden" id="regEmail" type="email" placeholder="Email (optional)">
-<input class="field" id="password" type="password" placeholder="Password (minimum 6 characters)" minlength="6" required>
-<button class="submit" id="submitBtn" type="submit">LOGIN</button>
-</form>
-<p class="message" id="accountMessage"></p>
-</div>
-
-<div id="dashboard" class="hidden">
-<div class="profile">
-<h3 id="userName">Username</h3>
-<p id="userId">User ID: --</p>
-</div>
-
-<div class="balance-card">
-<small>💰 DEMO BALANCE</small>
-<strong><span id="dashPoints">10,000</span> PTS</strong>
-</div>
-
-<div class="member-grid">
-<button onclick="openFeature('Demo Points')">➕ Demo Points</button>
-<button onclick="openFeature('Game History')">📜 Game History</button>
-<button onclick="openFeature('My Card')">💳 My Card</button>
-<button onclick="openFeature('Rewards')">🏆 Rewards</button>
-</div>
-<div id="featureContent"></div>
-</div>
-</div>
-</div>
-
-<!-- GAME -->
 <div class="modal" id="gameModal">
-<div class="panel">
-<button class="close" onclick="closeModal('gameModal')">×</button>
-<h2 id="gameTitle">DEMO GAME</h2>
-<div style="text-align:center;background:#230034;padding:20px;border-radius:14px">
-<div id="gameEmoji" style="font-size:50px">🎮</div>
-<p id="gameDescription">Virtual demo game</p>
-<p>Demo Points: <b id="gamePoints">10,000</b></p>
-<button class="submit" onclick="playDemo()">PLAY DEMO</button>
-<p id="gameResult" class="message"></p>
-</div>
-</div>
+  <div class="modal-box">
+    <div class="modal-head"><h3 id="gameModalTitle">Demo Game</h3><button class="close-btn" onclick="closeModal('gameModal')">×</button></div>
+    <div class="game-detail">
+      <img id="gameModalImage" alt="Game artwork">
+      <p id="gameModalDescription">Virtual demo game preview.</p>
+      <p class="notice-small">This is a demo preview. No real-money gameplay.</p>
+      <button class="primary-btn" onclick="closeModal('gameModal')">Back to Games</button>
+    </div>
+  </div>
 </div>
 
-<!-- PROMOTION -->
-<div class="modal" id="promotionModal">
-<div class="panel">
-<button class="close" onclick="closeModal('promotionModal')">×</button>
-<h2>🎁 FBD44 Promotion</h2>
-<p>Welcome to FBD44 Virtual Demo Gaming World.</p>
-<p>Demo Promotion Only. No cash prizes.</p>
-</div>
+<div class="modal" id="infoModal">
+  <div class="modal-box">
+    <div class="modal-head"><h3 id="infoTitle">Demo Feature</h3><button class="close-btn" onclick="closeModal('infoModal')">×</button></div>
+    <p id="infoText"></p>
+    <button class="primary-btn" onclick="closeModal('infoModal')">OK</button>
+  </div>
 </div>
 
 <script>
-"use strict";
+const gameData = [
+ {id:1,name:"Ocean Fishing",cat:"Fishing",img:"https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=700&q=85"},
+ {id:2,name:"Fishing Adventure",cat:"Fishing",img:"https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=700&q=85"},
+ {id:3,name:"Deep Sea World",cat:"Fishing",img:"https://images.unsplash.com/photo-1498623116890-37e912163d5d?auto=format&fit=crop&w=700&q=85"},
+ {id:4,name:"Golden Fish",cat:"Fishing",img:"https://images.unsplash.com/photo-1530053969600-caed2596d242?auto=format&fit=crop&w=700&q=85"},
+ {id:5,name:"Golden Slots",cat:"Slots",img:"https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=700&q=85"},
+ {id:6,name:"Lucky Spin",cat:"Slots",img:"https://images.unsplash.com/photo-1596838132731-3301c3fd4317?auto=format&fit=crop&w=700&q=85"},
+ {id:7,name:"Neon Slots",cat:"Slots",img:"https://images.unsplash.com/photo-1511882150382-421056c89033?auto=format&fit=crop&w=700&q=85"},
+ {id:8,name:"Treasure Reels",cat:"Slots",img:"https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=700&q=85"},
+ {id:9,name:"Live Table Demo",cat:"Live Casino",img:"https://images.unsplash.com/photo-1606167668584-78701c57f13d?auto=format&fit=crop&w=700&q=85"},
+ {id:10,name:"Roulette Preview",cat:"Live Casino",img:"https://images.unsplash.com/photo-1606167668584-78701c57f13d?auto=format&fit=crop&w=700&q=85"},
+ {id:11,name:"Card Room",cat:"Live Casino",img:"https://images.unsplash.com/photo-1511193311914-0346f16efe90?auto=format&fit=crop&w=700&q=85"},
+ {id:12,name:"Crash Rocket",cat:"Crash",img:"https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=700&q=85"},
+ {id:13,name:"Sky Rush",cat:"Crash",img:"https://images.unsplash.com/photo-146 puls?auto=format&fit=crop&w=700&q=85"},
+ {id:14,name:"Neon Flight",cat:"Crash",img:"https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=700&q=85"},
+ {id:15,name:"Arcade Quest",cat:"Arcade",img:"https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=700&q=85"},
+ {id:16,name:"Pixel Arena",cat:"Arcade",img:"https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=700&q=85"},
+ {id:17,name:"Space Battle",cat:"Arcade",img:"https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=700&q=85"}
+];
 
-const API_URL="https://fbd44-api.jhonabraham4450.workers.dev";
-
-const gameList=[
-{name:"Ocean King",cat:"Fishing",emoji:"🐠",desc:"Underwater fishing demo",image:"https://images.unsplash.com/photo-1535591273668-578e31182c4f?w=700"},
-{name:"Dragon Fishing",cat:"Fishing",emoji:"🐉",desc:"Dragon fishing demo",image:"https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=700"},
-{name:"Happy Fish",cat:"Fishing",emoji:"🐟",desc:"Fish arena demo",image:"https://images.unsplash.com/photo-1524704654690-b56c05c78a00?w=700"},
-{name:"Golden Fish",cat:"Fishing",emoji:"🦈",desc:"Golden fish demo",image:"https://images.unsplash.com/photo-1560275619-4662e36fa65c?w=700"},
-
-{name:"Fortune Slots",cat:"Slots",emoji:"🎰",desc:"Virtual slot demo",image:"https://images.unsplash.com/photo-1596838132731-3301c3fd4317?w=700"},
-{name:"Lucky Spin",cat:"Slots",emoji:"🎡",desc:"Virtual spin demo",image:"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=700"},
-{name:"Royal Slots",cat:"Slots",emoji:"👑",desc:"Royal slot demo",image:"https://images.unsplash.com/photo-1606167668584-78701c57f13d?w=700"},
-{name:"Golden Treasure",cat:"Slots",emoji:"💰",desc:"Treasure demo",image:"https://images.unsplash.com/photo-1611996575749-79a3a250f948?w=700"},
-
-{name:"Live Table",cat:"Live",emoji:"🎥",desc:"Virtual live table preview",image:"https://images.unsplash.com/photo-1606167668584-78701c57f13d?w=700"},
-{name:"Roulette Demo",cat:"Live",emoji:"🎯",desc:"Virtual roulette preview",image:"https://images.unsplash.com/photo-1606167668584-78701c57f13d?w=700"},
-{name:"Card Room",cat:"Live",emoji:"🃏",desc:"Virtual card room preview",image:"https://images.unsplash.com/photo-1606167668584-78701c57f13d?w=700"},
-
-{name:"Crash Rocket",cat:"Crash",emoji:"🚀",desc:"Rocket multiplier demo",image:"https://images.unsplash.com/photo-1517976487492-5750f3195933?w=700"},
-{name:"Sky Flight",cat:"Crash",emoji:"✈️",desc:"Flight demo",image:"https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=700"},
-{name:"Space Crash",cat:"Crash",emoji:"🌌",desc:"Space demo",image:"https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=700"},
-
-{name:"Arcade Run",cat:"Arcade",emoji:"🕹️",desc:"Arcade demo",image:"https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=700"},
-{name:"Puzzle World",cat:"Arcade",emoji:"🧩",desc:"Puzzle demo",image:"https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=700"},
-{name:"Speed Race",cat:"Arcade",emoji:"🏎️",desc:"Racing demo",image:"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=700"}
+const dashboardItems = [
+ "আমার পুরস্কার","পাশাপাশি বাজির ইতিহাস","লাভ-লস","জমা রেকর্ড",
+ "উত্তোলন রেকর্ড","লেনদেনের ইতিহাস","আমার অ্যাকাউন্ট","সুরক্ষা কেন্দ্র",
+ "বন্ধুদের আমন্ত্রণ","রিবেট","মেইল","পরামর্শ","Customer Service","Help Center","Logout"
 ];
 
 let selectedCategory="All";
-let demoPoints=10000;
-let currentGame=null;
-let currentUser=null;
-let accountMode="login";
+let currentSlide=0;
+let authMode="login";
+let loggedUser=JSON.parse(localStorage.getItem("fbd44_user")||"null");
 let favorites=JSON.parse(localStorage.getItem("fbd44_favorites")||"[]");
-let gameHistory=[];
+let demoPoints=Number(localStorage.getItem("fbd44_points")||10000);
+let gameHistory=JSON.parse(localStorage.getItem("fbd44_history")||"[]");
 
+function saveFavorites(){localStorage.setItem("fbd44_favorites",JSON.stringify(favorites))}
+function saveUser(){localStorage.setItem("fbd44_user",JSON.stringify(loggedUser))}
+function updateHeader(){
+ document.getElementById("headerBalance").textContent=
+ "🎮 "+(loggedUser?loggedUser.username:"DEMO")+" • "+demoPoints.toLocaleString()+" PTS";
+ document.getElementById("dashPoints").textContent=demoPoints.toLocaleString()+" PTS";
+ document.getElementById("dashMoney").textContent="৳ "+(demoPoints/100).toFixed(2)+" Demo Value";
+ document.getElementById("dashUsername").textContent=loggedUser?loggedUser.username:"Guest User";
+ document.getElementById("dashNickname").textContent=loggedUser?loggedUser.username:"Guest";
+ document.getElementById("dashJoin").textContent=loggedUser?loggedUser.joinDate:"Demo Account";
+ document.getElementById("dashId").textContent=loggedUser?loggedUser.id:"DEMO-USER";
+}
 function renderGames(){
- const query=document.getElementById("search").value.toLowerCase().trim();
-
- const filtered=gameList.filter(g=>
-  (selectedCategory==="All"||g.cat===selectedCategory||selectedCategory==="Favorites")&&
-  g.name.toLowerCase().includes(query)&&
-  (selectedCategory!=="Favorites"||favorites.includes(g.name))
- );
-
- document.getElementById("games").innerHTML=filtered.map(g=>{
-  const index=gameList.indexOf(g);
-  const isFav=favorites.includes(g.name);
-
-  return `
-  <article class="game">
-   <div class="game-art">
-    <img src="${g.image}" alt="${g.name}" loading="lazy" onerror="this.style.display='none'">
-    <button class="fav ${isFav?'active':''}" onclick="toggleFavorite(${index})">${isFav?'★':'☆'}</button>
-   </div>
-   <div class="game-info">
-    <b>${g.name}</b>
-    <small>${g.cat} • DEMO</small>
-    <button class="play" onclick="openGame(${index})">PLAY DEMO</button>
-   </div>
-  </article>`;
- }).join("")||"<p>No games found.</p>";
+ const query=(document.getElementById("gameSearch")?.value||"").toLowerCase();
+ const list=gameData.filter(g=>(selectedCategory==="All"||g.cat===selectedCategory)&&g.name.toLowerCase().includes(query));
+ document.getElementById("gameCount").textContent=list.length+" Games";
+ document.getElementById("gameGrid").innerHTML=list.map(gameCard).join("");
+ document.getElementById("allGamesGrid").innerHTML=gameData.map(gameCard).join("");
 }
-
-document.querySelectorAll(".cat").forEach(button=>{
- button.addEventListener("click",()=>showCategory(button.dataset.cat));
-});
-
-function showCategory(cat){
- selectedCategory=cat;
- document.querySelectorAll(".cat").forEach(b=>b.classList.toggle("active",b.dataset.cat===cat));
- document.getElementById("sectionTitle").textContent=cat==="Favorites"?"⭐ My Favorite Games":"🎮 "+(cat==="All"?"Game Categories":cat+" Games");
- renderGames();
+function gameCard(g){
+ const isFav=favorites.includes(g.id);
+ return `<article class="game-card">
+ <img src="${g.img}" alt="${g.name}" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=700&q=80'">
+ <div class="game-info"><div class="game-name">${g.name}</div><div class="game-category">${g.cat} • Demo</div>
+ <div class="game-actions"><button class="play-btn" onclick="openGame(${g.id})">PLAY DEMO</button>
+ <button class="fav-btn ${isFav?'active':''}" onclick="toggleFavorite(${g.id})">${isFav?'❤️':'♡'}</button></div></div></article>`;
 }
-
-function toggleFavorite(index){
- const name=gameList[index].name;
- favorites=favorites.includes(name)?favorites.filter(x=>x!==name):[...favorites,name];
- localStorage.setItem("fbd44_favorites",JSON.stringify(favorites));
- renderGames();
+function toggleFavorite(id){
+ favorites.includes(id)?favorites=favorites.filter(x=>x!==id):favorites.push(id);
+ saveFavorites();renderGames();renderFavorites();
 }
-
-function showFavorites(){
- closeModal("accountModal");
- closeModal("promotionModal");
- closeModal("gameModal");
- selectedCategory="Favorites";
- document.querySelectorAll(".cat").forEach(b=>b.classList.remove("active"));
- document.getElementById("sectionTitle").textContent="⭐ My Favorite Games";
- renderGames();
- setActiveNav("navFavorite");
- document.getElementById("gameSection").scrollIntoView({behavior:"smooth"});
+function renderFavorites(){
+ const items=gameData.filter(g=>favorites.includes(g.id));
+ document.getElementById("favoriteGrid").innerHTML=items.length?items.map(gameCard).join(""):'<div class="empty-state">এখনো কোনো গেম Favorite করেননি। গেমের ♡ বাটনে চাপ দিন।</div>';
 }
-
-function openGame(index){
- currentGame=gameList[index];
- document.getElementById("gameTitle").textContent=currentGame.name;
- document.getElementById("gameEmoji").textContent=currentGame.emoji;
- document.getElementById("gameDescription").textContent=currentGame.desc;
- document.getElementById("gamePoints").textContent=demoPoints.toLocaleString();
- document.getElementById("gameResult").textContent="";
+function openGame(id){
+ const g=gameData.find(x=>x.id===id);if(!g)return;
+ document.getElementById("gameModalTitle").textContent=g.name;
+ document.getElementById("gameModalImage").src=g.img;
+ document.getElementById("gameModalDescription").textContent=g.name+" — Virtual demo preview.";
+ gameHistory.unshift({name:g.name,date:new Date().toLocaleString()});
+ gameHistory=gameHistory.slice(0,30);localStorage.setItem("fbd44_history",JSON.stringify(gameHistory));
  document.getElementById("gameModal").classList.add("show");
 }
-
-function playDemo(){
- if(!currentUser){
-  closeModal("gameModal");
-  openAccount();
-  document.getElementById("accountMessage").textContent="গেম খেলতে আগে Login করুন।";
-  return;
- }
- if(!currentGame)return;
- gameHistory.unshift({name:currentGame.name,time:new Date().toLocaleString()});
- document.getElementById("gameResult").textContent="Demo preview started!";
-}
-
-function toggleSidebar(){
- document.getElementById("sidebar").classList.toggle("show");
- document.getElementById("overlay").classList.toggle("show");
-}
-
-function openAccount(){
- document.getElementById("accountModal").classList.add("show");
- updateAccountView();
- setActiveNav("navMember");
-}
-
-function closeModal(id){document.getElementById(id).classList.remove("show")}
-
-function setActiveNav(id){
- document.querySelectorAll(".bottom button").forEach(b=>b.classList.remove("active"));
- document.getElementById(id)?.classList.add("active");
-}
-
-function goHome(){
- closeModal("accountModal");
- closeModal("promotionModal");
- closeModal("gameModal");
- selectedCategory="All";
- showCategory("All");
- setActiveNav("navHome");
+function goPage(name){
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ const target=document.getElementById("page-"+name);
+ if(target)target.classList.add("active");
+ document.querySelectorAll(".bottom-nav button").forEach(b=>b.classList.remove("active"));
+ closeSidebar();
+ if(name==="favorites")renderFavorites();
  window.scrollTo({top:0,behavior:"smooth"});
 }
-
-function showPromotion(){
- closeModal("accountModal");
- closeModal("gameModal");
- document.getElementById("promotionModal").classList.add("show");
- setActiveNav("navPromotion");
+function openDashboard(){goPage("dashboard");updateHeader()}
+function toggleSidebar(){
+ document.getElementById("sidebar").classList.toggle("open");
+ document.getElementById("sideOverlay").classList.toggle("show");
 }
-
-function openRewards(){
- openAccount();
- document.getElementById("featureContent").innerHTML="<p>Virtual Demo Rewards Only.</p>";
- setActiveNav("navRewards");
+function closeSidebar(){
+ document.getElementById("sidebar").classList.remove("open");
+ document.getElementById("sideOverlay").classList.remove("show");
 }
-
-function setMode(mode){
- accountMode=mode;
+function openAccount(){document.getElementById("accountModal").classList.add("show")}
+function closeModal(id){document.getElementById(id).classList.remove("show")}
+function setAuthMode(mode){
+ authMode=mode;
  document.getElementById("loginTab").classList.toggle("active",mode==="login");
  document.getElementById("registerTab").classList.toggle("active",mode==="register");
- document.getElementById("regName").classList.toggle("hidden",mode!=="register");
- document.getElementById("regEmail").classList.toggle("hidden",mode!=="register");
- document.getElementById("submitBtn").textContent=mode==="register"?"CREATE ACCOUNT":"LOGIN";
- document.getElementById("accountMessage").textContent="";
- document.getElementById("accountForm").reset();
+ document.getElementById("authPhone").style.display=mode==="register"?"block":"none";
+ document.getElementById("authEmail").style.display=mode==="register"?"block":"none";
+ document.getElementById("authSubmit").textContent=mode==="login"?"LOGIN":"REGISTER";
 }
-
-function updateAccountView(){
- const logged=!!currentUser;
- document.getElementById("authArea").classList.toggle("hidden",logged);
- document.getElementById("dashboard").classList.toggle("hidden",!logged);
-
- if(logged){
-  document.getElementById("headerAccount").textContent="👤 "+(currentUser.username||currentUser.name||"User");
-  document.getElementById("userName").textContent=currentUser.username||currentUser.name||"User";
-  document.getElementById("userId").textContent="User ID: "+(currentUser.user_id||currentUser.id||"--");
-  document.getElementById("dashPoints").textContent=demoPoints.toLocaleString();
-  document.getElementById("points").textContent=demoPoints.toLocaleString();
- }else{
-  document.getElementById("headerAccount").textContent="ACCOUNT";
- }
-}
-
-function openFeature(label){
- document.getElementById("featureContent").innerHTML="<p>"+label+" — Demo feature.</p>";
-}
-
-function logout(){
- currentUser=null;
- localStorage.removeItem("fbd44_current_user");
- updateAccountView();
-}
-
-document.getElementById("accountForm").addEventListener("submit",async function(e){
+document.getElementById("authForm").addEventListener("submit",function(e){
  e.preventDefault();
-
- const message=document.getElementById("accountMessage");
- const button=document.getElementById("submitBtn");
- const identity=document.getElementById("identity").value.trim();
- const password=document.getElementById("password").value;
-
- let payload={password};
- let endpoint="";
-
- if(accountMode==="register"){
-  const name=document.getElementById("regName").value.trim();
-  const email=document.getElementById("regEmail").value.trim();
-
-  if(!name||!identity||password.length<6){
-   message.textContent="Username, mobile number এবং ৬ অক্ষরের password দিন।";
-   return;
-  }
-
-  payload.name=name;
-  payload.phone=identity;
-  payload.email=email;
-  endpoint="/api/register";
- }else{
-  payload.username=identity;
-  endpoint="/api/login";
+ const username=document.getElementById("authUsername").value.trim();
+ const password=document.getElementById("authPassword").value;
+ if(!username||!password){alert("Username এবং Password দিন।");return}
+ if(authMode==="register"){
+   const users=JSON.parse(localStorage.getItem("fbd44_demo_users")||"[]");
+   if(users.some(u=>u.username===username)){alert("এই Username আগে ব্যবহার করা হয়েছে।");return}
+   users.push({username,password,joinDate:new Date().toLocaleDateString()});
+   localStorage.setItem("fbd44_demo_users",JSON.stringify(users));
  }
-
- button.disabled=true;
- button.textContent="PLEASE WAIT...";
- message.textContent="Connecting to FBD44...";
-
- try{
-  const response=await fetch(API_URL+endpoint,{
-   method:"POST",
-   headers:{"Content-Type":"application/json"},
-   body:JSON.stringify(payload)
-  });
-
-  const data=await response.json();
-
-  if(!response.ok||!data.success)throw new Error(data.message||"Request failed");
-  if(!data.user)throw new Error("User information missing.");
-
-  currentUser=data.user;
-  localStorage.setItem("fbd44_current_user",JSON.stringify(currentUser));
-  updateAccountView();
-
-  message.textContent="Login successful!";
- }catch(error){
-  message.textContent=error.message==="Failed to fetch"?"Connection failed. Please try again.":error.message;
- }finally{
-  button.disabled=false;
-  button.textContent=accountMode==="register"?"CREATE ACCOUNT":"LOGIN";
- }
+ const users=JSON.parse(localStorage.getItem("fbd44_demo_users")||"[]");
+ const found=users.find(u=>u.username===username&&u.password===password);
+ if(authMode==="login"&&users.length&&!found){alert("Demo login details মিলছে না। আগে Register করুন।");return}
+ loggedUser={username,joinDate:found?.joinDate||new Date().toLocaleDateString(),id:"FBD-"+Math.floor(100000+Math.random()*900000)};
+ saveUser();updateHeader();closeModal("accountModal");openDashboard();
 });
-
-try{
- const saved=JSON.parse(localStorage.getItem("fbd44_current_user")||"null");
- if(saved)currentUser=saved;
-}catch(e){}
-
-renderGames();
-updateAccountView();
+function logout(){
+ loggedUser=null;localStorage.removeItem("fbd44_user");updateHeader();closeSidebar();goPage("home");
+}
+function showInfo(title){
+ document.getElementById("infoTitle").textContent=title;
+ document.getElementById("infoText").textContent=title+" feature is Demo Only. এখানে কোনো real money transaction হয় না।";
+ document.getElementById("infoModal").classList.add("show");
+}
+function shareSite(){
+ if(navigator.share){navigator.share({title:"FBD44 Gaming World",text:"Explore FBD44 Virtual Demo Gaming World",url:location.href})}
+ else{showInfo("Share FBD44")}
+}
+document.getElementById("dashboardMenu").innerHTML=dashboardItems.map((item,i)=>
+ `<button onclick="dashboardAction(${i})">${item}</button>`).join("");
+function dashboardAction(i){
+ if(i===14){logout();return}
+ if(i===12||i===13){showInfo(dashboardItems[i]);return}
+ if(i===6){openAccount();return}
+ if(i===8){showInfo("বন্ধুদের আমন্ত্রণ");return}
+ if(i===0){goPage("rewards");return}
+ if(i===9){showInfo("রিবেট");return}
+ if(i===11){showInfo("পরামর্শ");return}
+ if(i===7){showInfo("সুরক্ষা কেন্দ্র");return}
+ if(i===10){showInfo("মেইল");return}
+ if(i===1){
+  document.getElementById("infoTitle").textContent="Game History";
+  document.getElementById("infoText").innerHTML=gameHistory.length?gameHistory.map(x=>x.name+" — "+x.date).join("<br>"):"এখনো কোনো Demo Game খেলেননি।";
+  document.getElementById("infoModal").classList.add("show");return;
+ }
+ showInfo(dashboardItems[i]);
+}
+document.querySelectorAll(".cat").forEach(btn=>{
+ btn.addEventListener("click",()=>{
+  if(!btn.dataset.cat)return;
+  selectedCategory=btn.dataset.cat;
+  document.querySelectorAll(".cat").forEach(x=>x.classList.remove("active"));
+  btn.classList.add("active");renderGames();
+ });
+});
+function createDots(){
+ const slides=[...document.querySelectorAll(".slide")];
+ const dots=document.getElementById("sliderDots");
+ dots.innerHTML=slides.map((s,i)=>`<button class="${i===0?'active':''}" onclick="showSlide(${i})" aria-label="Slide ${i+1}"></button>`).join("");
+}
+function showSlide(n){
+ const slides=[...document.querySelectorAll(".slide")];
+ const dots=[...document.querySelectorAll(".slider-dots button")];
+ currentSlide=(n+slides.length)%slides.length;
+ slides.forEach((s,i)=>s.classList.toggle("active",i===currentSlide));
+ dots.forEach((d,i)=>d.classList.toggle("active",i===currentSlide));
+}
+setInterval(()=>showSlide(currentSlide+1),4500);
+createDots();renderGames();renderFavorites();updateHeader();setAuthMode("login");
 </script>
 </body>
 </html>
