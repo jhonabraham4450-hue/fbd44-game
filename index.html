@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,181 +16,194 @@
   --muted: #bca9ca;
   --border: #48235d;
 }
-* { box-sizing: border-box; }
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
 }
-button, input, select { font: inherit; }
-button { cursor: pointer; }
-button:active { transform: scale(.98); }
+
+button, input, select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: auto;
+}
 
 header {
-  position: sticky;
-  top: 0;
-  z-index: 20;
+  background: linear-gradient(90deg, #210035, #100019);
+  border-bottom: 1px solid var(--purple);
+  padding: 12px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  padding: 12px;
-  background: #190526;
-  border-bottom: 1px solid var(--border);
+  gap: 12px;
 }
+
 .logo {
   color: var(--gold);
-  font-size: 23px;
-  font-weight: 900;
+  font-size: 25px;
+  font-weight: bold;
 }
+
 .logo small {
   display: block;
   color: white;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 2px;
 }
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
+
 .balance {
-  background: #32164a;
-  border: 1px solid #7a4b9a;
-  padding: 8px;
-  border-radius: 20px;
   color: var(--gold);
-  font-size: 12px;
+  background: #2a103c;
+  border: 1px solid var(--purple);
+  border-radius: 20px;
+  padding: 8px 12px;
   font-weight: bold;
 }
-.btn {
-  border: 0;
-  border-radius: 7px;
-  padding: 10px 13px;
-  background: var(--purple);
-  color: white;
-  font-weight: bold;
-}
-.btn.gold {
-  color: #1b0924;
+
+.account-btn {
   background: var(--gold);
-}
-.btn.dark {
-  background: #382049;
-  border: 1px solid #624078;
-}
-.icon-btn {
-  background: #321644;
-  color: white;
-  border: 1px solid var(--border);
+  color: #180020;
+  border: 0;
   border-radius: 8px;
-  padding: 9px 12px;
+  padding: 10px 14px;
+  font-weight: bold;
 }
 
 main {
-  width: 100%;
-  max-width: 1200px;
-  margin: auto;
   padding: 12px;
 }
-.demo-note {
-  margin: 10px 0;
-  text-align: center;
-  background: #251036;
-  color: #ffe66b;
-  border: 1px solid #68427b;
-  padding: 9px;
-  border-radius: 8px;
-  font-size: 12px;
+
+.hero-slider {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--purple);
+  border-radius: 14px;
+  min-height: 190px;
+  background: #210035;
 }
 
-.hero {
+.hero-slide {
+  display: none;
   min-height: 190px;
-  border-radius: 15px;
-  overflow: hidden;
-  position: relative;
-  margin: 12px 0 18px;
-  border: 1px solid #5b2a79;
+  padding: 24px;
   background-size: cover;
   background-position: center;
+}
+
+.hero-slide.active {
   display: flex;
   align-items: center;
 }
-.hero:before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, #160321 8%, #160321d9 45%, transparent);
-}
-.hero-content {
-  position: relative;
-  padding: 25px;
-  max-width: 470px;
-}
-.hero h1 {
+
+.hero-slide h1 {
   color: var(--gold);
-  margin: 0 0 10px;
-  font-size: 30px;
+  font-size: clamp(24px, 5vw, 44px);
+  text-shadow: 0 3px 8px #000;
 }
-.hero p { color: #eee; line-height: 1.5; }
-.dots {
+
+.hero-slide p {
+  font-size: 16px;
+  text-shadow: 0 2px 5px #000;
+}
+
+.slide-dots {
   display: flex;
   justify-content: center;
-  gap: 7px;
-  margin-top: -8px;
-  margin-bottom: 16px;
+  gap: 8px;
+  padding: 10px;
 }
-.dot {
+
+.slide-dots button {
   width: 9px;
   height: 9px;
-  background: #654778;
-  border-radius: 50%;
   border: 0;
+  border-radius: 50%;
+  background: #76518d;
 }
-.dot.active { background: var(--gold); }
 
-.section-title {
-  color: var(--gold);
-  font-size: 19px;
-  font-weight: bold;
-  margin: 20px 0 12px;
+.slide-dots button.active {
+  background: var(--gold);
 }
+
+.notice {
+  color: var(--gold);
+  background: #1d082b;
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  padding: 10px;
+  margin: 12px 0;
+  text-align: center;
+  font-weight: bold;
+}
+
 .categories {
   display: flex;
   gap: 8px;
   overflow-x: auto;
-  padding-bottom: 8px;
+  padding: 8px 0;
 }
-.category {
-  white-space: nowrap;
-  background: #2b123b;
-  color: #e5d6f0;
-  border: 1px solid var(--border);
-  padding: 10px 14px;
-  border-radius: 20px;
+
+.category-btn {
+  flex: 0 0 auto;
+  color: white;
+  background: #2a103c;
+  border: 1px solid var(--purple);
+  border-radius: 22px;
+  padding: 9px 16px;
 }
-.category.active {
-  color: #210d2d;
+
+.category-btn.active {
   background: var(--gold);
-  border-color: var(--gold);
+  color: #180020;
   font-weight: bold;
 }
 
 .search-row {
   display: flex;
   gap: 8px;
-  margin: 12px 0;
+  margin: 10px 0;
 }
+
 .search-row input {
-  width: 100%;
+  flex: 1;
   min-width: 0;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: #210d30;
+  background: #1d082b;
   color: white;
+  border: 1px solid var(--purple);
+  border-radius: 10px;
   padding: 12px;
-  outline: none;
+}
+
+.search-row button {
+  background: var(--gold);
+  color: #180020;
+  border: 0;
+  border-radius: 10px;
+  padding: 0 16px;
+  font-weight: bold;
 }
 
 .game-grid {
@@ -199,218 +211,68 @@ main {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
+
 .game-card {
   position: relative;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 12px;
   overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--purple);
+  border-radius: 12px;
 }
+
 .game-card img {
   display: block;
   width: 100%;
-  height: 145px;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
-  background: #311443;
 }
+
 .game-info {
   padding: 10px;
 }
-.game-name {
+
+.game-info h3 {
+  margin: 0 0 8px;
+  color: var(--gold);
+  font-size: 15px;
+}
+
+.play-btn {
+  display: block;
+  width: 100%;
+  background: linear-gradient(90deg, #8c35d8, #5200b8);
+  color: white;
+  border: 1px solid #d28cff;
+  border-radius: 20px;
+  padding: 8px;
   font-weight: bold;
-  font-size: 14px;
-  margin-bottom: 8px;
 }
-.game-meta {
-  display: flex;
-  justify-content: space-between;
-  gap: 5px;
-  color: var(--muted);
-  font-size: 11px;
-  margin-bottom: 9px;
-}
-.game-actions {
-  display: flex;
-  gap: 6px;
-}
-.game-actions button {
-  flex: 1;
-  padding: 8px 5px;
-  font-size: 12px;
-}
-.fav {
+
+.favorite-btn {
   position: absolute;
   top: 8px;
   right: 8px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
   width: 34px;
   height: 34px;
-  border-radius: 50%;
-  border: 1px solid #ffffff50;
-  color: white;
-  background: #170321b8;
-  font-size: 19px;
-}
-.fav.saved { color: var(--gold); }
-
-.empty {
-  text-align: center;
-  padding: 30px;
-  color: var(--muted);
-  display: none;
-}
-
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 30;
-  display: flex;
-  justify-content: space-around;
-  background: #1a0627;
-  border-top: 1px solid var(--border);
-  padding: 9px 4px calc(9px + env(safe-area-inset-bottom));
-}
-.bottom-nav button {
-  background: transparent;
-  color: #cbb8da;
-  border: 0;
-  font-size: 11px;
-}
-.bottom-nav button span {
-  display: block;
-  font-size: 19px;
-  margin-bottom: 3px;
-}
-.bottom-nav button.active { color: var(--gold); }
-
-.drawer {
-  display: none;
-  position: fixed;
-  z-index: 40;
-  inset: 0;
-  background: #0009;
-}
-.drawer.open { display: block; }
-.drawer-panel {
-  width: min(300px, 85%);
-  height: 100%;
-  background: #1d082b;
-  padding: 18px;
-  border-right: 1px solid var(--border);
-}
-.drawer-title {
+  background: #190025dd;
   color: var(--gold);
-  font-size: 22px;
-  font-weight: bold;
-  margin: 10px 0 20px;
-}
-.drawer button {
-  display: block;
-  width: 100%;
-  text-align: left;
-  margin: 6px 0;
-  background: #2a103b;
-  color: white;
-  border: 1px solid #432057;
-  border-radius: 8px;
-  padding: 12px;
+  font-size: 18px;
 }
 
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 50;
-  inset: 0;
-  background: #000b;
-  align-items: center;
-  justify-content: center;
-  padding: 15px;
-}
-.modal.open { display: flex; }
-.modal-box {
-  width: 100%;
-  max-width: 450px;
-  max-height: 90vh;
-  overflow-y: auto;
-  background: #210d30;
-  border: 1px solid #70458b;
-  border-radius: 14px;
-  padding: 18px;
-}
-.modal-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 15px;
-}
-.modal-head h2 { color: var(--gold); margin: 0; }
-.close {
-  color: white;
-  border: 0;
-  background: #48245e;
-  border-radius: 6px;
-  padding: 7px 11px;
-}
-.tabs { display: flex; gap: 8px; margin-bottom: 15px; }
-.tabs button { flex: 1; }
-.field {
-  display: block;
-  width: 100%;
-  margin: 9px 0;
-  padding: 12px;
-  color: white;
-  background: #16051f;
-  border: 1px solid #54316a;
-  border-radius: 8px;
-}
-.form-message {
-  color: #ffe66b;
-  font-size: 13px;
-  margin: 10px 0;
-}
-.dashboard-card {
-  background: #321647;
-  border: 1px solid #70458b;
-  padding: 14px;
-  border-radius: 10px;
-  margin: 10px 0;
-}
-.dashboard-card h3 { color: var(--gold); margin: 0 0 8px; }
-.dashboard-actions {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
-  margin-top: 12px;
-}
-.dashboard-actions button { width: 100%; }
-.small { font-size: 12px; color: var(--muted); }
-.admin-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 12px;
-}
-.admin-table td, .admin-table th {
-  border: 1px solid #54316a;
-  padding: 7px;
-  text-align: left;
-}
-footer {
-  text-align: center;
-  color: #927da4;
-  font-size: 11px;
-  padding: 25px 10px 90px;
+.favorite-btn.active {
+  background: var(--gold);
+  color: #180020;
 }
 
-@media (min-width: 650px) {
-  .game-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .game-card img { height: 175px; }
-  .hero { min-height: 260px; }
-  .hero h1 { font-size: 38px; }
+@media (min-width: 700px) {
+  .game-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 </style>
 </head>
-
 <body>
 <header>
   <div style="display:flex;align-items:center;gap:10px">
@@ -546,367 +408,781 @@ footer {
     <button class="btn gold" onclick="closeModal('infoModal')">OK</button>
   </div>
 </div>
+<style>
+.icon-btn {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--purple);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.demo-note {
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  background: #210035;
+  padding: 10px;
+  text-align: center;
+  border-radius: 8px;
+  margin: 10px 0;
+  font-size: 12px;
+}
+
+.hero {
+  min-height: 220px;
+  border: 1px solid var(--purple);
+  border-radius: 14px;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, #14001fee, #14001f44),
+    url("fbd44_hero.jpg") center/cover;
+  display: flex;
+  align-items: center;
+  padding: 22px;
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.hero h1 {
+  color: var(--gold);
+  font-size: clamp(25px, 5vw, 42px);
+  margin: 0 0 10px;
+}
+
+.hero p {
+  line-height: 1.5;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin: 10px;
+}
+
+.dots button {
+  border: 0;
+  border-radius: 50%;
+  width: 9px;
+  height: 9px;
+  background: #72508a;
+}
+
+.dots button.active {
+  background: var(--gold);
+}
+
+.section-title {
+  color: var(--gold);
+  font-weight: bold;
+  font-size: 18px;
+  margin: 18px 0 10px;
+}
+
+.category {
+  background: #2a103c;
+  color: white;
+  border: 1px solid var(--purple);
+  padding: 9px 14px;
+  border-radius: 20px;
+}
+
+.category.active {
+  background: var(--gold);
+  color: #180020;
+}
+
+.btn {
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-weight: bold;
+}
+
+.btn.gold {
+  background: var(--gold);
+  color: #180020;
+}
+
+.btn.dark {
+  background: #2a103c;
+  color: white;
+  border: 1px solid var(--purple);
+}
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  padding: 25px 12px 90px;
+}
+
+.bottom-nav {
+  position: fixed;
+  z-index: 20;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  background: #180023;
+  border-top: 1px solid var(--purple);
+  padding: 7px 2px;
+}
+
+.bottom-nav button {
+  background: transparent;
+  border: 0;
+  color: #c8b3d9;
+  font-size: 11px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.bottom-nav span {
+  font-size: 19px;
+}
+
+.bottom-nav button.active {
+  color: var(--gold);
+}
+
+.drawer {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  background: #0009;
+}
+
+.drawer.open {
+  display: block;
+}
+
+.drawer-panel {
+  background: #1d082b;
+  width: 270px;
+  max-width: 85%;
+  height: 100%;
+  padding: 18px;
+  overflow: auto;
+  border-right: 1px solid var(--purple);
+}
+
+.drawer-title {
+  color: var(--gold);
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.drawer-panel button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: #2a103c;
+  border: 1px solid #48235d;
+  color: white;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 8px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: #000b;
+  padding: 15px;
+  overflow: auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.open {
+  display: flex;
+}
+
+.modal-box {
+  width: 100%;
+  max-width: 430px;
+  background: #1d082b;
+  border: 1px solid var(--purple);
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.modal-head h2 {
+  color: var(--gold);
+  font-size: 19px;
+}
+
+.close {
+  color: white;
+  background: transparent;
+  border: 0;
+  font-size: 22px;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.tabs button {
+  flex: 1;
+}
+
+.field {
+  display: block;
+  width: 100%;
+  background: #100019;
+  color: white;
+  border: 1px solid var(--purple);
+  border-radius: 8px;
+  padding: 12px;
+  margin: 10px 0;
+}
+
+.small {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.form-message {
+  color: var(--gold);
+  padding: 8px 0;
+}
+
+.dashboard-card {
+  border: 1px solid var(--purple);
+  border-radius: 10px;
+  padding: 14px;
+  margin: 12px 0;
+  background: #2a103c;
+}
+
+.dashboard-card h3 {
+  color: var(--gold);
+  margin-top: 0;
+}
+
+.dashboard-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.empty {
+  display: none;
+  text-align: center;
+  color: var(--muted);
+  padding: 20px;
+}
+
+@media(max-width: 420px) {
+  .logo {
+    font-size: 20px;
+  }
+
+  .balance {
+    font-size: 11px;
+    padding: 7px;
+  }
+
+  .account-btn {
+    font-size: 11px;
+    padding: 9px;
+  }
+
+  .hero {
+    min-height: 190px;
+  }
+}
+</style>
 
 <div class="modal" id="adminModal">
   <div class="modal-box">
     <div class="modal-head">
-      <h2>FBD44 ADMIN</h2>
+      <h2>FBD44 DEMO ADMIN</h2>
       <button class="close" onclick="closeModal('adminModal')">✕</button>
     </div>
-    <p class="small">Demo Admin Panel • Browser-local data only</p>
     <div id="adminLogin">
-      <input class="field" id="adminPassword" type="password" placeholder="Demo admin password">
+      <input class="field" id="adminPassword" type="password" placeholder="Demo Admin Password">
       <button class="btn gold" style="width:100%" onclick="adminLogin()">LOGIN / LOAD DASHBOARD</button>
-      <div class="form-message" id="adminMessage"></div>
       <p class="small">Demo password: demo44</p>
+      <div class="form-message" id="adminMessage"></div>
     </div>
     <div id="adminDashboard" style="display:none">
       <div class="dashboard-card">
         <h3>Dashboard</h3>
-        <div>Total Demo Users: <b id="adminUsers">0</b></div>
-        <div>Demo Login Records: <b id="adminLogins">0</b></div>
+        <p>Total Users: <b id="adminUsers">0</b></p>
+        <p>Login Records: <b id="adminLogins">0</b></p>
       </div>
-      <h3>Registered Demo Users</h3>
-      <div style="overflow-x:auto">
-        <table class="admin-table">
-          <thead><tr><th>Username</th><th>Mobile</th></tr></thead>
-          <tbody id="adminUserRows"></tbody>
-        </table>
-      </div>
-      <h3>Demo Login History</h3>
-      <div style="overflow-x:auto">
-        <table class="admin-table">
-          <thead><tr><th>Username</th><th>Time</th></tr></thead>
-          <tbody id="adminLoginRows"></tbody>
-        </table>
-      </div>
-      <button class="btn dark" style="width:100%;margin-top:12px" onclick="adminLogout()">LOG OUT</button>
+      <h3>Registered Users</h3>
+      <div id="adminUserList"></div>
+      <h3>Login History</h3>
+      <div id="adminLoginList"></div>
+      <button class="btn gold" style="width:100%;margin-top:12px" onclick="adminLogout()">LOG OUT</button>
     </div>
   </div>
 </div>
-
 <script>
-const games = [
-  {
-    id: 1, name: "Ocean King", category: "Fishing",
-    image: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=800&q=80",
-    tag: "Fishing World"
-  },
-  {
-    id: 2, name: "Golden Slots", category: "Slots",
-    image: "https://images.unsplash.com/photo-1606167668584-78701c57f13d?auto=format&fit=crop&w=800&q=80",
-    tag: "Slots Collection"
-  },
-  {
-    id: 3, name: "Crash Rocket", category: "Crash",
-    image: "https://images.unsplash.com/photo-1614728263952-84ea256f9679?auto=format&fit=crop&w=800&q=80",
-    tag: "Crash Games"
-  },
-  {
-    id: 4, name: "Treasure Fishing", category: "Fishing",
-    image: "https://images.unsplash.com/photo-1530053969600-caed2596d242?auto=format&fit=crop&w=800&q=80",
-    tag: "Fishing World"
-  },
-  {
-    id: 5, name: "Lucky 7", category: "Slots",
-    image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80",
-    tag: "Slots Collection"
-  },
-  {
-    id: 6, name: "Live Table Demo", category: "Live Casino",
-    image: "https://images.unsplash.com/photo-1606167668584-78701c57f13d?auto=format&fit=crop&w=800&q=80",
-    tag: "Live Casino"
-  },
-  {
-    id: 7, name: "Arcade Star", category: "Arcade",
-    image: "https://images.unsplash.com/photo-155074格?auto=format&fit=crop&w=800&q=80",
-    tag: "Arcade"
-  },
-  {
-    id: 8, name: "Sky Crash", category: "Crash",
-    image: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=800&q=80",
-    tag: "Crash Games"
-  }
-];
+const $ = id => document.getElementById(id);
+
+let authMode = "login";
+let currentCategory = "All Games";
+let favoriteOnly = false;
+let currentUser = null;
+let slideIndex = 0;
 
 const slides = [
   {
     title: "Welcome to FBD44",
-    text: "Explore your Gaming World. Play with virtual demo points.",
-    image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1400&q=85"
+    text: "Explore your Gaming World with virtual demo points.",
+    image: "fbd44_hero.jpg"
   },
   {
     title: "Fishing World",
-    text: "Discover the ocean and explore fishing-themed demos.",
-    image: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1400&q=85"
+    text: "Discover exciting fishing games.",
+    image: "fbd44_ocean.jpg"
   },
   {
     title: "Slots Collection",
-    text: "Enjoy colorful slot-style demo games.",
-    image: "https://images.unsplash.com/photo-1606167668584-78701c57f13d?auto=format&fit=crop&w=1400&q=85"
+    text: "Explore colorful slot-style demo games.",
+    image: "fbd44_slots.jpg"
   },
   {
     title: "Crash Games",
-    text: "Try the crash-themed demo collection.",
-    image: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1400&q=85"
+    text: "Try the crash-style demo experience.",
+    image: "fbd44_crash.jpg"
   },
   {
-    title: "Gaming World",
-    text: "Your favorite demo games in one place.",
-    image: "https://images.unsplash.com/photo-1614728263952-84ea256f9679?auto=format&fit=crop&w=1400&q=85"
+    title: "Racing & Arcade",
+    text: "Enjoy arcade-style virtual games.",
+    image: "fbd44_racing.jpg"
   }
 ];
 
-let currentCategory = "All Games";
-let favoritesOnly = false;
-let authMode = "login";
-let currentSlide = 0;
-let currentUser = null;
-let points = 10000;
+const games = [
+  {id:"ocean",name:"Ocean Strike",category:"Fishing",image:"fbd44_ocean.jpg"},
+  {id:"slots",name:"Golden Slots",category:"Slots",image:"fbd44_slots.jpg"},
+  {id:"crash",name:"Crash Demo",category:"Crash",image:"fbd44_crash.jpg"},
+  {id:"racing",name:"Racing World",category:"Arcade",image:"fbd44_racing.jpg"},
+  {id:"hero",name:"FBD44 Adventure",category:"Arcade",image:"fbd44_hero.jpg"},
+  {id:"fish2",name:"Fishing Legend",category:"Fishing",image:"fbd44_ocean.jpg"},
+  {id:"slot2",name:"Lucky Spin",category:"Slots",image:"fbd44_slots.jpg"},
+  {id:"arcade2",name:"Arcade Fun",category:"Arcade",image:"fbd44_racing.jpg"}
+];
 
-function getData(key, fallback) {
-  try {
-    const value = localStorage.getItem(key);
-    return value ? JSON.parse(value) : fallback;
-  } catch(e) {
-    return fallback;
-  }
+function getUsers() {
+  return JSON.parse(localStorage.getItem("fbd44_demo_users") || "[]");
 }
-function setData(key, value) {
-  localStorage.setItem(key, JSON.stringify(value));
+
+function saveUsers(users) {
+  localStorage.setItem("fbd44_demo_users", JSON.stringify(users));
 }
-function getUsers() { return getData("fbd44_demo_users", []); }
-function getLogins() { return getData("fbd44_demo_logins", []); }
-function getFavorites() { return getData("fbd44_demo_favorites", []); }
+
+function getLogins() {
+  return JSON.parse(localStorage.getItem("fbd44_demo_logins") || "[]");
+}
+
+function saveLogins(logins) {
+  localStorage.setItem("fbd44_demo_logins", JSON.stringify(logins));
+}
+
+function getFavorites() {
+  return JSON.parse(localStorage.getItem("fbd44_favorites") || "[]");
+}
+
+function saveFavorites(list) {
+  localStorage.setItem("fbd44_favorites", JSON.stringify(list));
+}
+
+function initSlider() {
+  const dots = $("dots");
+  dots.innerHTML = "";
+
+  slides.forEach((slide, i) => {
+    const dot = document.createElement("button");
+    dot.className = i === 0 ? "active" : "";
+    dot.onclick = () => showSlide(i);
+    dots.appendChild(dot);
+  });
+
+  showSlide(0);
+}
+
+function showSlide(index) {
+  slideIndex = index;
+  const slide = slides[index];
+
+  $("hero").style.backgroundImage =
+    `linear-gradient(90deg,#14001fee,#14001f44),url("${slide.image}")`;
+
+  $("heroTitle").textContent = slide.title;
+  $("heroText").textContent = slide.text;
+
+  [...$("dots").children].forEach((dot, i) => {
+    dot.classList.toggle("active", i === index);
+  });
+}
+
+setInterval(() => {
+  showSlide((slideIndex + 1) % slides.length);
+}, 5000);
 
 function renderGames() {
-  const grid = document.getElementById("gameGrid");
-  const search = document.getElementById("search").value.toLowerCase().trim();
+  const grid = $("gameGrid");
+  const search = $("search").value.toLowerCase().trim();
   const favorites = getFavorites();
 
-  const filtered = games.filter(game => {
-    const categoryMatch = currentCategory === "All Games" || game.category === currentCategory;
-    const searchMatch = game.name.toLowerCase().includes(search) ||
-      game.category.toLowerCase().includes(search);
-    const favoriteMatch = !favoritesOnly || favorites.includes(game.id);
+  let filtered = games.filter(game => {
+    const categoryMatch =
+      currentCategory === "All Games" ||
+      game.category === currentCategory;
+
+    const searchMatch = game.name.toLowerCase().includes(search);
+
+    const favoriteMatch = !favoriteOnly || favorites.includes(game.id);
+
     return categoryMatch && searchMatch && favoriteMatch;
   });
 
   grid.innerHTML = "";
+  $("empty").style.display = filtered.length ? "none" : "block";
+
   filtered.forEach(game => {
-    const saved = favorites.includes(game.id);
     const card = document.createElement("div");
     card.className = "game-card";
-    card.innerHTML = `
-      <img src="${game.image}" alt="${game.name}" loading="lazy"
-        onerror="this.src='https://placehold.co/600x400/29113b/ffe34b?text=FBD44+Game'">
-      <button class="fav ${saved ? "saved" : ""}" onclick="toggleFavorite(${game.id})">
-        ${saved ? "★" : "☆"}
-      </button>
-      <div class="game-info">
-        <div class="game-name">${game.name}</div>
-        <div class="game-meta"><span>${game.category}</span><span>DEMO</span></div>
-        <div class="game-actions">
-          <button class="btn gold" onclick="playDemo(${game.id})">PLAY</button>
-          <button class="btn dark" onclick="toggleFavorite(${game.id})">${saved ? "Pinned" : "☆ Pin"}</button>
-        </div>
-      </div>`;
+
+    const image = document.createElement("img");
+    image.src = game.image;
+    image.alt = game.name;
+    image.onerror = () => {
+      image.src = "fbd44_hero.jpg";
+    };
+
+    const favorite = document.createElement("button");
+    favorite.className =
+      "favorite-btn " + (favorites.includes(game.id) ? "active" : "");
+    favorite.textContent = favorites.includes(game.id) ? "★" : "☆";
+    favorite.title = "Pin to Favorites";
+
+    favorite.onclick = () => {
+      let list = getFavorites();
+
+      if (list.includes(game.id)) {
+        list = list.filter(id => id !== game.id);
+      } else {
+        list.push(game.id);
+      }
+
+      saveFavorites(list);
+      renderGames();
+    };
+
+    const info = document.createElement("div");
+    info.className = "game-info";
+
+    const title = document.createElement("h3");
+    title.textContent = game.name;
+
+    const play = document.createElement("button");
+    play.className = "play-btn";
+    play.textContent = "PLAY DEMO";
+    play.onclick = () => playDemo(game.name);
+
+    info.appendChild(title);
+    info.appendChild(play);
+
+    card.appendChild(image);
+    card.appendChild(favorite);
+    card.appendChild(info);
+
     grid.appendChild(card);
   });
-
-  document.getElementById("empty").style.display = filtered.length ? "none" : "block";
-  document.getElementById("gameHeading").textContent =
-    favoritesOnly ? "⭐ My Favorites" : "🔥 " + currentCategory;
 }
 
-function toggleFavorite(id) {
-  let favorites = getFavorites();
-  favorites = favorites.includes(id)
-    ? favorites.filter(item => item !== id)
-    : [...favorites, id];
-  setData("fbd44_demo_favorites", favorites);
-  renderGames();
+function playDemo(name) {
+  showInfo(name, "This game is a virtual demo preview. No real money, deposits, or cash prizes.");
 }
-function showFavorites() {
-  favoritesOnly = true;
-  currentCategory = "All Games";
-  document.querySelectorAll(".category").forEach(btn =>
-    btn.classList.toggle("active", btn.dataset.category === "All Games")
-  );
-  renderGames();
-  document.getElementById("gameGrid").scrollIntoView({behavior:"smooth"});
-}
-function playDemo(id) {
-  const game = games.find(item => item.id === id);
-  showInfo(game.name, "This game is a visual demo placeholder. No betting, payment, or cash prizes are enabled.");
-}
-function scrollToGames() {
-  document.getElementById("categories").scrollIntoView({behavior:"smooth"});
-}
-function goHome() {
-  favoritesOnly = false;
-  currentCategory = "All Games";
-  document.getElementById("search").value = "";
-  renderGames();
-  window.scrollTo({top:0, behavior:"smooth"});
-}
-document.querySelectorAll(".category").forEach(btn => {
-  btn.addEventListener("click", () => {
-    currentCategory = btn.dataset.category;
-    favoritesOnly = false;
-    document.querySelectorAll(".category").forEach(b =>
-      b.classList.toggle("active", b === btn)
-    );
+
+document.querySelectorAll(".category").forEach(button => {
+  button.onclick = () => {
+    document.querySelectorAll(".category").forEach(item => {
+      item.classList.remove("active");
+    });
+
+    button.classList.add("active");
+    currentCategory = button.dataset.category;
+    favoriteOnly = false;
+
+    $("gameHeading").textContent = currentCategory === "All Games"
+      ? "🔥 Popular Games"
+      : "🎮 " + currentCategory;
+
     renderGames();
-  });
+  };
 });
 
-function drawSlide() {
-  const slide = slides[currentSlide];
-  const hero = document.getElementById("hero");
-  hero.style.backgroundImage = `url("${slide.image}")`;
-  document.getElementById("heroTitle").textContent = slide.title;
-  document.getElementById("heroText").textContent = slide.text;
-  document.getElementById("dots").innerHTML = slides.map((_, index) =>
-    `<button class="dot ${index === currentSlide ? "active" : ""}" onclick="setSlide(${index})"></button>`
-  ).join("");
+function showFavorites() {
+  favoriteOnly = true;
+  currentCategory = "All Games";
+
+  document.querySelectorAll(".category").forEach(button => {
+    button.classList.toggle(
+      "active",
+      button.dataset.category === "All Games"
+    );
+  });
+
+  $("gameHeading").textContent = "⭐ My Favorites";
+  renderGames();
 }
-function setSlide(index) {
-  currentSlide = index;
-  drawSlide();
+
+function scrollToGames() {
+  $("gameGrid").scrollIntoView({behavior:"smooth"});
+}
+
+function goHome() {
+  favoriteOnly = false;
+  currentCategory = "All Games";
+  $("search").value = "";
+
+  document.querySelectorAll(".category").forEach(button => {
+    button.classList.toggle(
+      "active",
+      button.dataset.category === "All Games"
+    );
+  });
+
+  $("gameHeading").textContent = "🔥 Popular Games";
+  renderGames();
+
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
 function toggleDrawer() {
-  document.getElementById("drawer").classList.toggle("open");
+  $("drawer").classList.toggle("open");
 }
+
 function closeDrawerOutside(event) {
-  if (event.target.id === "drawer") toggleDrawer();
+  if (event.target === $("drawer")) {
+    $("drawer").classList.remove("open");
+  }
 }
+
 function openAccount() {
-  document.getElementById("accountModal").classList.add("open");
-  refreshAccount();
+  $("accountModal").classList.add("open");
+  updateAccountPanel();
 }
+
 function closeModal(id) {
-  document.getElementById(id).classList.remove("open");
+  $(id).classList.remove("open");
 }
+
 function setAuthTab(mode) {
   authMode = mode;
-  document.getElementById("authSubmit").textContent = mode === "login" ? "LOGIN" : "REGISTER";
-  document.getElementById("authMessage").textContent = "";
+  $("authSubmit").textContent = mode === "login" ? "LOGIN" : "REGISTER";
+  $("authMessage").textContent = "";
+  $("authPhone").style.display = mode === "register" ? "block" : "none";
+  $("authEmail").style.display = mode === "register" ? "block" : "none";
 }
+
 function submitAuth(event) {
   event.preventDefault();
-  const username = document.getElementById("authUsername").value.trim();
-  const password = document.getElementById("authPassword").value;
-  const phone = document.getElementById("authPhone").value.trim();
-  const email = document.getElementById("authEmail").value.trim();
+
+  const username = $("authUsername").value.trim();
+  const password = $("authPassword").value;
+  const phone = $("authPhone").value.trim();
+  const email = $("authEmail").value.trim();
+
   let users = getUsers();
 
   if (authMode === "register") {
     if (users.some(user => user.username.toLowerCase() === username.toLowerCase())) {
-      document.getElementById("authMessage").textContent = "Username already exists.";
+      $("authMessage").textContent = "Username already exists.";
       return;
     }
+
     const user = {
-      username, password, phone, email,
-      id: "FBD-" + Math.floor(100000 + Math.random() * 900000),
+      id: "FBD" + Date.now(),
+      username,
+      password,
+      phone,
+      email,
       points: 10000,
       created: new Date().toLocaleString()
     };
+
     users.push(user);
-    setData("fbd44_demo_users", users);
+    saveUsers(users);
+
     currentUser = user;
     recordLogin(username);
-  } else {
-    const user = users.find(item => item.username === username && item.password === password);
-    if (!user) {
-      document.getElementById("authMessage").textContent = "Login failed. Check your demo username and password.";
-      return;
-    }
-    currentUser = user;
-    points = user.points || 10000;
-    recordLogin(username);
+
+    $("authMessage").textContent = "Registration successful!";
+    updateAccountPanel();
+    return;
   }
-  refreshAccount();
+
+  const user = users.find(item =>
+    item.username.toLowerCase() === username.toLowerCase() &&
+    item.password === password
+  );
+
+  if (!user) {
+    $("authMessage").textContent = "Login failed. Check username and password.";
+    return;
+  }
+
+  currentUser = user;
+  recordLogin(username);
+  updateAccountPanel();
 }
+
 function recordLogin(username) {
-  const logs = getLogins();
-  logs.unshift({username, time:new Date().toLocaleString()});
-  setData("fbd44_demo_logins", logs);
+  let logins = getLogins();
+
+  logins.unshift({
+    username,
+    time: new Date().toLocaleString()
+  });
+
+  saveLogins(logins);
 }
-function refreshAccount() {
+
+function updateAccountPanel() {
   const loggedIn = !!currentUser;
-  document.getElementById("authPanel").style.display = loggedIn ? "none" : "block";
-  document.getElementById("userPanel").style.display = loggedIn ? "block" : "none";
+
+  $("authPanel").style.display = loggedIn ? "none" : "block";
+  $("userPanel").style.display = loggedIn ? "block" : "none";
+
   if (loggedIn) {
-    document.getElementById("dashName").textContent = currentUser.username;
-    document.getElementById("dashId").textContent = currentUser.id;
-    document.getElementById("dashPoints").textContent = (currentUser.points || points).toLocaleString();
-    document.getElementById("headerPoints").textContent = (currentUser.points || points).toLocaleString();
+    $("dashName").textContent = currentUser.username;
+    $("dashId").textContent = currentUser.id;
+    $("dashPoints").textContent = Number(currentUser.points || 10000).toLocaleString();
+    $("headerPoints").textContent = Number(currentUser.points || 10000).toLocaleString();
+  } else {
+    setAuthTab("login");
   }
 }
+
 function logout() {
   currentUser = null;
+  updateAccountPanel();
   closeModal("accountModal");
-  refreshAccount();
-  showInfo("Logged Out", "You have logged out from the demo account.");
+  showInfo("Logged Out", "You have logged out of the demo account.");
 }
 
 function showInfo(title, message) {
-  document.getElementById("infoTitle").textContent = title;
-  document.getElementById("infoText").textContent =
-    message || "This feature is a demo placeholder and is not connected to a real service.";
-  document.getElementById("infoModal").classList.add("open");
+  $("infoTitle").textContent = title;
+  $("infoText").textContent = message || "This is a demo feature.";
+  $("infoModal").classList.add("open");
 }
+
 function shareSite() {
   if (navigator.share) {
-    navigator.share({title:"FBD44 Gaming World", text:"Explore FBD44 Gaming World demo.", url:location.href})
-      .catch(()=>{});
+    navigator.share({
+      title: "FBD44 Gaming World",
+      text: "Explore FBD44 virtual demo games.",
+      url: location.href
+    }).catch(() => {});
   } else {
-    showInfo("Share FBD44", "Copy this website address from your browser to share it.");
+    showInfo("Share FBD44", location.href);
   }
 }
 
+/* DEMO ADMIN */
+
 function openAdmin() {
-  document.getElementById("adminModal").classList.add("open");
-  document.getElementById("adminLogin").style.display = "block";
-  document.getElementById("adminDashboard").style.display = "none";
+  $("adminModal").classList.add("open");
 }
+
 function adminLogin() {
-  const password = document.getElementById("adminPassword").value;
-  if (password !== "demo44") {
-    document.getElementById("adminMessage").textContent = "Incorrect demo password.";
+  if ($("adminPassword").value !== "demo44") {
+    $("adminMessage").textContent = "Incorrect demo password.";
     return;
   }
-  document.getElementById("adminLogin").style.display = "none";
-  document.getElementById("adminDashboard").style.display = "block";
-  renderAdmin();
+
+  $("adminLogin").style.display = "none";
+  $("adminDashboard").style.display = "block";
+  loadAdminDashboard();
 }
-function renderAdmin() {
-  const users = getUsers();
-  const logs = getLogins();
-  document.getElementById("adminUsers").textContent = users.length;
-  document.getElementById("adminLogins").textContent = logs.length;
-  document.getElementById("adminUserRows").innerHTML = users.map(user =>
-    `<tr><td>${escapeHTML(user.username)}</td><td>${escapeHTML(user.phone || "-")}</td></tr>`
-  ).join("");
-  document.getElementById("adminLoginRows").innerHTML = logs.map(log =>
-    `<tr><td>${escapeHTML(log.username)}</td><td>${escapeHTML(log.time)}</td></tr>`
-  ).join("");
-}
+
 function adminLogout() {
-  document.getElementById("adminDashboard").style.display = "none";
-  document.getElementById("adminLogin").style.display = "block";
-  document.getElementById("adminPassword").value = "";
+  $("adminLogin").style.display = "block";
+  $("adminDashboard").style.display = "none";
+  $("adminPassword").value = "";
 }
+
+function loadAdminDashboard() {
+  const users = getUsers();
+  const logins = getLogins();
+
+  $("adminUsers").textContent = users.length;
+  $("adminLogins").textContent = logins.length;
+
+  $("adminUserList").innerHTML = users.length
+    ? users.map(user => `
+      <div class="dashboard-card">
+        <b>${escapeHTML(user.username)}</b><br>
+        <span class="small">ID: ${escapeHTML(user.id)}</span><br>
+        <span class="small">Joined: ${escapeHTML(user.created || "")}</span>
+      </div>
+    `).join("")
+    : "<p>No registered users.</p>";
+
+  $("adminLoginList").innerHTML = logins.length
+    ? logins.map(item => `
+      <div class="dashboard-card">
+        <b>${escapeHTML(item.username)}</b><br>
+        <span class="small">${escapeHTML(item.time)}</span>
+      </div>
+    `).join("")
+    : "<p>No login records.</p>";
+}
+
 function escapeHTML(value) {
   return String(value).replace(/[&<>"']/g, char => ({
-    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
   }[char]));
 }
 
-drawSlide();
-renderGames();
+function init() {
+  $("authPhone").style.display = "none";
+  $("authEmail").style.display = "none";
+
+  initSlider();
+  renderGames();
+  setAuthTab("login");
+}
+
+init();
 </script>
 </body>
 </html>
